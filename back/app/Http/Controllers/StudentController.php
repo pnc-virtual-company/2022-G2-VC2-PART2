@@ -15,14 +15,14 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $newStudent = new Student();
-        $newStudent->first_name = $request->first_name;
-        $newStudent->last_name = $request->last_name;
-        $newStudent->batch = $request->batch;
-        $newStudent->email = $request->email;
-        $newStudent->gender = $request->gender;
-        $newStudent->phone = $request->phone;
-        $newStudent->save();
-        return response()->json($newStudent);
+        $new_student = new Student();
+        $new_student->first_name = $request->first_name;
+        $new_student->last_name = $request->last_name;
+        $new_student->batch = $request->batch;
+        $new_student->email = $request->email;
+        $new_student->gender = $request->gender;
+        $new_student->phone = $request->phone;
+        $new_student->save();
+        return response()->json($new_student);
     }
 }
