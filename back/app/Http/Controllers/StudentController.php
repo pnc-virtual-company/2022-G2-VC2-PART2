@@ -36,4 +36,19 @@ class StudentController extends Controller
     {
         return Student::destroy($id);
     }
+    
+    public function update(Request $request,$id)
+    {
+        $student=Student::findOrFail($id);
+        $student->first_name =$request->first_name;
+        $student->last_name =$request->last_name;
+        $student->batch =$request->batch;
+        $student->email =$request->email;
+        $student->gender =$request->gender;
+        $student->phone =$request->phone;
+        $student->save();
+        return response()->json([
+            'message'=>'Your Updated is successfully'
+        ]);
+    }
 }
