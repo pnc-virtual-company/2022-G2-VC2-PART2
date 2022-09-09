@@ -25,4 +25,15 @@ class StudentController extends Controller
         $new_student->save();
         return response()->json($new_student);
     }
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Student  $student
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        return Student::destroy($id);
+    }
 }
