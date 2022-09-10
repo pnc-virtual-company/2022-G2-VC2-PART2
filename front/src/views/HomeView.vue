@@ -1,18 +1,12 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" width="100">
-    <HelloWorld msg="WELCOME TO VIRTUAL COMPANY II 2022"/>
-  </div>
+  <TeacherView/>
 </template>
-
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import TeacherView from '@/components/Teacher/TeacherView.vue'
 
 export default {
   name: 'HomeView',
-  components: {
-    HelloWorld
-  }
+  components: { TeacherView }
 }
 </script>
