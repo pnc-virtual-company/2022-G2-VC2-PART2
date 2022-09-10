@@ -26,4 +26,9 @@ class TeacherController extends Controller
         ]);
     }
 
+    public function destroy($id)
+    {
+        return Teacher::destroy($id);
+    }
+
 }
