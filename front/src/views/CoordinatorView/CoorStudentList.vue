@@ -1,15 +1,16 @@
 <template>
-  <section>
-    Here is student list. Appear now.
-  </section>
+  <create-student></create-student>
 </template>
 
 <script>
+import CreateStudent from '../../components/student/CreateStudent.vue'
 export default {
-
+  components: {
+    'create-student': CreateStudent,
+  },
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
