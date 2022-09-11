@@ -1,15 +1,7 @@
 <template>
-  <section>
-    Here is student list. Appear now.
-  </section>
+  <student-view/>
 </template>
-
 <script>
 export default {
-
 }
 </script>
-
-<style>
-
-</style>
