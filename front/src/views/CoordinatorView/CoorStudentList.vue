@@ -1,8 +1,9 @@
 <template>
   <create-student></create-student>
+  <student-view/>
 </template>
 <script>
-import CreateStudent from '../../components/student/CreateStudent.vue'
+import CreateStudent from '@/components/coordinator/student/CreateStudent.vue'
 export default {
   components: {
     'create-student': CreateStudent,
