@@ -25,7 +25,7 @@ class StudentController extends Controller
         $user->email = $request->email;
         $user->gender = $request->gender;
         $user->save();
-        $user->student()->save($student);
+        $user->students()->save($student);
         return "Create successfully";       
 
     }
