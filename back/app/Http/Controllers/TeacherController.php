@@ -10,7 +10,7 @@ class TeacherController extends Controller
 
     public function index()
     {
-        return Teacher::get();
+        return Teacher::with('users')->get();
     }
     /**
      * Store a newly created resource in storage.
