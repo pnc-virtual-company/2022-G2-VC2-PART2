@@ -2,7 +2,6 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import './index.css'
-import Vuelidate from 'vuelidate'
 import CoordinatorNav from './components/coordinator/navbarCoordinator/CoordinatorNav.vue'
 import CoordinatorNavLogo from './components/coordinator/navbarCoordinator/CoordinatorNavLogo.vue'
 import CoordinatorNavProfile from './components/coordinator/navbarCoordinator/CoordinatorNavProfile.vue'
@@ -25,5 +24,4 @@ app.component('icon-detail', IconDetail)
 app.component('icon-edit', IconEdit)
 app.component('icon-delete', IconDelete)
 app.use(router)
-app.use(Vuelidate)
 app.mount('#app')

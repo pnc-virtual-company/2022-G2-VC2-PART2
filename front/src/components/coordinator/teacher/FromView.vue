@@ -88,18 +88,30 @@
                           v-model="position"
                         />
                       </div>
-                    </div>
-                    <div class="mb-4 px-2 w-full">
-                      <label class="block mb-1 text-sm" for="input1">Email</label>
-      
-                      <input
-                        id="input1"
-                        class="w-full border px-4 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none"
-                        type="text"
-                        autofocus
-                        placeholder="Email"
-                        v-model="email"
-                      />
+                      <div class="mb-4 px-2 w-full">
+                        <label class="block mb-1 text-sm" for="input1">Email</label>
+        
+                        <input
+                          id="input1"
+                          class="w-full border px-4 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none"
+                          type="text"
+                          autofocus
+                          placeholder="Email"
+                          v-model="email"
+                        />
+                      </div>
+                      <div class="mb-4 px-2 w-full">
+                        <label class="block mb-1 text-sm" for="input1">Phone</label>
+        
+                        <input
+                          id="input1"
+                          class="w-full border px-4 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none"
+                          type="text"
+                          autofocus
+                          placeholder="Phone"
+                          v-model="phone"
+                        />
+                      </div>
                     </div>
                   </form>
                 </div>
@@ -134,6 +146,7 @@ data(){
     gender: "Gender",
     position: "",
     email: "",
+    phone: ""
   }
 },
 methods:{
@@ -141,12 +154,15 @@ methods:{
     this.$emit('change_model', this.show_model);
   },
   add(){
-    let info_of_teacher={
-      first_name: this.first_name,
-      last_name: this.last_name,
-      gender: this.gender,
-      position: this.position,
-      email:this.email,
+    if(this.first_name.trim().length>0 && this.last_name.trim().length>0 && this.gender.trim().length>0 && this.gender != "Gender" && this.position.trim().length>0 && this.email.trim().length>0 && this.phone.trim().length>0)
+    {
+      let info_of_teacher={
+        first_name: this.first_name,
+        last_name: this.last_name,
+        gender: this.gender,
+        position: this.position,
+        email:this.email,
+        phone: this.phone,
     }
     this.$emit('add',this.show_model,info_of_teacher);
     this.first_name ="";
@@ -154,6 +170,7 @@ methods:{
     this.gender = "";
     this.position = "";
     this.email = "";
+    }
   }
 }
 }

@@ -30,7 +30,7 @@
 
 <script>
 import FormView from "./FromView.vue";
-import axios from '../../../axios-http';
+import axiosClient from '../../../axios-http';
 export default {
   components: {
     "form-view": FormView,
