@@ -8,8 +8,7 @@ class Teacher extends Model
     protected $fillable=[
         'position',
         'phone',
-   
-   
+
     ];
     protected $hidden=[
         'created_at',

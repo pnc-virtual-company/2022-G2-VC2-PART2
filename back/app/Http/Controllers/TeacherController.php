@@ -2,9 +2,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Teacher;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 class TeacherController extends Controller
 {
+
+    public function index()
+    {
+        return Teacher::get();
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -14,16 +21,17 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         //
-        $teacher= new Teacher();
-        $teacher->first_name =$request->first_name;
-        $teacher->last_name= $request->last_name;
-        $teacher->gender=$request->gender;
-        $teacher->position=$request->position;
-        $teacher->email =$request->email;
-        $teacher->save();
-        return response()->json([
-            'Your created is successfully'
-        ]);
+        $teacher = new Teacher();
+        $teacher->position = $request->position;
+        $teacher->phone=$request->phone;
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->gender = $request->gender;
+        $user->save();
+        $user->teachers()->save($teacher);
+        return "Create successfully";
     }
 
     public function destroy($id)
