@@ -8,11 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Coordinator extends Model
 {
     use HasFactory;
-    protected $fillable = [
-      
-
-
-    ];
 
     protected $hidden = [
         'created_at',
