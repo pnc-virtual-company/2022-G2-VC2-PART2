@@ -15,13 +15,11 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('gender');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('position');
-            $table->string('email');
-            $table->string('password')->default(bcrypt('1234567'));
-            $table->integer('role')->default(2);
+            $table->string('role')->default("teacher");
+            $table->string('phone');
             $table->timestamps();
         });
     }
