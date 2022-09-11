@@ -4,7 +4,7 @@
         <div class="side-left"></div>
         <div class="side-right">
           <add-student-button type="button"
-            class="btn-add text-white text-sm px-4 py-3 mt-3 font-bold rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            class="btn-add text-white text-sm px-3 py-1 mt-3 font-bold rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             v-on:click="toggleModal()">
             Create Student
           </add-student-button>
@@ -22,12 +22,12 @@
   </template>
   
   <script>
-  import ButtonComponent from "./ButtonComponent.vue"
+  import ButtonViewVue from "@/components/button/ButtonView.vue";
   import FormComponent from "./FormComponent.vue"
  
   export default {
     components: {
-      'add-student-button': ButtonComponent,
+      'add-student-button': ButtonViewVue,
       'form-create-student': FormComponent,
     },
     emits: [''],

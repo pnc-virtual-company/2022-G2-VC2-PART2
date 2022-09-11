@@ -71,12 +71,12 @@
             <div class="div"></div>
             <div class="flex items-center justify-end p-2 border-slate-200 rounded-b">
                 <button-add
-                    class="btn-cancel text-white active:bg-orange-600 text-sm px-4 py-2 rounded shadow hover:bg-orange-400 hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    class="btn-cancel text-white active:bg-orange-600 text-sm rounded px-2 mr-3 shadow hover:bg-orange-400 hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button" @click="onCancel">
                     Cancel
                 </button-add>
                 <button-add
-                    class="btn-submit text-white active:bg-sky-600 text-sm text-sm px-4 py-2 rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    class="btn-submit text-white active:bg-sky-600 text-sm text-sm px-2 rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="submit">
                     Create
                 </button-add>
@@ -87,11 +87,11 @@
 
 <script>
 import axiosClient from "../../../axios-http"
-import ButtonComponent from './ButtonComponent.vue'
-import ErrorComponent from './ErrorComponent.vue'
+import ButtonViewVue from "@/components/button/ButtonView.vue"
+import ErrorComponent from '../../message/ErrorComponent.vue'
 export default {
     components: {
-        'button-add': ButtonComponent,
+        'button-add': ButtonViewVue,
         'error-message': ErrorComponent,
     },
     data() {
