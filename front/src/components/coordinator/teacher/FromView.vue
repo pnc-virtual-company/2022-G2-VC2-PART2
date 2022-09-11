@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import ButtonView from '../button/ButtonView.vue'
+import ButtonView from '../../button/ButtonView.vue'
 
 export default {
 components:{
