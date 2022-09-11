@@ -1,12 +1,13 @@
 <template>
-  <section>
-    Here is teacher List. Please show (Wo Wo)
-  </section>
+  <teacher-view></teacher-view>
 </template>
 
 <script>
+  import TeacherView from '../../components/teacher/TeacherView.vue'
 export default {
-
+components:{
+  "teacher-view" : TeacherView,
+}
 }
 </script>
 
