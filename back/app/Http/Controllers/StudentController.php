@@ -54,7 +54,7 @@ class StudentController extends Controller
             'message'=>'Your Updated is successfully'
         ]);
     }
-    /**
+      /**
      * Remove the specified user from storage.
      *
      * @param  \App\Models\User  $student
