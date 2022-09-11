@@ -1,5 +1,8 @@
 <template>
-  <create-student></create-student>
+  <section>
+    <create-student></create-student>
+    <student-list></student-list>
+  </section>
 </template>
 <script>
 import CreateStudent from '../../components/student/CreateStudent.vue'
