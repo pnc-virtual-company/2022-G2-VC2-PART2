@@ -1,7 +1,6 @@
 <template>
   <create-student></create-student>
 </template>
-
 <script>
 import CreateStudent from '../../components/student/CreateStudent.vue'
 export default {
@@ -11,6 +10,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style>

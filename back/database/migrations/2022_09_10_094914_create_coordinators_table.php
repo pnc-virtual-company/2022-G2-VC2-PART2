@@ -13,19 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('coordinators', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('gender');
-            $table->string('profile')->default('https://drjollydiagnostics.com/wp-content/uploads/2017/11/profile-placeholder.png');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string("role")->default("coordinator");
             $table->timestamps();
         });
-        
     }
-    
+
+   
 
     /**
      * Reverse the migrations.
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('coordinators');
     }
 };
