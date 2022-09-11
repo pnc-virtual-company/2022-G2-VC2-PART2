@@ -86,9 +86,9 @@
 </template>
 
 <script>
-import axiosClient from "../../axios-http"
-import ButtonComponent from '../student/ButtonComponent.vue'
-import ErrorComponent from '../student/ErrorComponent.vue'
+import axiosClient from "../../../axios-http"
+import ButtonComponent from './ButtonComponent.vue'
+import ErrorComponent from './ErrorComponent.vue'
 export default {
     components: {
         'button-add': ButtonComponent,

@@ -11,7 +11,7 @@ class Student extends Model
 
     protected $fillable = [
         'batch',
-        'phone',   
+        'phone',
     ];
 
     protected $hidden = [
@@ -20,6 +20,6 @@ class Student extends Model
     ];
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -1,8 +1,10 @@
 <template>
-  <create-student></create-student>
+  <section>
+    <create-student></create-student>
+  </section>
 </template>
 <script>
-import CreateStudent from '../../components/student/CreateStudent.vue'
+import CreateStudent from '../../components/coordinator/student/CreateStudent.vue'
 export default {
   components: {
     'create-student': CreateStudent,
