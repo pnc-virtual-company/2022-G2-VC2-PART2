@@ -1,12 +1,8 @@
 <template>
-    <section class="bg">
-      <coordinator-nav/>
-    </section>
+    <coordinator-nav/>
 </template>
 
 
 <style>
-  .bg {
-    background-color: #cce3eb;
-  }
+
 </style>
