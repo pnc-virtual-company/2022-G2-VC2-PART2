@@ -15,14 +15,11 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('batch');
-            $table->string('email');
-            $table->string('password')->default(bcrypt(1234567));
-            $table->string('gender');
             $table->string('phone');
-            $table->integer('role')->default(0);
+            $table->string('role')->default("student");
             $table->timestamps();
         });
     }

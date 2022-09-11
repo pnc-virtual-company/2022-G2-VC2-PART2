@@ -15,14 +15,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('password')->default(bcrypt(1234567));
+            $table->string('gender');
+            $table->string('profile')->default('https://drjollydiagnostics.com/wp-content/uploads/2017/11/profile-placeholder.png');
             $table->timestamps();
         });
+        
     }
+    
 
     /**
      * Reverse the migrations.
