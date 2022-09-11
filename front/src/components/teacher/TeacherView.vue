@@ -30,7 +30,7 @@
 
 <script>
 import FormView from "./FromView.vue";
-import axios from '../../axios-http';
+import axiosClient from '../../axios-http';
 export default {
   components: {
     "form-view": FormView,
@@ -48,9 +48,7 @@ export default {
     create_teacher(is_show, obj) {
       this.show_model = is_show;
       this.teachers.push(obj);
-      axios.post('teachers',obj).then((response)=>{
-        console.log(response.data);
-    })
+      axiosClient.post('teachers',obj)
     },
   },
 };

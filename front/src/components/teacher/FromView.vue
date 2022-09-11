@@ -14,7 +14,7 @@
             <div
               class="flex items-start justify-center p-3  rounded-t header"
             >
-              <h3 class=" text-center font-semibold text-white">CREATE TEACHER</h3>
+              <h2 class=" text-center font-bold text-white text-xl">Create Teacher Account</h2>
             </div>
             <!--body-->
             <div class="body-model px-4">
@@ -27,7 +27,7 @@
                         >
                         <input
                           id="input1"
-                          class="w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none"
+                          class="w-full border px-4 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none"
                           type="text"
                           autofocus
                           placeholder="First Name"
@@ -40,7 +40,7 @@
                         >
                         <input
                           id="input1"
-                          class="w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none"
+                          class="w-full border px-4 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none"
                           type="text"
                           autofocus
                           placeholder="Last Name"
@@ -52,11 +52,12 @@
                         <div class="relative">
                           <select
                             v-model="gender"
-                            class="w-full border px-4 pr-8 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none appearance-none"
+                            class="w-full border px-4 pr-8 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-500 appearance-none"
                             id="select-item"
                           >
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
+                            <option selected disabled>Gender</option>
+                            <option value="F" class="text-black">Female</option>
+                            <option value="M" class="text-black">Male</option>
                           </select>
       
                           <div
@@ -80,7 +81,7 @@
                         >
                         <input
                           id="input1"
-                          class="w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none"
+                          class="w-full border px-4 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none"
                           type="text"
                           autofocus
                           placeholder="Position"
@@ -93,7 +94,7 @@
       
                       <input
                         id="input1"
-                        class="w-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none"
+                        class="w-full border px-4 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none"
                         type="text"
                         autofocus
                         placeholder="Email"
@@ -104,10 +105,10 @@
                 </div>
                 <!--footer-->
                 <div
-                  class="flex items-center justify-end  px-4 py-2 border-solid  rounded-b"
+                  class="flex items-center justify-end  px-4 py-2 border-solid  rounded-b mb-2"
                 >
-                <Button-view class="cancle rounded-md text-white px-4  mt-3  text-sm rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" @click="cancle()" >Cancle</Button-view>
-                <Button-view class="add rounded-md text-white px-4  mt-3  text-sm rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" @click="add()" >Create</Button-view>
+                <Button-view class="cancle rounded-md text-white px-4 text-sm rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" @click="cancle()" >Cancle</Button-view>
+                <Button-view class="add rounded-md text-white px-4 text-sm rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" @click="add()" >Create</Button-view>
                 </div>
             </div>
           </div>
@@ -171,5 +172,6 @@ methods:{
 }
 .body-model{
     background-color: #BBD7E0;
+
 }
 </style>
