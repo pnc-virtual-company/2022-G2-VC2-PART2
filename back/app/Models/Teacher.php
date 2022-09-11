@@ -6,13 +6,17 @@ class Teacher extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'first_name',
-        'last_name',
         'position',
-        'email',
+        'phone',
+   
+   
     ];
     protected $hidden=[
         'created_at',
         'updated_at'
     ];
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
