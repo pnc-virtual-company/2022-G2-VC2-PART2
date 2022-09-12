@@ -13,13 +13,14 @@
             </td>
             <td class="border-b-2 py-1 lg:text-sm text-white">
                 <span class="flex justify-center space-x-2 icons">
-                    <icon-detail />
-                    <icon-edit />
+                    <icon-detail v-on:click="toggleModal()"/>
+                    <icon-edit @click="updateStudent"/>
                     <icon-delete @click="deleteStudent(student.users.id)" />
                 </span>
             </td>
         </tr>
     </tbody>
+
     <!-------------------------------------end-view-------------------------------->
 </template>
 <script>
@@ -28,9 +29,10 @@ import Swal from 'sweetalert2';
 export default {
     data() {
         return {
-            student_lists: []
+            student_lists: [],
         }
     },
+
     methods: {
         get_students() {
             axiosClient.get("students").then((res) => {
@@ -52,9 +54,7 @@ export default {
                     this.get_students();
                 }
             })
-
-
-        }
+        },
     },
     mounted() {
         this.get_students()
@@ -66,7 +66,6 @@ export default {
 .icons {
     display: none;
 }
-
 .show:hover .icons {
     display: flex;
     margin: 0 -10px;
