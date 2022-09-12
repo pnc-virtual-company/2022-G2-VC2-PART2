@@ -1,15 +1,19 @@
 <template>
   <section>
-    <create-student></create-student>
+    <Students/>
   </section>
 </template>
+
 <script>
-import CreateStudent from '../../components/coordinator/student/CreateStudent.vue'
+import Students from '../../components/TeachersForms/StudentUpdate.vue'
 export default {
-  components: {
-    'create-student': CreateStudent,
-  },
+
+  components:{
+    Students
+  }
 }
 </script>
 
-<style></style>
+<style>
+
+</style>
