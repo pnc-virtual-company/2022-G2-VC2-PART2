@@ -38,20 +38,6 @@ class StudentController extends Controller
         return "Create successfully";
 
     }
-<<<<<<< HEAD
-        /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        return Student::destroy($id);
-        
-    }
-=======
->>>>>>> 710a7f7b5a32ea74c9b4d28e5211d7be9be052de
     public function update(Request $request,$id)
     {
         $student=Student::findOrFail($id);
