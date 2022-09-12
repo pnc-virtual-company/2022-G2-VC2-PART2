@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 // student route
 Route::apiResource('students',StudentController::class);
 Route::apiResource('teachers',TeacherController::class);
+Route::put('student_update/{id}',[StudentController::class,'updateStudent']);

@@ -45,8 +45,9 @@
     </div>
 </template>
 <script>
-import axiosClient from "../../../axios-http"
-import Swal from 'sweetalert2';
+import axiosClient from "../../../axios-http";
+import Swal from "sweetalert2";
+import FormEdit from "./FormEdit.vue";
 import CreateStudent from './CreateStudent.vue'
 export default {
     components: {
@@ -88,6 +89,11 @@ export default {
             this.get_students();
         }
     },
+    computed:{
+        student_data(){
+            return this.student_lists;
+        }
+    },
     mounted() {
         this.get_students()
     },
@@ -96,16 +102,24 @@ export default {
 
 <style scoped>
 .icons {
-    display: none;
+  display: none;
 }
 .show:hover .icons {
-    display: flex;
-    margin: 0 -10px;
-    padding: 0;
+  display: flex;
+  margin: 0 -10px;
+  padding: 0;
 }
-
-.bg-color {
-    background: #22BBEA;
+.btn-add {
+  background: #22bbea;
 }
-
+.header {
+  background: #22bbea;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.form-container {
+  background: #bbd7e0;
+}
 </style>
