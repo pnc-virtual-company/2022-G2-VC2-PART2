@@ -2,7 +2,7 @@
     <div class="student-list">
         <create-student @add-student="create_student"></create-student>
         <!---------------------------------table-view-teacher------------------------->
-        <table class="w-full mt-4">
+        <table class="w-[82.6%] m-auto mt-4">
             <thead class="text-white">
                 <tr>
                     <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>
@@ -35,8 +35,13 @@
                 </tr>
             </tbody>
         </table>
+        <div class="flex justify-center mt-[50px]">
+            <div v-if="student_lists.length == 0">
+                <img :src="img_null" class="flex justify-center m-auto w-40">
+                <h1 class="text-red-500 text-center text-2xl mt-2">No Student in list</h1>
+            </div>
+        </div>
         <!-------------------------------------end-view-------------------------------->
-
     </div>
 </template>
 <script>
@@ -49,7 +54,8 @@ export default {
     },
     data() {
         return {
-            student_lists: []
+            student_lists: [],
+            img_null: 'https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png'
         }
     },
     methods: {
@@ -107,7 +113,7 @@ export default {
     background: #22BBEA;
 }
 
-.table-view {
+/* .table-view {
     width: 100%;
-}
+} */
 </style>

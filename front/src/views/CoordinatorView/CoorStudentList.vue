@@ -1,8 +1,5 @@
 <template>
-  <!-- <Students/> -->
-  <div class="student-view container w-10/12 m-auto">
-    <student-view/>
-  </div>
+  <student-view/>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
     <div class="student">
-      <div class="flex justify-between">
+      <div class="container w-10/12 m-auto flex justify-between">
         <div class="side-left"></div>
         <div class="side-right">
           <add-student-button type="button"
