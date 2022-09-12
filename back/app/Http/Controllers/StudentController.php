@@ -38,7 +38,11 @@ class StudentController extends Controller
         return "Create successfully";
 
     }
-    public function update(Request $request,$id)
+    public function show($id)
+    {
+        return Student::where("user_id", $id)->with('users')->get();
+    }
+    public function updateStudent(Request $request,$id)
     {
         $student=Student::findOrFail($id);
         $student->batch=$request->batch;
