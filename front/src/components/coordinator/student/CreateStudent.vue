@@ -1,6 +1,6 @@
 <template>
     <div class="student">
-      <div class="container w-10/12 m-auto flex justify-between">
+      <div class="flex justify-between">
         <div class="side-left"></div>
         <div class="side-right">
           <add-student-button type="button"
@@ -40,8 +40,9 @@
       toggleModal: function(){
         this.showModal = !this.showModal;
       },
-      onChange(isShow){
+      onChange(isShow,data){
         this.showModal = isShow;
+        this.$emit('add-student',data);
       },
     }
   }
