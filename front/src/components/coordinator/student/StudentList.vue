@@ -1,6 +1,6 @@
 <template>
   <div class="student">
-    <create-student @add-student="create_student"></create-student>
+    <create-student @add-student="create_student" @isShow="onChange"></create-student>
     <!---------------------------------table-view-teacher------------------------->
     <table class="bg-white w-[82.6%] m-auto box-border mt-4">
       <thead class="text-white">
@@ -40,7 +40,7 @@
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
               <icon-detail />
-              <icon-edit v-on:click="toggleModal(student.users.id)" />
+              <icon-edit v-on:click="get_student_id(student.users.id)" @click="toggleModal"/>
               <icon-delete @click="deleteStudent(student.users.id)" />
             </span>
           </td>
@@ -102,8 +102,10 @@ export default {
         this.student_lists = res.data;
       });
     },
-    toggleModal: function (id) {
+    get_student_id(id){
       this.student_id = id;
+    },
+    toggleModal: function () {
       this.showModal = !this.showModal;
     },
     onChange(isShow) {

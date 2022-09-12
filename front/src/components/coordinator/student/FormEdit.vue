@@ -167,9 +167,7 @@ export default {
       gender_validattion: true,
       batch_validattion: true,
       phone_validattion: true,
-      id_student: this.student_id,
-
-     
+      id_student: this.student_id, 
     };
   },
   methods: {

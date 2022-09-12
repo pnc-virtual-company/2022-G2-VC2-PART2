@@ -110,7 +110,7 @@ export default {
     },
     methods: {
         onCancel() {
-            this.$emit('isShow', false);
+            this.$emit('cancel', false);
         },
         onSubmit() {
             this.validations();

@@ -13,7 +13,7 @@
           class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
           <div class="form-container shadow-md rounded w-2/5">
             <h2 class="header text-center text-white py-3">Create Student Account</h2>
-            <form-create-student @isShow="onChange"></form-create-student>
+            <form-create-student @isShow="onChange" @cancel="on_cancel"></form-create-student>
           </div>
         </div>
         <div v-if="showModal" class="opacity-30 fixed inset-0 z-40 bg-black"></div>
@@ -39,6 +39,9 @@
     methods: {
       toggleModal: function(){
         this.showModal = !this.showModal;
+      },
+      on_cancel(cancel){
+        this.showModal = cancel;
       },
       onChange(isShow,data){
         this.showModal = isShow;
