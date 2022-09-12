@@ -38,16 +38,6 @@ class StudentController extends Controller
         return "Create successfully";
 
     }
-        /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        return Student::destroy($id);
-    }
     public function update(Request $request,$id)
     {
         $student=Student::findOrFail($id);
@@ -63,5 +53,15 @@ class StudentController extends Controller
         return response()->json([
             'message'=>'Your Updated is successfully'
         ]);
+    }
+      /**
+     * Remove the specified user from storage.
+     *
+     * @param  \App\Models\User  $student
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        return User::destroy($id);
     }
 }
