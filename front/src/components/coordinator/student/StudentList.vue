@@ -10,7 +10,7 @@
             <span class="flex justify-center space-x-2 icons">
                 <icon-detail/>
                 <icon-edit/>
-                <icon-delete @click="deleteStudent"/>
+                <icon-delete/>
             </span>
         </td>
     </tr>
@@ -18,7 +18,7 @@
 <!-------------------------------------end-view-------------------------------->
 </template>
 <script>
-import axiosClient from "../../../axios-http"
+import axiosClient from "../../../axios-http";
 // import Swal from 'sweetalert2';
 export default {
     data() {
@@ -31,7 +31,7 @@ export default {
             axiosClient.get("students").then((res) => {
                 this.student_lists = res.data;
             })
-        }
+        },
     },
     mounted() {
         this.get_students()

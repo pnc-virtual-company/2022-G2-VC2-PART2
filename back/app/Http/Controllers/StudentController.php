@@ -47,6 +47,7 @@ class StudentController extends Controller
     public function destroy($id)
     {
         return Student::destroy($id);
+        
     }
     public function update(Request $request,$id)
     {
