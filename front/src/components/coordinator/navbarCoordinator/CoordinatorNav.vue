@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <nav class="flex pl-4 pr-4 text-center w-full">
+  <nav class="flex pl-4 pr-4 text-center w-full">
     <div class="flex items-center">
       <coordinator-navlogo class="mt-1"/>
     </div>
@@ -16,7 +15,6 @@
     </div>
   </nav>
   <router-view/>
-  </div>
 </template>
 
 <script>

@@ -1,7 +1,6 @@
 <template>
     <div class="btn">
       <button class="px-2 py-2"
-        type="button"
       >
         <slot></slot>
       </button>
