@@ -42,6 +42,8 @@ class StudentController extends Controller
     {
         return Student::where("user_id", $id)->with('users')->get();
     }
+
+    
     public function updateStudent(Request $request,$id)
     {
         $student=Student::findOrFail($id);

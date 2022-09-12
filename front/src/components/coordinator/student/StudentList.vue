@@ -126,10 +126,12 @@ export default {
         }
       });
     },
+    
     edit_student(new_student, id_stu) {
       axiosClient.put("student_update/"+ id_stu, new_student);
       this.get_students();
     },
+
     create_student(student) {
       axiosClient.post("students/", student);
       this.get_students();
