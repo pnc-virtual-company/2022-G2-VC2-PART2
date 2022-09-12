@@ -3,8 +3,7 @@
         <div class="input-group grid grid-cols-2 text-left">
             <div class="mb-3 px-2 w-full">
                 <label class="block mb-1 text-sm" for="input1">First Name</label>
-                <input id="input1"
-                    class="w-full border px-4 py-1 focus:border-blue-500 focus:shadow-outline outline-none rounded"
+                <input id="input1" class="w-full border px-4 py-1 focus:border-blue-500 focus:shadow-outline outline-none rounded"
                     type="text" autofocus placeholder="First Name" v-model="first_name"
                     @keyup="first_name_validated()" />
                 <error-message v-if="is_first_name==false">*First Name is required</error-message>
@@ -86,7 +85,6 @@
 </template>
 
 <script>
-import axiosClient from "../../../axios-http"
 import ButtonViewVue from "@/components/button/ButtonView.vue"
 import ErrorComponent from '../../message/ErrorComponent.vue'
 export default {
@@ -125,8 +123,7 @@ export default {
                     batch: this.batch,
                     phone: this.phone
                 }
-                this.$emit('isShow', false);
-                axiosClient.post('students', new_student);
+                this.$emit('isShow', false,new_student);
             }
         },
         validations() {
