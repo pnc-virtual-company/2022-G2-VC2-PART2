@@ -50,10 +50,16 @@ export default {
                 if (result.isConfirmed) {
                     axiosClient.delete('students/' + id)
                     this.get_students();
+                   
                 }
             })
 
 
+        }
+    },
+    computed:{
+        student_data(){
+            return this.student_lists;
         }
     },
     mounted() {
