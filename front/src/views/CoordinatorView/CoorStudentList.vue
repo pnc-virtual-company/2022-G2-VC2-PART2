@@ -1,11 +1,10 @@
 <template>
-  <section>
-    <Students/>
-  </section>
+  <Students/>
+  <student-view/>
 </template>
 
 <script>
-import Students from '../../components/TeachersForms/StudentUpdate.vue'
+import CreateStudent from '@/components/coordinator/student/CreateStudent.vue'
 export default {
 
   components:{
