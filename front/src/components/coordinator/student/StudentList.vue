@@ -70,7 +70,7 @@
       <div v-if="student_lists.length == 0">
         <img :src="img_null" class="flex justify-center m-auto w-40" />
         <h1 class="text-red-500 text-center text-2xl mt-2">
-          No Teacher in list
+          No Student in list
         </h1>
       </div>
     </div>
@@ -90,8 +90,7 @@ export default {
   data() {
     return {
       student_lists: [],
-      img_null:
-        "https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
+      img_null:"https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
       showModal: false,
       student_id: "",
     };
