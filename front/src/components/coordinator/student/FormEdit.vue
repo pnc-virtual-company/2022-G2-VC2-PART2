@@ -320,12 +320,10 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .btn-cancel {
   background-color: #ffad5c;
 }
-
 .btn-submit {
   background-color: #22bbea;
 }
