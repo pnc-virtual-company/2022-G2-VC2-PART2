@@ -58,6 +58,7 @@ export default {
             img_null: 'https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png'
         }
     },
+
     methods: {
         get_students() {
             axiosClient.get("students").then((res) => {
@@ -102,7 +103,6 @@ export default {
 .icons {
     display: none;
 }
-
 .show:hover .icons {
     display: flex;
     margin: 0 -10px;
