@@ -1,12 +1,16 @@
 <template>
   <teacher-view></teacher-view>
-  <list-view/>
+  <teacher-list></teacher-list>
 </template>
 
 <script>
-  import TeacherView from '@/components/coordinator/teacher/TeacherView.vue'
+import TeacherViewVue from '@/components/coordinator/teacher/TeacherView.vue';
+import ListView from '@/components/coordinator/teacher/ListView.vue'
 export default {
-
+  components:{ 
+    'teacher-view':TeacherViewVue,
+    'teacher-list': ListView,
+  }
 }
 </script>
 
