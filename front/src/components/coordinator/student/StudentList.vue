@@ -88,11 +88,6 @@ export default {
             this.get_students();
         }
     },
-    computed:{
-        student_data(){
-            return this.student_lists;
-        }
-    },
     mounted() {
         this.get_students()
     },
@@ -113,7 +108,4 @@ export default {
     background: #22BBEA;
 }
 
-/* .table-view {
-    width: 100%;
-} */
 </style>
