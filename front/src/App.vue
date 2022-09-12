@@ -1,8 +1,7 @@
 <template>
-    <coordinator-nav/>
+    <section>
+      <coordinator-nav/>
+    </section>
 </template>
 
 
-<style>
-
-</style>

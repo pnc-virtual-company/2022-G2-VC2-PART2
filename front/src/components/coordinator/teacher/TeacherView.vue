@@ -38,7 +38,6 @@ export default {
   data() {
     return {
       show_model: false,
-      teachers: [],
     };
   },
   methods: {
@@ -47,9 +46,8 @@ export default {
     },
     create_teacher(is_show, obj) {
       this.show_model = is_show;
-      this.teachers.push(obj);
       axiosClient.post('teachers',obj)
-    },
+    }
   },
 };
 </script>

@@ -1,11 +1,11 @@
 <template>
 <!---------------------------------table-view-teacher------------------------->
 <tbody>
-    <tr class="cursor-pointer show hover:bg-gray-200">
-        <td class="border-b-2 py-1 lg:text-sm "><span class="flex justify-center"><img :src="require('../../../assets/user_male.png')" width="54"></span></td>
-        <td class="border-b-2 py-1 lg:text-sm"><span class="flex justify-center text-sm">Him</span></td>
-        <td class="border-b-2 py-1 lg:text-sm"><span class="flex justify-center text-sm">Hey</span></td>
-        <td class="border-b-2 py-1 lg:text-sm"><span class="flex justify-center text-sm">Trainer</span></td>
+    <tr class="cursor-pointer show hover:bg-gray-200" v-for="teacher of teacher_lists" :key="teacher">
+        <td class="border-b-2 py-1 lg:text-sm "><span class="flex justify-center"><img :src="teacher.users.profile" class="h-10 w-10 rounded-full"></span></td>
+        <td class="border-b-2 py-1 lg:text-sm"><span class="flex justify-center text-sm">{{teacher.users.first_name}} {{teacher.users.last_name}}</span></td>
+        <td class="border-b-2 py-1 lg:text-sm"><span class="flex justify-center text-sm">{{teacher.users.gender}}</span></td>
+        <td class="border-b-2 py-1 lg:text-sm"><span class="flex justify-center text-sm">{{teacher.position}}</span></td>
         <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
                 <icon-detail/>
@@ -18,14 +18,23 @@
 <!-------------------------------------end-view-------------------------------->
 </template>
 <script>
-// import axios from "../../http.js";
+import axiosClient from '../../../axios-http';
 export default {
-    props: {data: Object},
     data() {
         return {
-
+            teacher_lists: [],
         }
     },
+    methods: {
+        get_teachers() {
+            axiosClient.get('teachers').then((res) => {
+                this.teacher_lists = res.data
+            })
+        },
+    },
+    mounted() {
+    this.get_teachers()
+  }
 }
 </script>
 
