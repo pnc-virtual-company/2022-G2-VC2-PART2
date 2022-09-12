@@ -211,7 +211,7 @@ export default {
           phone: this.phone,
         };
         this.$emit("isShow", false);
-        this.$emit("edit-student", new_student,this.student_id);
+        this.$emit("edit-student", new_student,this.id_student);
       }
     },
     validations() {

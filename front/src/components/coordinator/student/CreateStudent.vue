@@ -3,13 +3,11 @@
       <div class="container w-10/12 m-auto flex justify-between">
         <div class="side-left"></div>
         <div class="side-right">
-
           <add-student-button type="button"
             class="btn-add text-white text-sm px-3 py-1 mt-3 font-bold rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             v-on:click="toggleModal()">
             Create Student
-          </add-student-button>
-          
+          </add-student-button> 
         </div>
         <div v-if="showModal"
           class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
