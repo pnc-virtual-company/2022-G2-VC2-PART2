@@ -43,8 +43,8 @@ export default {
                 text: "You want to delete student!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#22BBEA',
+                cancelButtonColor: '#FFAD5C',
                 confirmButtonText: 'Yes, delete!'
             }).then((result) => {
                 if (result.isConfirmed) {
