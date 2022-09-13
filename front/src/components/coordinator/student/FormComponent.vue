@@ -1,5 +1,5 @@
 <template>
-    <form class="px-5 pt-6 mb-4" @submit.prevent="onSubmit">
+    <form class="px-5 pt-6 mb-5 box-border" @submit.prevent="onSubmit">
         <div class="input-group grid grid-cols-2 text-left">
             <div class="mb-3 px-2 w-full">
                 <label class="block mb-1 text-sm" for="input1">First Name</label>
@@ -25,11 +25,6 @@
                         <option value="M" class="text-black">Male</option>
                         <option value="F" class="text-black">Female</option>
                     </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                    </div>
                 </div>
                 <error-message v-if="is_gender==false">*Gender is required</error-message>
             </div>
@@ -46,13 +41,8 @@
                         <option value="2024-A" class="text-black">2024-A</option>
                         <option value="2024-B" class="text-black">2024-B</option>
                         <option value="2024-C" class="text-black">2024-C</option>
-                        <option value="2024-D" class="text-black">2024D</option>
+                        <option value="2024-D" class="text-black">2024-D</option>
                     </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                    </div>
                 </div>
                 <error-message v-if="is_batch==false">*Batch is required</error-message>
             </div>
@@ -64,6 +54,11 @@
                 <error-message v-if="!is_mail">*PNC Email is required</error-message>
             </div>
             <div class="mb-3 px-2 w-full">
+                <label class="block mb-1 text-sm" for="input1">Date of Birth</label>
+                <date-picker></date-picker>
+                <error-message v-if="!is_mail">*PNC Email is required</error-message>
+            </div>
+            <div class="mb-3 px-2 w-full">
                 <label class="block mb-1 text-sm" for="input1">Phone Number</label>
                 <input id="input1"
                     class="w-full border px-4 py-1 focus:border-blue-500 focus:shadow-outline outline-none rounded"
@@ -72,7 +67,7 @@
                 <error-message v-if="is_phone==false">*Phone is required</error-message>
             </div>
             <div class="div"></div>
-            <div class="flex items-center justify-end p-2 border-slate-200 rounded-b">
+            <div class="flex items-center justify-end p-2 border-slate-200 mt-3 rounded-b">
                 <button-add
                     class="btn-cancel text-white active:bg-orange-600 text-sm rounded px-2 mr-3 shadow hover:bg-orange-400 hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button" @click="onCancel">
@@ -91,10 +86,12 @@
 <script>
 import ButtonViewVue from "@/components/button/ButtonView.vue"
 import ErrorComponent from '../../message/ErrorComponent.vue'
+import DatePicker from './DatePicker.vue'
 export default {
     components: {
         'button-add': ButtonViewVue,
         'error-message': ErrorComponent,
+        'date-picker': DatePicker,
     },
     data() {
         return {

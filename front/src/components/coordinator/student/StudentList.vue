@@ -1,7 +1,6 @@
 <template>
   <div class="student">
     <create-student @add-student="create_student" @isShow="onChange"></create-student>
-    <!---------------------------------table-view-teacher------------------------->
     <table class="bg-white w-[82.6%] m-auto box-border mt-4">
       <thead class="text-white">
         <tr>
