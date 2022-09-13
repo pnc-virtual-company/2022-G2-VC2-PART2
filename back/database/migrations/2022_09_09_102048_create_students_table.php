@@ -17,8 +17,11 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('batch');
+            $table->string('generation');
             $table->string('phone');
+            $table->string('class');
+            $table->string('major');
+            $table->date('date_of_birth');
             $table->string('role')->default("student");
             $table->timestamps();
         });

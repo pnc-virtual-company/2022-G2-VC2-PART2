@@ -10,8 +10,11 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = [
-        'batch',
+        'generation',
         'phone',
+        'class',
+        'major',
+        'date_of_birth',
     ];
 
     protected $hidden = [

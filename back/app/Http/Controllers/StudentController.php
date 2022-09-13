@@ -26,8 +26,11 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $student = new Student();
-        $student->batch=$request->batch;
+        $student->generation=$request->generation;
         $student->phone = $request->phone;
+        $student->class = $request->class;
+        $student->major = $request->major; 
+        $student->date_of_birth = $request->date_of_birth; 
         $user = new User();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
@@ -47,8 +50,11 @@ class StudentController extends Controller
     public function updateStudent(Request $request,$id)
     {
         $student=Student::findOrFail($id);
-        $student->batch=$request->batch;
+        $student->generation=$request->generation;
         $student->phone = $request->phone;
+        $student->class = $request->class;
+        $student->major = $request->major; 
+        $student->date_of_birth = $request->date_of_birth; 
         $user = User::findOrFail($id);
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
