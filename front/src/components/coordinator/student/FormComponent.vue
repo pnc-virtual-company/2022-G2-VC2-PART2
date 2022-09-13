@@ -46,7 +46,7 @@
                         <option value="2024-A" class="text-black">2024-A</option>
                         <option value="2024-B" class="text-black">2024-B</option>
                         <option value="2024-C" class="text-black">2024-C</option>
-                        <option value="2024D" class="text-black">2024D</option>
+                        <option value="2024-D" class="text-black">2024D</option>
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
