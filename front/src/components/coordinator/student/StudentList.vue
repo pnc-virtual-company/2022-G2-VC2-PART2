@@ -34,15 +34,11 @@
               student.users.gender
             }}</span>
           </td>
-
           <td class="border-b-2 py-1 lg:text-sm">
-            <span class="flex justify-center text-sm">{{
-              student.users.email
-            }}</span>
+            <span class="flex justify-center text-sm">{{ student.generation }}</span>
           </td>
-
           <td class="border-b-2 py-1 lg:text-sm">
-            <span class="flex justify-center text-sm">{{ student.batch }}</span>
+            <span class="flex justify-center text-sm">{{ student.users.email }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">

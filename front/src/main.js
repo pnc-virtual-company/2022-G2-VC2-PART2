@@ -2,9 +2,6 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import './index.css'
-// date picker
-import Datepicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css'
 // .........................................
 import CoordinatorNav from './components/coordinator/navbarCoordinator/CoordinatorNav.vue'
 import CoordinatorNavLogo from './components/coordinator/navbarCoordinator/CoordinatorNavLogo.vue'
@@ -24,8 +21,5 @@ app.component('coordinator-navLogoutIcon', CoordinatorNavLogoutIcon)
 app.component('icon-detail', IconDetail)
 app.component('icon-edit', IconEdit)
 app.component('icon-delete', IconDelete)
-app.component('DatePicker', Datepicker)
-app.component('remove-stu-follow', IConMoveFromFollow)
-
 app.use(router)
 app.mount('#app')
