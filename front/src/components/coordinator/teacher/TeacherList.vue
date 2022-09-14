@@ -1,5 +1,30 @@
 <template>
   <div class="teacher_list">
+    <!---------------------------------card-detail-------------------------------->
+    <div class="modal-mask" v-if="show_detail == true">
+      <div class="modal-wrapper">
+          <div class="flex items-start justify-center py-2 rounded-t header bg-blue-300">
+            <h2 class="flex justify-center w-full text-white text-xl">Teacher Detail</h2>
+            <svg @click="togle" class="h-6 w-6 text-red-500 m-auto mr-2 cursor-pointer"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" /></svg>
+          </div>
+          <div class="modal-container bg-white">
+              <div class="flex space-x-[50px]" v-for="teacher of teacher_lists" :key="teacher">
+                  <div class="ml-[50px]">
+                      <img :src="teacher.users.profile" width="126" class="mt-5 rounded-full">
+                      <p class="text-center text-xl font-bold mb-5">{{teacher.users.first_name}} {{teacher.users.last_name}}</p>
+                  </div>
+                  <div class="mt-[18px] leading-loose">
+                      <p>Gender: {{teacher.users.gender}}</p>
+                      <p>Position: {{teacher.position}}</p>
+                      <p>Role: {{teacher.users.role}}</p>
+                      <p>Tel: {{teacher.phone}}</p>
+                      <p class="mb-5">Email {{teacher.users.email}}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <!------------------------------------end-card-------------------------------->
     <!---------------------------------table-view-teacher------------------------->
     <create_teacher @add-teacher="create_teacher"></create_teacher>
     <table class="bg-white w-[82.6%] m-auto box-border mt-4">
@@ -8,6 +33,7 @@
           <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Full Name</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Gender</th>
+          <th class="lg:text-md text-md lg:p-3 bg-color">Email</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Position</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Email</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Actions</th>
@@ -35,6 +61,13 @@
               teacher.users.gender
             }}</span>
           </td>
+
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{
+              teacher.users.email
+            }}</span>
+          </td>
+
           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center text-sm">{{
               teacher.position
@@ -47,7 +80,7 @@
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
-              <icon-detail />
+              <icon-detail @click="togle"/>
               <icon-edit v-on:click="get_teacher_id(teacher.users.id)" @click="toggleModal"/>
               <icon-delete @click="delete_teacher(teacher.users.id)" />
             </span>
@@ -91,6 +124,7 @@ export default {
   data() {
     return {
       show_detail: false,
+      icon_cancel: false,
       teacher_lists: [],
       teacher_id : "",
       showModal: false,
@@ -100,9 +134,6 @@ export default {
     };
   },
   methods: {
-    show(){
-      this.show_detail = !this.show_detail
-    },
     get_teachers() {
       axiosClient.get("teachers").then((res) => {
         this.teacher_lists = res.data;
@@ -134,6 +165,7 @@ export default {
         }
       });
     },
+<<<<<<< HEAD
     onCancel(is_hide){
         this.showModal = is_hide;
     },
@@ -143,6 +175,10 @@ export default {
     edit_student(new_teacher, id_teacher) {
       axiosClient.put("teachers/"+ id_teacher, new_teacher);
       this.get_students();
+=======
+    togle(){
+      this.show_detail = !this.show_detail
+>>>>>>> d956a78977ff8a3b297fa1b0f6a3fb754aed9d26
     },
   },
   mounted() {
@@ -163,4 +199,46 @@ export default {
 .bg-color {
   background: #22bbea;
 }
+/* card-detail */
+.modal-mask {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+    transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-container, .header {
+    width: 40%;
+    height: auto;
+    margin: 0px auto;
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+    z-index: 10;
+}
+
+.modal-body {
+    margin: 20px 0;
+}
+
+.modal-default-button {
+    float: right;
+}
+.modal-enter-from, .modal-leave-to {
+    opacity: 0;
+}
+
+.modal-enter-active .modal-container,
+.modal-leave-active .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+};
 </style>

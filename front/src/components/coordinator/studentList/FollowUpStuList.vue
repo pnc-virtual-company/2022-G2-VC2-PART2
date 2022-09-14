@@ -1,6 +1,5 @@
 <template>
-  <div class="student">
-    <create-student @add-student="create_student" @isShow="onChange"></create-student>
+   <div class="student">
     <table class="bg-white w-[82.6%] m-auto box-border mt-4">
       <thead class="text-white">
         <tr>
@@ -34,19 +33,19 @@
               student.users.gender
             }}</span>
           </td>
-          <td class="border-b-2 py-1 lg:text-sm">
+
+           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center text-sm">{{
               student.users.email
             }}</span>
           </td>
+
           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center text-sm">{{ student.generation }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
-              <icon-detail />
-              <icon-edit v-on:click="get_student_id(student.users.id)" @click="toggleModal"/>
-              <icon-delete @click="deleteStudent(student.users.id)" />
+              <remove-stu-follow/>
             </span>
           </td>
         </tr>
@@ -58,11 +57,6 @@
             <h2 class="header text-center text-white py-3">
               Edit Student Account
             </h2>
-            <form-edit-student
-              @isShow="onChange"
-              :student_id="student_id"
-              @edit-student="edit_student"
-            ></form-edit-student>
           </div>
         </div>
         <div
@@ -80,96 +74,47 @@
       </div>
     </div>
   </div>
-  <!-------------------------------------end-view-------------------------------->
 </template>
+
 <script>
 import axiosClient from "../../../axios-http";
-import Swal from "sweetalert2";
-import FormEdit from "./FormEdit.vue";
-import CreateStudent from "./CreateStudent.vue";
+import moveStu from '../icons/MoveStudent.vue';
 export default {
-  components: {
-    "form-edit-student": FormEdit,
-    "create-student": CreateStudent,
-  },
-  data() {
-    return {
-      student_lists: [],
-      img_null:"https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
-      showModal: false,
-      student_id: "",
-    };
-  },
-  methods: {
-    get_students() {
-      axiosClient.get("students").then((res) => {
-        this.student_lists = res.data;
-      });
+    components: {
+      'remove-stu-follow': moveStu
     },
-    get_student_id(id){
-      this.student_id = id;
-    },
-    toggleModal: function () {
-      this.showModal = !this.showModal;
-    },
-    onChange(isShow) {
-      this.showModal = isShow;
-    },
-    deleteStudent(id) {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You want to delete student!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#22BBEA",
-        cancelButtonColor: "#FFAD5C",
-        confirmButtonText: "Yes, delete!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          axiosClient.delete("students/" + id);
-          this.get_students();
+    data() {
+        return {
+            student_lists: [],
         }
-      });
-    },
-    
-    edit_student(new_student, id_stu) {
-      axiosClient.put("student_update/"+ id_stu, new_student);
-      this.get_students();
     },
 
-    create_student(student) {
-      axiosClient.post("students", student);
-      this.get_students();
+    methods: {
+        get_students() {
+            axiosClient.get('students')
+            .then((res)=>{
+                this.student_lists = res.data;
+            })
+        }
     },
-  },
-  mounted() {
+
+    mounted() {
     this.get_students();
   },
-};
+}
 </script>
+
 <style scoped>
-.icons {
-  display: none;
-}
-.show:hover .icons {
-  display: flex;
-  margin: 0 -10px;
-  padding: 0;
-}
-.btn-add {
-  background: #22bbea;
-}
-.header {
-  background: #22bbea;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  font-weight: bold;
-  font-size: 20px;
-}
-.form-container {
-  background: #bbd7e0;
-}
-.bg-color {
-  background: #22bbea;
-}
+    .icons {
+        display: none;
+    }
+    .show:hover .icons {
+    display: flex;
+    margin: 0 -10px;
+    padding: 0;
+    }
+
+    .bg-color {
+    background: #22bbea;
+    }
 </style>
