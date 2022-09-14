@@ -3,6 +3,8 @@ import CoorTeacherList from '../views/CoordinatorView/CoorTeacherList.vue'
 import CoorStudentList from '../views/CoordinatorView/CoorStudentList.vue'
 import CoorStudentFollowingList from '../views/CoordinatorView/CoorStudentFollowingList.vue'
 
+import CoorStudentFollowingList from '../views/CoordinatorView/CoorStudentFollowingList.vue'
+
 
 const routes = [
   {
