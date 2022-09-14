@@ -18,15 +18,15 @@
                         class="w-full border px-4 pr-8 py-1 focus:border-blue-500 focus:shadow-outline outline-none appearance-none text-slate-500 rounded"
                         id="select-item" v-model="gender">
                         <option selected disabled>Gender</option>
-                        <option value="M" class="text-black">Male</option>
-                        <option value="F" class="text-black">Female</option>
+                        <option value="Male" class="text-black">Male</option>
+                        <option value="Female" class="text-black">Female</option>
                     </select>
                 </div>
                 <error-message v-if="gender_validation==false">*Gender is required</error-message>
             </div>
             <div class="mb-2 px-2 w-full">
                 <label class="block mb-1 text-sm" for="input1">Date of Birth</label>
-                <input type="date" class="w-full border px-4 py-1 focus:border-blue-500 focus:shadow-outline outline-none rounded" autofocus v-model="date">
+                <input type="date" class="w-full border px-4 py-1 focus:border-blue-500 focus:shadow-outline outline-none rounded" autofocus v-model="date_of_birth">
                 <error-message v-if="!date_validation">*Date is required</error-message>
             </div>
             <div class="mb-2 px-2 w-full">
@@ -113,7 +113,7 @@ export default {
             student_class: 'Class',
             major: 'Major',
             phone: '',
-            date: "",
+            date_of_birth: "",
             // 
             email_validation: true,
             first_name_validation: true,
@@ -135,7 +135,7 @@ export default {
                     first_name: this.first_name,
                     last_name: this.last_name,
                     gender: this.gender,
-                    birth_date: this.date_of_birth,
+                    date_of_birth: this.date_of_birth,
                     class: this.student_class,
                     generation: this.generation,
                     major: this.major,

@@ -12,8 +12,6 @@ class Student extends Model
     protected $fillable = [
         'generation',
         'phone',
-        'class',
-        'major',
         'date_of_birth',
     ];
 

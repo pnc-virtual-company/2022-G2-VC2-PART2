@@ -41,8 +41,8 @@
             @click="gender_validated()"
           >
             <option selected disabled>Gender</option>
-            <option value="M" class="text-black">Male</option>
-            <option value="F" class="text-black">Female</option>
+            <option value="Male" class="text-black">Male</option>
+            <option value="Female" class="text-black">Female</option>
           </select>
           <div
             class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"

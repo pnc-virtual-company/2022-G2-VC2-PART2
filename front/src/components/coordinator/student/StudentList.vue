@@ -132,7 +132,7 @@ export default {
     },
 
     create_student(student) {
-      axiosClient.post("students/", student);
+      axiosClient.post("students", student);
       this.get_students();
     },
   },
