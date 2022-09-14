@@ -9,6 +9,7 @@
           <th class="lg:text-md text-md lg:p-3 bg-color">Full Name</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Gender</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Position</th>
+          <th class="lg:text-md text-md lg:p-3 bg-color">Email</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Actions</th>
         </tr>
       </thead>
@@ -39,6 +40,11 @@
               teacher.position
             }}</span>
           </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{
+              teacher.users.email
+            }}</span>
+          </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
               <icon-detail />
@@ -65,15 +71,19 @@ import axiosClient from "../../../axios-http";
 import Swal from "sweetalert2";
 import CreateTeacher from "./TeacherView.vue";
 export default {
-  components: { create_teacher: CreateTeacher },
+  components: { "create_teacher": CreateTeacher},
   data() {
     return {
+      show_detail: false,
       teacher_lists: [],
       img_null:
         "https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
     };
   },
   methods: {
+    show(){
+      this.show_detail = !this.show_detail
+    },
     get_teachers() {
       axiosClient.get("teachers").then((res) => {
         this.teacher_lists = res.data;
