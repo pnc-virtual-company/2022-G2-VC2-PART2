@@ -1,5 +1,28 @@
 <template>
   <div class="teacher_list">
+    <div class="w-[82.6%] m-auto">
+      <!-- created's message -->
+      <success-message v-if="isCreated" class="text-green-500 items-center">
+        <p><strong>Congratulation!</strong> Teacher was successfully created</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </success-message>
+      <!-- deleted's message -->
+      <success-message v-if="isDeleted" class="text-green-500 items-center">
+        <p><strong>Congratulation!</strong> Teacher was successfully deleted</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </success-message>
+      <!-- edited's message -->
+      <success-message v-if="isEdit" class="text-green-500 items-center">
+        <p><strong>Congratulation!</strong> Edit was successfully saved</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </success-message>
+      <!-- axists account -->
+      <error-message v-if="isAccountExist" class="text-red-500 items-center">
+        <p><strong>Ops!</strong> Teacher account was already
+          created</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </error-message>
+    </div>
     <!---------------------------------table-view-teacher------------------------->
     <create_teacher @add-teacher="create_teacher"></create_teacher>
     <table class="bg-white w-[82.6%] m-auto box-border mt-4">
@@ -14,41 +37,33 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          class="cursor-pointer show hover:bg-gray-200"
-          v-for="teacher of teacher_lists"
-          :key="teacher"
-        >
+        <tr class="cursor-pointer show hover:bg-gray-200" v-for="teacher of teacher_lists" :key="teacher">
           <td class="border-b-2 py-1 lg:text-sm">
-            <span class="flex justify-center"
-              ><img :src="teacher.users.profile" class="h-10 w-10 rounded-full"
-            /></span>
+            <span class="flex justify-center"><img :src="teacher.users.profile" class="h-10 w-10 rounded-full" /></span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm">
-            <span class="flex justify-center text-sm"
-              >{{ teacher.users.first_name }}
-              {{ teacher.users.last_name }}</span
-            >
+            <span class="flex justify-center text-sm">{{ teacher.users.first_name }}
+              {{ teacher.users.last_name }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center text-sm">{{
-              teacher.users.gender
+            teacher.users.gender
             }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center text-sm">{{
-              teacher.position
+            teacher.position
             }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center text-sm">{{
-              teacher.users.email
+            teacher.users.email
             }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
               <icon-detail />
-              <icon-edit/>
+              <icon-edit />
               <icon-delete @click="delete_teacher(teacher.users.id)" />
             </span>
           </td>
@@ -70,18 +85,30 @@
 import axiosClient from "../../../axios-http";
 import Swal from "sweetalert2";
 import CreateTeacher from "./TeacherView.vue";
+import SuccessMessage from '../../message/SuccessMessage.vue'
+import ErrorMessage from '../../message/ErrorMessage.vue'
+import DeleteIcons from "../icons/DeleteIcon.vue"
 export default {
-  components: { "create_teacher": CreateTeacher},
+  components: { 
+    "create_teacher": CreateTeacher,
+    'success-message': SuccessMessage,
+    'error-message': ErrorMessage,
+    'delete-icon': DeleteIcons
+  },
   data() {
     return {
       show_detail: false,
       teacher_lists: [],
+      isCreated: false,
+      isAccountExist: false,
+      isDeleted: false,
+      isEdit: false,
       img_null:
         "https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
     };
   },
   methods: {
-    show(){
+    show() {
       this.show_detail = !this.show_detail
     },
     get_teachers() {
@@ -90,10 +117,24 @@ export default {
       });
     },
     create_teacher(teacher) {
-      axiosClient.post("teachers", teacher);
-      this.get_teachers();
+      axiosClient.post("teachers", teacher).then((response) => {
+        this.get_teachers();
+        if (response.status == 200) {
+          this.isCreated = true;
+          this.isDeleted = false;
+          this.isEdit = false;
+          this.isAccountExist = false;
+        }
+      }).catch((error) => {
+        if (error.response.status == 500) {
+          this.isAccountExist = true;
+          this.isDeleted = false;
+          this.isCreated = false;
+          this.isEdit = false;
+        }
+      });
+      
     },
-
     delete_teacher(id) {
       Swal.fire({
         title: "Are you sure?",
@@ -107,9 +148,19 @@ export default {
         if (result.isConfirmed) {
           axiosClient.delete("teachers/" + id);
           this.get_teachers();
+          this.isDeleted = true;
+          this.isAccountExist = false;
+          this.isCreated = false;
+          this.isEdit = false;
         }
       });
     },
+    close_messages() {
+      this.isCreated = false;
+      this.isAccountExist = false;
+      this.isDeleted = false;
+      this.isEdit = false;
+    }
   },
   mounted() {
     this.get_teachers();
@@ -121,11 +172,13 @@ export default {
 .icons {
   display: none;
 }
+
 .show:hover .icons {
   display: flex;
   margin: 0 -10px;
   padding: 0;
 }
+
 .bg-color {
   background: #22bbea;
 }

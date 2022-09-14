@@ -101,7 +101,7 @@
 <script>
 import axiosClient from "../../../axios-http";
 import ButtonViewVue from "@/components/button/ButtonView.vue";
-import ErrorComponent from "../../message/ErrorComponent.vue";
+import ErrorComponent from "../../message/ValidateText.vue";
 
 export default {
   props: ["student_id"],
