@@ -7,7 +7,7 @@
     <div class="flex justify-center items-center w-full">
       <router-link class="px-3 py-2 rounded-md text-white text-xl mr-5 active" to="/teacherList">Teacher List</router-link>
       <router-link class="px-3 py-2 rounded-md text-white text-xl ml-5 active" to="/studentList">Student List</router-link>
-      <router-link class="px-3 py-2 rounded-md text-white text-xl ml-5 active" to="/studentFollowing">Student Following List</router-link>
+      <router-link class="px-3 py-2 rounded-md text-white text-xl ml-5 active" to="/studentFollowing">Student Follow-Up</router-link>
     </div>
 
     <div class="flex items-center">

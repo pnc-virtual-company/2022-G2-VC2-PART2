@@ -1,6 +1,6 @@
 <template>
   <section>
-    <img class="w-20" src="../../../assets/logo.png" alt="">
+    <img class="w-16" src="../../../assets/logo.png" alt="">
   </section>
 </template>
 
