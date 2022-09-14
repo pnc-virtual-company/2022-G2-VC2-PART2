@@ -1,12 +1,12 @@
 <template>
-    <follow-list/>
+<follow-list/>
 </template>
 
 <script>
-import followList from '../../components/coordinator/studentList/FollowUpStuList.vue'
+import FollowUp from "../../components/coordinator/studentList/FollowUpStuList.vue"
 export default {
     components: {
-        "follow-list": followList,
+        'follow-list': FollowUp
     }
 }
 </script>

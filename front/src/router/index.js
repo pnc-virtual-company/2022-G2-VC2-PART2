@@ -17,6 +17,7 @@ const routes = [
     component: CoorStudentList
   },
 
+
   {
     path: '/studentFollowing',
     name: 'studentFollowingList',
