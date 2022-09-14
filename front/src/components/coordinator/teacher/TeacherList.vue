@@ -224,7 +224,7 @@ export default {
       this.isAccountExist = false;
       this.isDeleted = false;
       this.isEdit = false;
-    }
+    },
     onCancel(is_hide){
         this.showModal = is_hide;
     },
