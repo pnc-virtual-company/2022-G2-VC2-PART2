@@ -14,6 +14,7 @@ import CoordinatorNavLogoutIcon from './components/coordinator/navbarCoordinator
 import IconDetail from '@/components/coordinator/icons/DetailView.vue'
 import IconEdit from '@/components/coordinator/icons/EditView.vue'
 import IconDelete from '@/components/coordinator/icons/RemoveView.vue'
+import IConMoveFromFollow from '@/components/coordinator/icons/RemoveIcon.vue'
 // end-icons-----------------------------------------------------------------
 const app = createApp(App)
 app.component('coordinator-nav', CoordinatorNav)
@@ -24,5 +25,7 @@ app.component('icon-detail', IconDetail)
 app.component('icon-edit', IconEdit)
 app.component('icon-delete', IconDelete)
 app.component('DatePicker', Datepicker)
+app.component('remove-stu-follow', IConMoveFromFollow)
+
 app.use(router)
 app.mount('#app')
