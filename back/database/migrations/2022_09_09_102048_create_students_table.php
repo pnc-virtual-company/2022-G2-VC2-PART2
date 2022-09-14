@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('generation');
             $table->string('phone');
-            $table->string('class');
-            $table->string('major');
+            $table->string('class')->nullable();
+            $table->string('major')->nullable();
             $table->date('date_of_birth');
             $table->string('role')->default("student");
             $table->timestamps();
