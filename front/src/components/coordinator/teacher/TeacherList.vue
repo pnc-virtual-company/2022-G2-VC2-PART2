@@ -155,6 +155,7 @@ export default {
 .bg-color {
   background: #22bbea;
 }
+<<<<<<< HEAD
 /* card-detail */
 .modal-mask {
     position: fixed;
@@ -198,3 +199,6 @@ export default {
     transform: scale(1.1);
 };
 </style>
+=======
+</style>
+>>>>>>> 5b3ccc9c8afe83012758cb49bc8a991a3be9ab5f
