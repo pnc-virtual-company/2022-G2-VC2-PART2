@@ -1,6 +1,7 @@
 <template>
     <section>
       <coordinator-nav/>
+      <!-- <studentFollowUpd/> -->
     </section>
 </template>
 

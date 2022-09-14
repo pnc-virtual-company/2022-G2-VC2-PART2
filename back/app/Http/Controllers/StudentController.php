@@ -36,6 +36,7 @@ class StudentController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->gender = $request->gender;
+        $user->role = 3;
         $user->save();
         $user->students()->save($student);
         return response()->json([

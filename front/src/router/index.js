@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import CoorTeacherList from '../views/CoordinatorView/CoorTeacherList.vue'
 import CoorStudentList from '../views/CoordinatorView/CoorStudentList.vue'
+import CoorStudentFollowingList from '../views/CoordinatorView/CoorStudentFollowingList.vue'
+
 
 const routes = [
   {
-    path: '/',
+    path: '/teacherList',
     name: 'teacherList',
     component: CoorTeacherList
   },
@@ -13,6 +15,13 @@ const routes = [
     path: '/studentList',
     name: 'studentList',
     component: CoorStudentList
+  },
+
+
+  {
+    path: '/studentFollowing',
+    name: 'studentFollowingList',
+    component: CoorStudentFollowingList
   },
   
 ]
