@@ -48,11 +48,26 @@
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
               <icon-detail />
-              <icon-edit/>
+              <icon-edit v-on:click="get_teacher_id(teacher.users.id)" @click="toggleModal"/>
               <icon-delete @click="delete_teacher(teacher.users.id)" />
             </span>
           </td>
         </tr>
+        <div
+          v-if="showModal"
+          class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex"
+        >
+          <div class="form-container shadow-md rounded w-2/5">
+            <h2 class="header text-center text-white py-3">
+              Edit Student Account
+            </h2>
+            <form-edit @cancel="onCancel" :teacher_id="teacher_id" @edit-teacher="edit-teacher"></form-edit>
+          </div>
+        </div>
+        <div
+          v-if="showModal"
+          class="opacity-30 fixed inset-0 z-40 bg-black"
+        ></div>
       </tbody>
     </table>
     <div class="flex justify-center mt-[50px]">
@@ -70,13 +85,17 @@
 import axiosClient from "../../../axios-http";
 import Swal from "sweetalert2";
 import CreateTeacher from "./TeacherView.vue";
+import FormEdit from './FormEditTeacherComponent.vue';
 export default {
-  components: { "create_teacher": CreateTeacher},
+  components: { "create_teacher": CreateTeacher, 'form-edit' : FormEdit},
   data() {
     return {
       show_detail: false,
       teacher_lists: [],
+      teacher_id : "",
+      showModal: false,
       img_null:
+     
         "https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
     };
   },
@@ -87,6 +106,7 @@ export default {
     get_teachers() {
       axiosClient.get("teachers").then((res) => {
         this.teacher_lists = res.data;
+        console.log(this.teacher_lists);
       });
     },
     create_teacher(teacher) {
@@ -94,6 +114,10 @@ export default {
       this.get_teachers();
     },
 
+    get_teacher_id(id){
+        this.teacher_id = id;
+        console.log(this.teacher_id);
+    },
     delete_teacher(id) {
       Swal.fire({
         title: "Are you sure?",
@@ -109,6 +133,16 @@ export default {
           this.get_teachers();
         }
       });
+    },
+    onCancel(is_hide){
+        this.showModal = is_hide;
+    },
+    toggleModal: function () {
+      this.showModal = !this.showModal;
+    },
+    edit_student(new_teacher, id_teacher) {
+      axiosClient.put("teachers/"+ id_teacher, new_teacher);
+      this.get_students();
     },
   },
   mounted() {
