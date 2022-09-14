@@ -33,6 +33,7 @@
           <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Full Name</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Gender</th>
+          <th class="lg:text-md text-md lg:p-3 bg-color">Email</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Position</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Email</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Actions</th>
@@ -60,6 +61,13 @@
               teacher.users.gender
             }}</span>
           </td>
+
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{
+              teacher.users.email
+            }}</span>
+          </td>
+
           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center text-sm">{{
               teacher.position
