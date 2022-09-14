@@ -64,8 +64,7 @@
                         class="w-full border px-4 pr-8 py-1 focus:border-blue-500 focus:shadow-outline outline-none appearance-none text-slate-500 rounded"
                         id="select-item" v-model="major">
                         <option selected disabled>Major</option>
-                        <option value="WEB-A" class="text-black">WEB-A</option>
-                        <option value="WEB-B" class="text-black">WEB-B</option>
+                        <option value="WEB-A" class="text-black">WEB</option>
                         <option value="SNA" class="text-black">SNA</option>
                     </select>
                 </div>
