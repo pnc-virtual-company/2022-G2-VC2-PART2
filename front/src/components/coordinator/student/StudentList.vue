@@ -1,5 +1,28 @@
 <template>
-  <div class="student">
+  <div class="student relative">
+    <div class="w-[82.6%] m-auto">
+      <!-- created's message -->
+      <success-message v-if="isCreated" class="text-green-500 items-center">
+        <p><strong>Congratulation!</strong>Student was successfully created</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </success-message>
+      <!-- deleted's message -->
+      <success-message v-if="isDeleted" class="text-green-500 items-center">
+        <p><strong>Congratulation!</strong> Student was successfully deleted</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </success-message>
+      <!-- edited's message -->
+      <success-message v-if="isEdit" class="text-green-500 items-center">
+        <p><strong>Congratulation!</strong> Edit was successfully saved</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </success-message>
+      <!-- axists account -->
+      <error-message v-if="isAccountExist" class="text-red-500 items-center">
+        <p><strong>Ops!</strong> Student account was already
+          created</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </error-message>
+    </div>
     <create-student @add-student="create_student" @isShow="onChange"></create-student>
     <table class="bg-white w-[82.6%] m-auto box-border mt-4">
       <thead class="text-white">
@@ -13,25 +36,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          class="cursor-pointer show hover:bg-gray-200"
-          v-for="student of student_lists"
-          :key="student"
-        >
+        <tr class="cursor-pointer show hover:bg-gray-200" v-for="student of student_lists" :key="student">
           <td class="border-b-2 py-1 lg:text-sm">
-            <span class="flex justify-center"
-              ><img :src="student.users.profile" class="w-10 h-10 rounded-full"
-            /></span>
+            <span class="flex justify-center"><img :src="student.users.profile" class="w-10 h-10 rounded-full" /></span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm">
-            <span class="flex justify-center text-sm"
-              >{{ student.users.first_name }}
-              {{ student.users.last_name }}</span
-            >
+            <span class="flex justify-center text-sm">{{ student.users.first_name }}
+              {{ student.users.last_name }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center text-sm">{{
-              student.users.gender
+            student.users.gender
             }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm">
@@ -45,30 +60,22 @@
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
               <icon-detail />
-              <icon-edit v-on:click="get_student_id(student.users.id)" @click="toggleModal"/>
+              <icon-edit v-on:click="get_student_id(student.users.id)" @click="toggleModal" />
               <icon-delete @click="deleteStudent(student.users.id)" />
             </span>
           </td>
         </tr>
-        <div
-          v-if="showModal"
-          class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex"
-        >
+        <div v-if="showModal"
+          class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
           <div class="form-container shadow-md rounded w-2/5">
             <h2 class="header text-center text-white py-3">
               Edit Student Account
             </h2>
-            <form-edit-student
-              @isShow="onChange"
-              :student_id="student_id"
-              @edit-student="edit_student"
-            ></form-edit-student>
+            <form-edit-student @isShow="onChange" :student_id="student_id" @edit-student="edit_student">
+            </form-edit-student>
           </div>
         </div>
-        <div
-          v-if="showModal"
-          class="opacity-30 fixed inset-0 z-40 bg-black"
-        ></div>
+        <div v-if="showModal" class="opacity-30 fixed inset-0 z-40 bg-black"></div>
       </tbody>
     </table>
     <div class="flex justify-center mt-[50px]">
@@ -87,17 +94,27 @@ import axiosClient from "../../../axios-http";
 import Swal from "sweetalert2";
 import FormEdit from "./FormEdit.vue";
 import CreateStudent from "./CreateStudent.vue";
+import SuccessMessage from '../../message/SuccessMessage.vue'
+import ErrorMessage from '../../message/ErrorMessage.vue'
+import DeleteIcons from "../icons/DeleteIcon.vue"
 export default {
   components: {
     "form-edit-student": FormEdit,
     "create-student": CreateStudent,
+    'success-message': SuccessMessage,
+    'error-message': ErrorMessage,
+    'delete-icon': DeleteIcons
   },
   data() {
     return {
       student_lists: [],
-      img_null:"https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
+      img_null: "https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
       showModal: false,
       student_id: "",
+      isCreated: false,
+      isAccountExist: false,
+      isDeleted: false,
+      isEdit: false,
     };
   },
   methods: {
@@ -106,7 +123,7 @@ export default {
         this.student_lists = res.data;
       });
     },
-    get_student_id(id){
+    get_student_id(id) {
       this.student_id = id;
     },
     toggleModal: function () {
@@ -126,21 +143,49 @@ export default {
         confirmButtonText: "Yes, delete!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axiosClient.delete("students/" + id);
+          axiosClient.delete("students/" + id)
           this.get_students();
+          this.isDeleted = true;
+          this.isAccountExist = false;
+          this.isCreated = false;
+          this.isEdit = false;
         }
       });
     },
-    
+
     edit_student(new_student, id_stu) {
-      axiosClient.put("student_update/"+ id_stu, new_student);
+      axiosClient.put("student_update/" + id_stu, new_student)
       this.get_students();
+      this.isEdit = true;
+      this.isAccountExist = false;
+      this.isDeleted = false;
+      this.isCreated = false;
     },
 
     create_student(student) {
-      axiosClient.post("students", student);
-      this.get_students();
+      axiosClient.post("students", student).then((response) => {
+        this.get_students();
+        if (response.status == 200) {
+          this.isCreated = true;
+          this.isDeleted = false;
+          this.isEdit = false;
+          this.isAccountExist = false;
+        }
+      }).catch((error) => {
+        if (error.response.status == 500) {
+          this.isAccountExist = true;
+          this.isDeleted = false;
+          this.isCreated = false;
+          this.isEdit = false;
+        }
+      })
     },
+    close_messages() {
+      this.isCreated = false;
+      this.isAccountExist = false;
+      this.isDeleted = false;
+      this.isEdit = false;
+    }
   },
   mounted() {
     this.get_students();
@@ -151,14 +196,17 @@ export default {
 .icons {
   display: none;
 }
+
 .show:hover .icons {
   display: flex;
   margin: 0 -10px;
   padding: 0;
 }
+
 .btn-add {
   background: #22bbea;
 }
+
 .header {
   background: #22bbea;
   border-top-left-radius: 5px;
@@ -166,9 +214,11 @@ export default {
   font-weight: bold;
   font-size: 20px;
 }
+
 .form-container {
   background: #bbd7e0;
 }
+
 .bg-color {
   background: #22bbea;
 }

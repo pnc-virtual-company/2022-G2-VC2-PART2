@@ -25,6 +25,29 @@
       </div>
     </div>
     <!------------------------------------end-card-------------------------------->
+    <div class="w-[82.6%] m-auto">
+      <!-- created's message -->
+      <success-message v-if="isCreated" class="text-green-500 items-center">
+        <p><strong>Congratulation!</strong> Teacher was successfully created</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </success-message>
+      <!-- deleted's message -->
+      <success-message v-if="isDeleted" class="text-green-500 items-center">
+        <p><strong>Congratulation!</strong> Teacher was successfully deleted</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </success-message>
+      <!-- edited's message -->
+      <success-message v-if="isEdit" class="text-green-500 items-center">
+        <p><strong>Congratulation!</strong> Edit was successfully saved</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </success-message>
+      <!-- axists account -->
+      <error-message v-if="isAccountExist" class="text-red-500 items-center">
+        <p><strong>Ops!</strong> Teacher account was already
+          created</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </error-message>
+    </div>
     <!---------------------------------table-view-teacher------------------------->
     <create_teacher @add-teacher="create_teacher"></create_teacher>
     <table class="bg-white w-[82.6%] m-auto box-border mt-4">
@@ -119,13 +142,25 @@ import axiosClient from "../../../axios-http";
 import Swal from "sweetalert2";
 import CreateTeacher from "./TeacherView.vue";
 import FormEdit from './FormEditTeacherComponent.vue';
+import SuccessMessage from '../../message/SuccessMessage.vue'
+import ErrorMessage from '../../message/ErrorMessage.vue'
+import DeleteIcons from "../icons/DeleteIcon.vue"
 export default {
-  components: { "create_teacher": CreateTeacher, 'form-edit' : FormEdit},
+  components: { 
+    "create_teacher": CreateTeacher,
+    'success-message': SuccessMessage,
+    'error-message': ErrorMessage,
+    'delete-icon': DeleteIcons
+  , 'form-edit' : FormEdit},
   data() {
     return {
       show_detail: false,
       icon_cancel: false,
       teacher_lists: [],
+      isCreated: false,
+      isAccountExist: false,
+      isDeleted: false,
+      isEdit: false,
       teacher_id : "",
       showModal: false,
       img_null:
@@ -141,8 +176,23 @@ export default {
       });
     },
     create_teacher(teacher) {
-      axiosClient.post("teachers", teacher);
-      this.get_teachers();
+      axiosClient.post("teachers", teacher).then((response) => {
+        this.get_teachers();
+        if (response.status == 200) {
+          this.isCreated = true;
+          this.isDeleted = false;
+          this.isEdit = false;
+          this.isAccountExist = false;
+        }
+      }).catch((error) => {
+        if (error.response.status == 500) {
+          this.isAccountExist = true;
+          this.isDeleted = false;
+          this.isCreated = false;
+          this.isEdit = false;
+        }
+      });
+      
     },
 
     get_teacher_id(id){
@@ -162,12 +212,19 @@ export default {
         if (result.isConfirmed) {
           axiosClient.delete("teachers/" + id);
           this.get_teachers();
+          this.isDeleted = true;
+          this.isAccountExist = false;
+          this.isCreated = false;
+          this.isEdit = false;
         }
       });
     },
-    togle(){
-      this.show_detail = !this.show_detail
-    },
+    close_messages() {
+      this.isCreated = false;
+      this.isAccountExist = false;
+      this.isDeleted = false;
+      this.isEdit = false;
+    }
     onCancel(is_hide){
         this.showModal = is_hide;
     },

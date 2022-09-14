@@ -29,8 +29,8 @@ class StudentController extends Controller
         $student->generation=$request->generation;
         $student->phone = $request->phone;
         $student->class = $request->class;
-        $student->major = $request->major; 
-        $student->date_of_birth = $request->date_of_birth; 
+        $student->major = $request->major;
+        $student->date_of_birth = $request->date_of_birth;
         $user = new User();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
@@ -39,23 +39,24 @@ class StudentController extends Controller
         $user->role = 3;
         $user->save();
         $user->students()->save($student);
-        return "Create successfully";
-
+        return response()->json([
+            'message'=>'success'
+        ]);
     }
     public function show($id)
     {
         return Student::where("user_id", $id)->with('users')->get();
     }
 
-    
+
     public function updateStudent(Request $request,$id)
     {
         $student=Student::findOrFail($id);
         $student->generation=$request->generation;
         $student->phone = $request->phone;
         $student->class = $request->class;
-        $student->major = $request->major; 
-        $student->date_of_birth = $request->date_of_birth; 
+        $student->major = $request->major;
+        $student->date_of_birth = $request->date_of_birth;
         $user = User::findOrFail($id);
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
@@ -64,7 +65,7 @@ class StudentController extends Controller
         $user->save();
         $user->students()->save($student);
         return response()->json([
-            'message'=>'Your Updated is successfully'
+            'message'=>'success'
         ]);
     }
       /**
@@ -75,6 +76,11 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        return User::destroy($id);
+        $delete = User::destroy($id);
+        if ($delete){
+            return response()->json([
+                'message'=>'success'
+            ]);
+        }
     }
 }
