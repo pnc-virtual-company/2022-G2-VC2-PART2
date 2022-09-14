@@ -120,23 +120,24 @@
                       <small v-if="phones">Phone is required</small>
                     </div>
                   </div>
-                </form>
-              </div>
-              <!--footer-->
-              <div
-                class="flex items-center justify-end px-4 py-2 border-solid rounded-b mb-2"
+                  <div
+                class="flex items-center justify-end p-2 border-slate-200 mt-2 rounded-b"
               >
                 <Button-view
-                  class="cancle rounded-md text-white px-4 text-sm rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  class="cancle text-white active:bg-orange-600 text-sm rounded px-2 mr-3 shadow hover:bg-orange-400 hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   @click="onCancel()"
                   >Cancle</Button-view
                 >
                 <Button-view
-                  class="add rounded-md text-white px-4 text-sm rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  class="add text-white active:bg-sky-600 text-sm text-sm px-2 rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   @click="edit_teacher()"
-                  >Create</Button-view
+                  >Edit</Button-view
                 >
+                  </div>
+                </form>
               </div>
+              <!--footer-->
+        
             </div>
           </div>
         </div>
@@ -147,7 +148,11 @@
 
 <script>
 import axiosClient from "../../../axios-http";
+import ButtonView from "../../button/ButtonView.vue";
 export default {
+  components: {
+    "Button-view": ButtonView,
+  },
   props: ["teacher_id"],
   data() {
     return {
@@ -226,8 +231,9 @@ export default {
           email: this.email,
           phone: this.phone,
         };
+        console.log(info_of_teacher);
         this.$emit("cancel", false);
-        this.$emit("edit-teacher",info_of_teacher,this.id_teacher);
+        this.$emit("edit-teacher",this.id_teacher,info_of_teacher);
         this.first_name = "";
         this.last_name = "";
         this.gender = "";
@@ -248,7 +254,6 @@ export default {
 }
 .add {
   background-color: #22bbea;
-  margin-left: 10px;
 }
 .header {
   background-color: #22bbea;

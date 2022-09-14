@@ -94,7 +94,7 @@
             <h2 class="header text-center text-white py-3">
               Edit Student Account
             </h2>
-            <form-edit @cancel="onCancel" :teacher_id="teacher_id" @edit-teacher="edit-teacher"></form-edit>
+            <form-edit @cancel="onCancel" :teacher_id="teacher_id" @edit-teacher="edit_teacher"></form-edit>
           </div>
         </div>
         <div
@@ -165,21 +165,20 @@ export default {
         }
       });
     },
-<<<<<<< HEAD
+    togle(){
+      this.show_detail = !this.show_detail
+    },
     onCancel(is_hide){
         this.showModal = is_hide;
     },
     toggleModal: function () {
       this.showModal = !this.showModal;
     },
-    edit_student(new_teacher, id_teacher) {
-      axiosClient.put("teachers/"+ id_teacher, new_teacher);
-      this.get_students();
-=======
-    togle(){
-      this.show_detail = !this.show_detail
->>>>>>> d956a78977ff8a3b297fa1b0f6a3fb754aed9d26
-    },
+    edit_teacher(id_teacher,new_teacher) {
+      console.log(new_teacher);
+      axiosClient.put("teacher_update/"+ id_teacher, new_teacher);
+      this.get_teachers();
+    }
   },
   mounted() {
     this.get_teachers();
@@ -199,7 +198,7 @@ export default {
 .bg-color {
   background: #22bbea;
 }
-/* card-detail */
+
 .modal-mask {
     position: fixed;
     z-index: 10;
