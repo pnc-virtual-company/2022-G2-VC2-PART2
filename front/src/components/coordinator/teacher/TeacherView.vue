@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import FormView from "./FromView.vue";
+import FormView from "./FormCreateTeacherComponent.vue";
 export default {
   components: {
     "form-view": FormView,

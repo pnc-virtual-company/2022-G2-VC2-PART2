@@ -35,9 +35,32 @@ class TeacherController extends Controller
         return "Create successfully";
     }
 
+    // find teacher by id
+    public function show($id)
+    {
+        return Teacher::where("user_id", $id)->with('users')->get();
+    }
+
     public function destroy($id)
     {
         return User::destroy($id);
     }
 
+    // edit teacher when coordinator want
+    public function update(Request $request,$id){
+        $teacher = Teacher::findOrFail($id);
+        $teacher->position = $request->position;
+        $teacher->phone = $request->phone;
+        $user =  User::FindOrFail($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->gender = $request->gender;
+        $user->save();
+        $user->teachers()->save($teacher);
+        return response()->json([
+            'message' => 'Successfully'
+        ]);
+
+    }
 }
