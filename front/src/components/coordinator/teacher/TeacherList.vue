@@ -16,7 +16,7 @@
                   <div class="mt-[18px] leading-loose">
                       <p>Gender: {{teacher.users.gender}}</p>
                       <p>Position: {{teacher.position}}</p>
-                      <p>Role: {{teacher.role}}</p>
+                      <p>Role: {{teacher.users.role}}</p>
                       <p>Tel: {{teacher.phone}}</p>
                       <p class="mb-5">Email {{teacher.users.email}}</p>
                   </div>
@@ -155,7 +155,6 @@ export default {
 .bg-color {
   background: #22bbea;
 }
-<<<<<<< HEAD
 /* card-detail */
 .modal-mask {
     position: fixed;
@@ -199,6 +198,3 @@ export default {
     transform: scale(1.1);
 };
 </style>
-=======
-</style>
->>>>>>> 5b3ccc9c8afe83012758cb49bc8a991a3be9ab5f
