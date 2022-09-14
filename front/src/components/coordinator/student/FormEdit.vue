@@ -156,7 +156,7 @@ export default {
   data() {
     return {
       first_name: "",
-      last_name: "zxcvbn",
+      last_name: "",
       email: "",
       gender: "Gender",
       batch: "Batch",

@@ -42,7 +42,7 @@
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
               <icon-detail />
-              <icon-edit />
+              <icon-edit/>
               <icon-delete @click="delete_teacher(teacher.users.id)" />
             </span>
           </td>
