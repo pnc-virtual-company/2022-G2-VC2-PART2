@@ -29,6 +29,7 @@ class TeacherController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->gender = $request->gender;
+        $user->role = 2;
         $user->save();
         $user->teachers()->save($teacher);
         return "Create successfully";
