@@ -3,11 +3,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Teacher;
 use App\Models\User;
-
 use Illuminate\Http\Request;
 class TeacherController extends Controller
 {
-
     public function index()
     {
         return Teacher::with('users')->get();
@@ -34,21 +32,19 @@ class TeacherController extends Controller
         $user->teachers()->save($teacher);
         return "Create successfully";
     }
-
     // find teacher by id
     public function show($id)
     {
         return Teacher::where("user_id", $id)->with('users')->get();
     }
-
     public function destroy($id)
     {
         return User::destroy($id);
     }
-
-    // edit teacher when coordinator want
-    public function update(Request $request,$id){
-        $teacher = Teacher::findOrFail($id);
+    
+    public function update_teacher(Request $request, $id){
+        $teacher_id = $request->teacher_id;
+        $teacher = Teacher::findOrFail($teacher_id);
         $teacher->position = $request->position;
         $teacher->phone = $request->phone;
         $user =  User::FindOrFail($id);
@@ -61,6 +57,5 @@ class TeacherController extends Controller
         return response()->json([
             'message' => 'Successfully'
         ]);
-
     }
 }
