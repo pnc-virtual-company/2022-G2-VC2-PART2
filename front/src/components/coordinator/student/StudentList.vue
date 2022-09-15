@@ -1,5 +1,7 @@
 <template>
   <div class="student relative">
+    <!----------------------------------card-detail------------------------------->
+    <CardDetail :user_info="user_info" v-if="is_show" @close_detail="close_detail"/>
     <div class="w-[82.6%] m-auto">
       <!-- created's message -->
       <success-message v-if="isCreated" class="text-green-500 items-center">
@@ -30,8 +32,8 @@
           <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Full Name</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Gender</th>
-          <th class="lg:text-md text-md lg:p-3 bg-color">Email</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Generation</th>
+          <th class="lg:text-md text-md lg:p-3 bg-color">Email</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Actions</th>
         </tr>
       </thead>
@@ -50,12 +52,12 @@
             }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{ student.generation }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center text-sm">{{
               student.users.email
             }}</span>
-          </td>
-          <td class="border-b-2 py-1 lg:text-sm">
-            <span class="flex justify-center text-sm">{{ student.generation }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
@@ -97,6 +99,7 @@ import CreateStudent from "./CreateStudent.vue";
 import SuccessMessage from '../../message/SuccessMessage.vue'
 import ErrorMessage from '../../message/ErrorMessage.vue'
 import DeleteIcons from "../icons/DeleteIcon.vue"
+import CardDetail from "./CardDetail.vue"
 export default {
   components: {
     "form-edit-student": FormEdit,
@@ -104,6 +107,7 @@ export default {
     'success-message': SuccessMessage,
     'error-message': ErrorMessage,
     'delete-icon': DeleteIcons,
+    CardDetail
   },
   data() {
     return {
@@ -116,6 +120,7 @@ export default {
       isAccountExist: false,
       isDeleted: false,
       isEdit: false,
+      is_show: false
     };
   },
   methods: {
@@ -141,7 +146,7 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#22BBEA",
         cancelButtonColor: "#FFAD5C",
-        confirmButtonText: "Delete",
+        confirmButtonText: "Yes, delete!",
       }).then((result) => {
         if (result.isConfirmed) {
           axiosClient.delete("students/" + id)
@@ -185,7 +190,18 @@ export default {
       this.isAccountExist = false;
       this.isDeleted = false;
       this.isEdit = false;
-    }
+    },
+    show_detail(id) {
+      this.is_show = true
+      for(let value of this.student_lists) {
+        if(value.id == id) {
+          this.user_info = value;
+        }
+      }
+    },
+    close_detail(close){
+      this.is_show = close;
+    },
   },
   mounted() {
     this.get_students();
