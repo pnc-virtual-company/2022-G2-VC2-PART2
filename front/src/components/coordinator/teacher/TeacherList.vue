@@ -2,6 +2,29 @@
   <div class="teacher_list">
     <!----------------------------------card-detail------------------------------->
     <CardDetail :user_info="user_info" v-if="is_show" @close_detail="close_detail"/>
+    <div class="w-[82.6%] m-auto">
+      <!-- created's message -->
+      <success-message v-if="isCreated" class="text-green-500 items-center">
+        <p><strong>Congratulation!</strong> Teacher was successfully created</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </success-message>
+      <!-- deleted's message -->
+      <success-message v-if="isDeleted" class="text-green-500 items-center">
+        <p><strong>Congratulation!</strong> Teacher was successfully deleted</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </success-message>
+      <!-- edited's message -->
+      <success-message v-if="isEdit" class="text-green-500 items-center">
+        <p><strong>Congratulation!</strong> Edit was successfully saved</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </success-message>
+      <!-- axists account -->
+      <error-message v-if="isAccountExist" class="text-red-500 items-center">
+        <p><strong>Ops!</strong> Teacher account was already
+          created</p>
+        <delete-icon @click="close_messages"></delete-icon>
+      </error-message>
+    </div>
     <!---------------------------------table-view-teacher------------------------->
     <create_teacher @add-teacher="create_teacher"></create_teacher>
     <table class="bg-white w-[82.6%] m-auto box-border mt-4">
@@ -87,6 +110,7 @@
 import axiosClient from "../../../axios-http";
 import Swal from "sweetalert2";
 import CreateTeacher from "./TeacherView.vue";
+import CardDetail from "./CardDetail.vue";
 import FormEdit from './FormEditTeacherComponent.vue';
 import SuccessMessage from '../../message/SuccessMessage.vue'
 import ErrorMessage from '../../message/ErrorMessage.vue'
@@ -97,10 +121,12 @@ export default {
     'success-message': SuccessMessage,
     'error-message': ErrorMessage,
     'delete-icon': DeleteIcons
-  , 'form-edit' : FormEdit},
+  , 'form-edit' : FormEdit, CardDetail},
   data() {
     return {
       teacher_lists: [],
+      user_info: [],
+      is_show: false,
       isCreated: false,
       isAccountExist: false,
       isDeleted: false,
@@ -116,8 +142,9 @@ export default {
     get_teachers() {
       axiosClient.get("teachers").then((res) => {
         this.teacher_lists = res.data;
+        console.log(this.teacher_lists);
       });
-    },
+    },  
     create_teacher(teacher) {
       axiosClient.post("teachers", teacher).then((response) => {
         this.get_teachers();
@@ -162,15 +189,23 @@ export default {
         }
       });
     },
+    show_detail(id) {
+      this.is_show = true
+      for(let value of this.teacher_lists) {
+        if(value.id == id) {
+          this.user_info = value
+        }
+      }
+    },
+    close_detail(close){
+      this.is_show = close;
+    },
     close_messages() {
       this.isCreated = false;
       this.isAccountExist = false;
       this.isDeleted = false;
       this.isEdit = false;
     },
-    close_detail(close){
-      this.is_show = close;
-    }
     onCancel(is_hide){
         this.showModal = is_hide;
     },

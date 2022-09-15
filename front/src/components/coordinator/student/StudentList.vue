@@ -59,7 +59,7 @@
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
-              <icon-detail />
+              <icon-detail @click="show_detail(student.id)"/>
               <icon-edit v-on:click="get_student_id(student.users.id)" @click="toggleModal" />
               <icon-delete @click="deleteStudent(student.users.id)" />
             </span>
@@ -103,11 +103,12 @@ export default {
     "create-student": CreateStudent,
     'success-message': SuccessMessage,
     'error-message': ErrorMessage,
-    'delete-icon': DeleteIcons
+    'delete-icon': DeleteIcons,
   },
   data() {
     return {
       student_lists: [],
+      user_info: [],
       img_null: "https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
       showModal: false,
       student_id: "",
