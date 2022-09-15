@@ -7,18 +7,18 @@
             <svg @click="close_detail" class="h-6 w-6 text-red-500 m-auto mr-3 cursor-pointer"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" /></svg>
           </div>
           <div class="modal-container bg-blue-200">
-              <div class="flex space-x-[50px]">
+              <div class="flex space-x-[40px]">
                   <div class="ml-[50px]">
                       <img :src="user_info.users.profile" width="126" class="mt-5 rounded-full flex justify-center m-auto">
                       <p class="text-center text-xl font-bold mb-5">{{user_info.users.first_name}} {{user_info.users.last_name}}</p>
                   </div>
                   <div class="mt-[18px] leading-loose">
-                      <p>Gender: {{user_info.users.gender}}</p>
-                      <p>Position: {{user_info.position}}</p>
+                      <p><span class="font-bold">Gender :</span> {{user_info.users.gender}}</p>
+                      <p><span class="font-bold">Position :</span> {{user_info.position}}</p>
                       <p v-if="user_info.users.role == 'teacher'"></p>
-                      <p v-else>Role: Teacher</p>
-                      <p>Tel: {{user_info.phone}}</p>
-                      <p class="mb-5">Email: {{user_info.users.email}}</p>
+                      <p v-else><span class="font-bold">Role :</span> Teacher</p>
+                      <p><span class="font-bold">Tel :</span> {{user_info.phone}}</p>
+                      <p class="mb-5"><span class="font-bold">Email :</span> {{user_info.users.email}}</p>
                   </div>
               </div>
           </div>
