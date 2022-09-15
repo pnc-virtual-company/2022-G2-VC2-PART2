@@ -44,9 +44,10 @@
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
-              <icon-detail />
-              <icon-edit v-on:click="get_student_id(student.users.id)" @click="toggleModal"/>
-              <icon-delete @click="deleteStudent(student.users.id)" />
+              <icon-detail class="icon" />
+              <icon-edit class="icon" v-on:click="get_student_id(student.users.id)" @click="toggleModal"/>
+              <icon-add class="icon" @click="move_follow" />
+              <icon-delete class="icon" @click="deleteStudent(student.users.id)" />
             </span>
           </td>
         </tr>
@@ -87,10 +88,12 @@ import axiosClient from "../../../axios-http";
 import Swal from "sweetalert2";
 import FormEdit from "./FormEdit.vue";
 import CreateStudent from "./CreateStudent.vue";
+import AddIcon from '../icons/AddIcon.vue'
 export default {
   components: {
     "form-edit-student": FormEdit,
     "create-student": CreateStudent,
+    "icon-add": AddIcon,
   },
   data() {
     return {
@@ -123,7 +126,7 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#22BBEA",
         cancelButtonColor: "#FFAD5C",
-        confirmButtonText: "Yes, delete!",
+        confirmButtonText: "Delete",
       }).then((result) => {
         if (result.isConfirmed) {
           axiosClient.delete("students/" + id);
@@ -135,6 +138,18 @@ export default {
     edit_student(new_student, id_stu) {
       axiosClient.put("student_update/"+ id_stu, new_student);
       this.get_students();
+    },
+
+    move_follow() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to move student to follow up list!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#22BBEA",
+        cancelButtonColor: "#FFAD5C",
+        confirmButtonText: "Move",
+      })
     },
 
     create_student(student) {
@@ -156,6 +171,14 @@ export default {
   margin: 0 -10px;
   padding: 0;
 }
+
+.icon:hover {
+  border-radius: 20px;
+  background-color: rgba(226, 216, 216, 0.877);
+  padding: 3px;
+  
+}
+
 .btn-add {
   background: #22bbea;
 }
