@@ -96,7 +96,7 @@
 </template>
 <script>
 import ButtonViewVue from "@/components/button/ButtonView.vue"
-import ErrorComponent from '../../message/ErrorComponent.vue'
+import ErrorComponent from '../../message/ValidateText.vue'
 export default {
     components: {
         'button-add': ButtonViewVue,
@@ -114,6 +114,8 @@ export default {
             phone: '',
             date_of_birth: "",
             // 
+            isCreated: true,
+            isExist: true,
             email_validation: true,
             first_name_validation: true,
             last_name_validation: true,
@@ -141,7 +143,7 @@ export default {
                     email: this.email,
                     phone: this.phone
                 }
-                this.$emit('isShow', false, new_student);
+                this.$emit('isShow', false, new_student, this.isCreated,this.isExist);
             }
         },
         validations() {
