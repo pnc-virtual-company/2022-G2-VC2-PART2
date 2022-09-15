@@ -43,7 +43,8 @@ class TeacherController extends Controller
     }
     
     public function update_teacher(Request $request, $id){
-        $teacher = Teacher::findOrFail($id);
+        $teacher_id = $request->teacher_id;
+        $teacher = Teacher::findOrFail($teacher_id);
         $teacher->position = $request->position;
         $teacher->phone = $request->phone;
         $user =  User::FindOrFail($id);

@@ -92,7 +92,7 @@
           class="btn-submit text-white active:bg-sky-600 text-sm text-sm px-2 rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
           type="submit"
         >
-          Save
+          Edit
         </button-add>
       </div>
     </form>
@@ -104,7 +104,7 @@ import ButtonViewVue from "@/components/button/ButtonView.vue";
 import ErrorComponent from "../../message/ValidateText.vue";
 
 export default {
-  props: ["student_id"],
+  props: ["user_id", "student_id"],
   components: {
     "button-add": ButtonViewVue,
     "error-message": ErrorComponent,
@@ -126,12 +126,12 @@ export default {
       last_name_validation: true,
       phone_validation: true,
       date_validation: true,
-      id_student: this.student_id,
+      id_user: this.user_id
     };
   },
   methods: {
     show_student_data() {
-      axiosClient.get("students/" + this.id_student).then((response) => {
+      axiosClient.get("students/" + this.id_user).then((response) => {
         let student_data = response.data[0];
         this.phone = student_data.phone;
         this.generation = student_data.generation;
@@ -168,11 +168,12 @@ export default {
           class: this.student_class,
           major: this.major,
           phone: this.phone,
-          date_of_birth:this.date_of_birth
+          date_of_birth:this.date_of_birth,
+          student_id: this.student_id
           
         };
         this.$emit("isShow", false);
-        this.$emit("edit-student", new_student, this.id_student);
+        this.$emit("edit-student", new_student, this.id_user);
       }
     },
     validations() {
