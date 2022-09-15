@@ -44,7 +44,7 @@
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
-              <icon-detail />
+              <icon-detail @click="student_detail"/>
               <icon-edit v-on:click="get_student_id(student.users.id)" @click="toggleModal"/>
               <icon-delete @click="deleteStudent(student.users.id)" />
             </span>
@@ -97,6 +97,7 @@ export default {
       student_lists: [],
       img_null:"https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
       showModal: false,
+      show_detail: false,
       student_id: "",
     };
   },
@@ -136,7 +137,6 @@ export default {
       axiosClient.put("student_update/"+ id_stu, new_student);
       this.get_students();
     },
-
     create_student(student) {
       axiosClient.post("students", student);
       this.get_students();
@@ -172,4 +172,46 @@ export default {
 .bg-color {
   background: #22bbea;
 }
+/* card-detail */
+.modal-mask {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+    transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-container, .header {
+    width: 40%;
+    height: auto;
+    margin: 0px auto;
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+    z-index: 10;
+}
+
+.modal-body {
+    margin: 20px 0;
+}
+
+.modal-default-button {
+    float: right;
+}
+.modal-enter-from, .modal-leave-to {
+    opacity: 0;
+}
+
+.modal-enter-active .modal-container,
+.modal-leave-active .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+};
 </style>
