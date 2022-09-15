@@ -59,7 +59,7 @@
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
-              <icon-detail />
+              <icon-detail @click="show_detail(student.id)"/>
               <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
               <icon-delete @click="deleteStudent(student.users.id)" />
             </span>
@@ -103,11 +103,12 @@ export default {
     "create-student": CreateStudent,
     'success-message': SuccessMessage,
     'error-message': ErrorMessage,
-    'delete-icon': DeleteIcons
+    'delete-icon': DeleteIcons,
   },
   data() {
     return {
       student_lists: [],
+      user_info: [],
       img_null: "https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
       showModal: false,
       student_id: "",
@@ -142,7 +143,7 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#22BBEA",
         cancelButtonColor: "#FFAD5C",
-        confirmButtonText: "Yes, delete!",
+        confirmButtonText: "Delete",
       }).then((result) => {
         if (result.isConfirmed) {
           axiosClient.delete("students/" + id)
@@ -163,7 +164,6 @@ export default {
       this.isDeleted = false;
       this.isCreated = false;
     },
-
     create_student(student) {
       axiosClient.post("students", student).then((response) => {
         this.get_students();

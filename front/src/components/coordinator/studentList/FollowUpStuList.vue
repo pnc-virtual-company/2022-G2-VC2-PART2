@@ -14,7 +14,7 @@
       <tbody>
         <tr
           class="cursor-pointer show hover:bg-gray-200"
-          v-for="student of student_lists"
+          v-for="student of student_follow"
           :key="student"
         >
           <td class="border-b-2 py-1 lg:text-sm">
@@ -29,9 +29,8 @@
             >
           </td>
           <td class="border-b-2 py-1 lg:text-sm">
-            <span class="flex justify-center text-sm">{{
-              student.users.gender
-            }}</span>
+            <span class="flex justify-center text-sm">
+              {{ student.users.gender }}</span>
           </td>
 
            <td class="border-b-2 py-1 lg:text-sm">
@@ -45,7 +44,7 @@
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
-              <remove-stu-follow/>
+              <remove-stu-follow />
             </span>
           </td>
         </tr>
@@ -66,7 +65,7 @@
       </tbody>
     </table>
     <div class="flex justify-center mt-[50px]">
-      <div v-if="student_lists.length == 0">
+      <div v-if="student_follow.length == 0">
         <img :src="img_null" class="flex justify-center m-auto w-40" />
         <h1 class="text-red-500 text-center text-2xl mt-2">
           No Student in list
@@ -85,21 +84,21 @@ export default {
     },
     data() {
         return {
-            student_lists: [],
+            student_follow: [],
         }
     },
 
     methods: {
-        get_students() {
+        get_student_follow() {
             axiosClient.get('students')
             .then((res)=>{
-                this.student_lists = res.data;
+                this.student_follow = res.data.filter(student=>student.status == 1);
             })
-        }
+        },
     },
 
     mounted() {
-    this.get_students();
+    this.get_student_follow();
   },
 }
 </script>
