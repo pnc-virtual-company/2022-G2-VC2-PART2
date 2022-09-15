@@ -1,58 +1,92 @@
 <template>
   <div class="student-following-up">
-    <div class="paginate w-[82.6%] m-auto box-border mt-4">
-      <VueTailwindPagination class="bg-none"
+    <div class="p w-[82.6%] m-auto box-border mt-4">
+      <!-- <VueTailwindPagination class="bg-none"
       :current="currentPage"
         :total="total"
         :per-page="perPage"
         @page-changed="pageChange($event)"
       >
-      </VueTailwindPagination>
+      </VueTailwindPagination> -->
+
+      <vue-awesome-paginate class="text-orange-600"
+        :current-page="currentPage"
+        :total-items="total"
+        :items-per-page="perPage"
+        :on-click="pageChange"
+      >
+      </vue-awesome-paginate>
     </div>
     <student-table :students="data"></student-table>
   </div>
 </template>
 
 <script>
-import StudentFollowingTable from './table/StudentFollowingUpTable.vue';
-import "@ocrv/vue-tailwind-pagination/styles";
-import VueTailwindPagination from "@ocrv/vue-tailwind-pagination";
+import StudentFollowingTable from "./table/StudentFollowingUpTable.vue";
+// import "@ocrv/vue-tailwind-pagination/styles";
+// import VueTailwindPagination from "@ocrv/vue-tailwind-pagination";
+
 import axiosClient from "../../axios-http";
 export default {
-components: {
-  'student-table' : StudentFollowingTable,
-  VueTailwindPagination,
-},
-data(){
-  return{
-    currentPage: 0,
+  components: {
+    "student-table": StudentFollowingTable,
+    // VueTailwindPagination,
+  },
+  data() {
+    return {
+      currentPage: 1,
       total: 0,
-      perPage: 0,
+      perPage: 10,
       data: [],
-  }
-},
-methods: {
+    };
+  },
+  methods: {
     pageChange(pageNumber) {
       this.currentPage = pageNumber;
       this.getData();
     },
-    async getData(){
-      let response = await axiosClient.get (`get_student_follwing_up/?page=${this.currentPage}`);
+    async getData() {
+      let response = await axiosClient.get(
+        `get_student_follwing_up/?page=${this.currentPage}`
+      );
       let responseData = response.data;
       this.data = responseData.data;
       this.perPage = responseData.per_page;
       this.total = responseData.total;
-
-    }
+    },
   },
   mounted() {
     this.currentPage = 1;
     this.getData();
-    
   },
-}
+};
 </script>
 
 <style>
+.pagination-container {
+  display: flex;
+  column-gap: 10px;
+}
+.paginate-buttons {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: rgb(242, 242, 242);
+  border: 1px solid rgb(217, 217, 217);
+  color: black;
+}
+.paginate-buttons:hover {
+  background-color: #d8d8d8;
+}
+.active-page {
+  background: #22bbea;
+  border: 1px solid #22bbea;
+  color: white;
+}
+.active-page:hover {
+  background-color:  rgb(14 165 233);
+
+}
 
 </style>

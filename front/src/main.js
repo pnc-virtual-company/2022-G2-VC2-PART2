@@ -14,6 +14,9 @@ import StudentFollowUped from './components/coordinator/student/StudentFollowUpe
 import IconDetail from '@/components/coordinator/icons/DetailView.vue'
 import IconEdit from '@/components/coordinator/icons/EditView.vue'
 import IconDelete from '@/components/coordinator/icons/RemoveView.vue'
+// vue_awesone_pagination ---------------------------------------------------
+import VueAwesomePaginate from "vue-awesome-paginate";
+import "vue-awesome-paginate/dist/style.css";
 // end-icons-----------------------------------------------------------------
 const app = createApp(App)
 app.component('coordinator-nav', CoordinatorNav)
@@ -26,5 +29,6 @@ app.component('icon-detail', IconDetail)
 app.component('icon-edit', IconEdit)
 app.component('icon-delete', IconDelete)
 app.use(router)
+app.use(VueAwesomePaginate)
 app.mount('#app')
 
