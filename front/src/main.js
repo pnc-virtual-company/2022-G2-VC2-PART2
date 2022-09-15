@@ -8,12 +8,13 @@ import CoordinatorNavLogo from './components/coordinator/navbarCoordinator/Coord
 import CoordinatorNavProfile from './components/coordinator/navbarCoordinator/CoordinatorNavProfile.vue'
 import CoordinatorNavLogoutIcon from './components/coordinator/navbarCoordinator/CoordinatorNavLogoutIcon.vue'
 import StudentFollowUped from './components/coordinator/student/StudentFollowUped.vue'
-
 // icons---------------------------------------------------------------------
 import IconDetail from '@/components/coordinator/icons/DetailView.vue'
 import IconEdit from '@/components/coordinator/icons/EditView.vue'
 import IconDelete from '@/components/coordinator/icons/RemoveView.vue'
-// end-icons-----------------------------------------------------------------
+/* import the fontawesome core */
+
+
 const app = createApp(App)
 app.component('coordinator-nav', CoordinatorNav)
 app.component('coordinator-navlogo', CoordinatorNavLogo)

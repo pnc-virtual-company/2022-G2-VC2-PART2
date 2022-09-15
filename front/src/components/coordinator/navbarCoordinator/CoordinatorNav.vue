@@ -12,7 +12,7 @@
 
     <div class="flex items-center">
       <coordinator-navprofile class=" mr-10"/>
-      <coordinator-navLogoutIcon />
+      <a href=""><coordinator-navLogoutIcon @click="log_out" class="cusor-pointer"/></a>
     </div>
   </nav>
   <router-view/>
@@ -20,7 +20,11 @@
 
 <script>
 export default {
-
+  methods: {
+    log_out(){
+      localStorage.clear();
+    }
+  }
 }
 </script>
 

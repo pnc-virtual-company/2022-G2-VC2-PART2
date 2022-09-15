@@ -2,8 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import CoorTeacherList from '../views/CoordinatorView/CoorTeacherList.vue'
 import CoorStudentList from '../views/CoordinatorView/CoorStudentList.vue'
 import CoorStudentFollowingList from '../views/CoordinatorView/CoorStudentFollowingList.vue'
-
-
+// import FormLogin from '../components/login/FormLogin.vue'
 const routes = [
   {
     path: '/teacherList',
@@ -16,8 +15,6 @@ const routes = [
     name: 'studentList',
     component: CoorStudentList
   },
-
-
   {
     path: '/studentFollowing',
     name: 'studentFollowingList',
