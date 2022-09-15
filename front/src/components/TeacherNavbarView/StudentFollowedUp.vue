@@ -1,5 +1,5 @@
 <template>
-  <h1>Hello student Narong FollowedUp</h1>
+  <studentFollowUpd/>
 </template>
 
 <script>

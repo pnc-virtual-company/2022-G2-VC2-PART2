@@ -113,6 +113,7 @@ export default {
             major: 'Major',
             phone: '',
             date_of_birth: "",
+            status: false,
             // 
             isCreated: true,
             isExist: true,
@@ -141,7 +142,8 @@ export default {
                     generation: this.generation,
                     major: this.major,
                     email: this.email,
-                    phone: this.phone
+                    phone: this.phone,
+                    status: false
                 }
                 this.$emit('isShow', false, new_student, this.isCreated,this.isExist);
             }

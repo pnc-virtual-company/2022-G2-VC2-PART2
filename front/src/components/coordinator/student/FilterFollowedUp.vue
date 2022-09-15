@@ -1,7 +1,7 @@
 <template>
 <section>
     <div class="text-card">
-        <h1>Student Following-Up</h1>
+        <h1>Student Followed-Up</h1>
     </div>
     <div class="followed">
         <div class="flex">
@@ -86,6 +86,7 @@ export default {
         font-size: 50px;
        margin-bottom: 50px;
         margin-left: 270px;
+        margin-top: 20px;
         justify-content: flex-start;
         font-weight:bold;
         font-family: sans-serif;
@@ -97,7 +98,7 @@ export default {
     .box-number{
         display: flex;
         width: 400px;
-        margin: auto;
+        margin: 15px auto 15px;
         justify-content:center;
         align-items: center;
         margin-left: 270px;
