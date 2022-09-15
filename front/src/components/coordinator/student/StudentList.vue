@@ -141,7 +141,7 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#22BBEA",
         cancelButtonColor: "#FFAD5C",
-        confirmButtonText: "Yes, delete!",
+        confirmButtonText: "Delete",
       }).then((result) => {
         if (result.isConfirmed) {
           axiosClient.delete("students/" + id)
