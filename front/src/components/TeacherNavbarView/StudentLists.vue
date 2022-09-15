@@ -1,9 +1,13 @@
 <template>
-  <h1>Hello student Narong List</h1>
+  <student-list/>
 </template>
 
 <script>
+  import StudentFollowList from './table/StudentFollowList.vue'
 export default {
+  components:{
+    "student-list":StudentFollowList
+  }
 
 }
 </script>
