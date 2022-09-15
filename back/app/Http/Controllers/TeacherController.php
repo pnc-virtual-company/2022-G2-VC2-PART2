@@ -7,8 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 class TeacherController extends Controller
 {
-
-    public function index()
+    public function get_teachers()
     {
         return Teacher::with('users')->get();
     }
@@ -18,7 +17,7 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create_teacher(Request $request)
     {
         //
         $teacher = new Teacher();
@@ -34,9 +33,8 @@ class TeacherController extends Controller
         return "Create successfully";
     }
 
-    public function destroy($id)
+    public function delete_teacher($id)
     {
         return User::destroy($id);
     }
-
 }

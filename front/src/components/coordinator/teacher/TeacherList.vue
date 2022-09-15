@@ -75,12 +75,12 @@ export default {
   },
   methods: {
     get_teachers() {
-      axiosClient.get("teachers").then((res) => {
+      axiosClient.get("teachers/get").then((res) => {
         this.teacher_lists = res.data;
       });
     },
     create_teacher(teacher) {
-      axiosClient.post("teachers", teacher);
+      axiosClient.post("teachers/create", teacher);
       this.get_teachers();
     },
 
@@ -95,7 +95,7 @@ export default {
         confirmButtonText: "Yes, delete!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axiosClient.delete("teachers/" + id);
+          axiosClient.delete("teachers/delete/" + id);
           this.get_teachers();
         }
       });
