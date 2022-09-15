@@ -62,7 +62,7 @@
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
               <icon-detail @click="show_detail(student.id)"/>
-              <icon-edit v-on:click="get_student_id(student.users.id)" @click="toggleModal" />
+              <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
               <icon-delete @click="deleteStudent(student.users.id)" />
             </span>
           </td>
@@ -73,7 +73,7 @@
             <h2 class="header text-center text-white py-3">
               Edit Student Account
             </h2>
-            <form-edit-student @isShow="onChange" :student_id="student_id" @edit-student="edit_student">
+            <form-edit-student @isShow="onChange" :user_id="user_id" :student_id="student_id" @edit-student="edit_student">
             </form-edit-student>
           </div>
         </div>
@@ -116,6 +116,7 @@ export default {
       img_null: "https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
       showModal: false,
       student_id: "",
+      user_id: "",
       isCreated: false,
       isAccountExist: false,
       isDeleted: false,
@@ -129,8 +130,9 @@ export default {
         this.student_lists = res.data;
       });
     },
-    get_student_id(id) {
-      this.student_id = id;
+    get_student_id(u_id,st_id) {
+      this.user_id = u_id;
+      this.student_id  = st_id;
     },
     toggleModal: function () {
       this.showModal = !this.showModal;
@@ -159,8 +161,8 @@ export default {
       });
     },
 
-    edit_student(new_student, id_stu) {
-      axiosClient.put("student_update/" + id_stu, new_student)
+    edit_student(new_student, user_id) {
+      axiosClient.put("student_update/"+ user_id, new_student)
       this.get_students();
       this.isEdit = true;
       this.isAccountExist = false;
