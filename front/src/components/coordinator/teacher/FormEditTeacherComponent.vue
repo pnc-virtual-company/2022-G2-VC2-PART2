@@ -153,7 +153,7 @@ export default {
   components: {
     "Button-view": ButtonView,
   },
-  props: ["teacher_id"],
+  props: ["user_id","teacher_id"],
   data() {
     return {
       first_name: "",
@@ -162,7 +162,6 @@ export default {
       position: "",
       email: "",
       phone: "",
-      id_teacher: this.teacher_id,
     };
   },
   methods: {
@@ -170,7 +169,7 @@ export default {
       this.$emit("cancel", false);
     },
     show_teacher_data() {
-      axiosClient.get("teachers/" + this.id_teacher).then((response) => {
+      axiosClient.get("teachers/" + this.teacher_id).then((response) => {
         let teacher_data = response.data[0];
         this.first_name = teacher_data.users.first_name;
         this.last_name = teacher_data.users.last_name;
@@ -230,10 +229,11 @@ export default {
           position: this.position,
           email: this.email,
           phone: this.phone,
+          teacher_id: this.teacher_id,
         };
         console.log(info_of_teacher);
         this.$emit("cancel", false);
-        this.$emit("edit-teacher",this.id_teacher,info_of_teacher);
+        this.$emit("edit-teacher",info_of_teacher,this.user_id);
         this.first_name = "";
         this.last_name = "";
         this.gender = "";

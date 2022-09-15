@@ -104,7 +104,7 @@
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
               <icon-detail @click="togle"/>
-              <icon-edit v-on:click="get_teacher_id(teacher.users.id)" @click="toggleModal"/>
+              <icon-edit v-on:click="get_teacher_id(teacher.user_id,teacher.id)" @click="toggleModal"/>
               <icon-delete @click="delete_teacher(teacher.users.id)" />
             </span>
           </td>
@@ -117,7 +117,7 @@
             <h2 class="header text-center text-white py-3">
               Edit Student Account
             </h2>
-            <form-edit @cancel="onCancel" :teacher_id="teacher_id" @edit-teacher="edit_teacher"></form-edit>
+            <form-edit @cancel="onCancel" :user_id="user_id" :teacher_id="teacher_id" @edit-teacher="edit_teacher"></form-edit>
           </div>
         </div>
         <div
@@ -162,6 +162,7 @@ export default {
       isDeleted: false,
       isEdit: false,
       teacher_id : "",
+      user_id : "",
       showModal: false,
       img_null:
      
@@ -172,7 +173,6 @@ export default {
     get_teachers() {
       axiosClient.get("teachers").then((res) => {
         this.teacher_lists = res.data;
-        console.log(this.teacher_lists);
       });
     },
     create_teacher(teacher) {
@@ -195,9 +195,9 @@ export default {
       
     },
 
-    get_teacher_id(id){
-        this.teacher_id = id;
-        console.log(this.teacher_id);
+    get_teacher_id(u_id,st_id){
+        this.user_id = u_id;
+        this.teacher_id = st_id;
     },
     delete_teacher(id) {
       Swal.fire({
@@ -231,9 +231,8 @@ export default {
     toggleModal: function () {
       this.showModal = !this.showModal;
     },
-    edit_teacher(id_teacher,new_teacher) {
-      console.log(new_teacher);
-      axiosClient.put("teacher_update/"+ id_teacher, new_teacher);
+    edit_teacher(new_teacher,user_id) {
+      axiosClient.put("teacher_update/"+ user_id, new_teacher);
       this.get_teachers();
     }
   },
