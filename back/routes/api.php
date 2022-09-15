@@ -27,3 +27,4 @@ Route::apiResource('students',StudentController::class);
 Route::apiResource('teachers',TeacherController::class);
 Route::put('student_update/{id}',[StudentController::class,'updateStudent']);
 Route::put('teacher_update/{id}',[TeacherController::class,'update_teacher']);
+Route::put('student_status/{id}', [StudentController::class,'updateStatus']);

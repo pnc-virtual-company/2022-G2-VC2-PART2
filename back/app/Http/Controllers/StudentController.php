@@ -31,6 +31,7 @@ class StudentController extends Controller
         $student->class = $request->class;
         $student->major = $request->major;
         $student->date_of_birth = $request->date_of_birth;
+        $student->status = $request->status;
         $user = new User();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
@@ -83,4 +84,18 @@ class StudentController extends Controller
             ]);
         }
     }
+
+    public function updateStatus(Request $request, $id) 
+    {
+        $student=Student::findOrFail($id);
+        $student->status = $request->status;
+        $student->save();
+        return response()->json([
+            'message'=>'Status Updated successfully'
+        ]);
+
+    }
+
+
+    
 }
