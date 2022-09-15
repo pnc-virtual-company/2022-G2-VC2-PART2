@@ -1,9 +1,21 @@
 <template>
-  <h1>Hello student Narong followIng Up</h1>
+  <div class="student-following-up">
+    <student-table :students="data"></student-table>
+  </div>
 </template>
 
 <script>
+import StudentFollowingTable from './table/StudentFollowingUpTable.vue';
+
+
 export default {
+components: {
+  'student-table' : StudentFollowingTable,
+},
+data(){
+  return{
+  }
+},
 
 }
 </script>
