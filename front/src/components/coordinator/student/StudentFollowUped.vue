@@ -20,21 +20,21 @@
               ><img src="student.users.profile" class="w-10 h-10 rounded-full"
             /></span>
           </td>
-          <td class="border-b-2 py-1 lg:text-2sm">
-            <span class="flex justify-center text-xl m-3"
+          <td class="border-b-2 py-1">
+            <span class="flex justify-center m-3"
               >Narong
                Hong</span>
           </td>
           <td class="border-b-2 py-1 ">
-            <span class="flex justify-center text-xl m-3">narongbunyon@student.passerellesnueriques.org</span>
+            <span class="flex justify-center m-3">narongbunyon@student.passerellesnueriques.org</span>
           </td>
 
           <td class="border-b-2 py-1">
-            <span class="flex justify-center text-xl">2022</span>
+            <span class="flex justify-center">2022</span>
           </td>
 
           <td class="border-b-2 py-1">
-            <span class="flex justify-center text-xl">Rady</span>
+            <span class="flex justify-center">Rady</span>
           </td>
 
           <td class="border-b-2 py-1 text-white">
