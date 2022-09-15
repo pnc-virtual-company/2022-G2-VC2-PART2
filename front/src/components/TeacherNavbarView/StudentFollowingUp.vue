@@ -1,14 +1,6 @@
 <template>
   <div class="student-following-up">
     <div class="p w-[82.6%] m-auto box-border mt-4">
-      <!-- <VueTailwindPagination class="bg-none"
-      :current="currentPage"
-        :total="total"
-        :per-page="perPage"
-        @page-changed="pageChange($event)"
-      >
-      </VueTailwindPagination> -->
-
       <vue-awesome-paginate class="text-orange-600"
         :current-page="currentPage"
         :total-items="total"
@@ -23,14 +15,10 @@
 
 <script>
 import StudentFollowingTable from "./table/StudentFollowingUpTable.vue";
-// import "@ocrv/vue-tailwind-pagination/styles";
-// import VueTailwindPagination from "@ocrv/vue-tailwind-pagination";
-
 import axiosClient from "../../axios-http";
 export default {
   components: {
     "student-table": StudentFollowingTable,
-    // VueTailwindPagination,
   },
   data() {
     return {
