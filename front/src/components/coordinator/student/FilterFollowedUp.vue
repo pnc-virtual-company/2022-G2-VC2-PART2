@@ -5,11 +5,11 @@
     </div>
     <div class="followed">
         <div class="flex">
-            <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 text-2sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">Filter By Batch </button>
+            <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">Filter By Batch </button>
             <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(897px, 5637px, 0px);">
             </div> 
             <div class=" w-full">
-                <select id="countries" class=" py-3 block  w-full z-20 text-lg text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500">
+                <select id="countries" class=" py-2.5 block  w-full z-20 text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500">
                     <option selected>Batch</option>
                     <option value="A">2022 WEB-A</option>
                     <option value="B">2022 WEB-B</option>
@@ -22,29 +22,29 @@
         </div>
 
         <div class="flex">
-            <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 text-2sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">Filter By Name </button>
+            <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200  focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">Filter By Name </button>
             <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(897px, 5637px, 0px);">
             </div> 
             <div class=" w-full">
                 <div class="relative w-full">
-                <input type="search" id="search-dropdown" class="py-3 block p-2.5 w-full z-20 text-lg text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search" required>
+                <input type="search" id="search-dropdown" class="py-2.5 block p-2.5 w-full z-20 text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 dark:bg-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search" required>
             </div>
             </div>
         </div>
 
         <div class="flex">
-            <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 text-2sm font-medium text-center text-gray-900 bg-sky-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-sky-700 dark:hover:bg-sky-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">Filter By Totor </button>
+            <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-center text-gray-900 bg-sky-100 border border-gray-300 rounded-l-lg hover:bg-gray-200  focus:outline-none focus:ring-gray-100 dark:bg-sky-700 dark:hover:bg-sky-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">Filter By Totor </button>
             <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(897px, 5637px, 0px);">
             </div> 
             <div class=" w-full">
                 <div class="relative w-full">
-                <input type="search" id="search-dropdown" class=" py-3 block p-2.5 w-full z-20 text-lg text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search" required>
+                <input type="search" id="search-dropdown" class=" py-2.5 block p-2.5 w-full z-20 text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search" required>
             </div>
             </div>
         </div>
     </div>
     <div class="box-number">
-    <svg class="h-20 w-20 text-black"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="h-12 w-12 text-black"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
 </svg>
     <div class="numer1">1</div>
@@ -52,13 +52,12 @@
     <div class="numer3">3</div>
     <div class="numer4">4</div>
     <div class="text-end"></div>
-    <svg class="h-20 w-20 text-black"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <svg class="h-12 w-12 text-black"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
 </svg>
 
 </div>
 </section>
-    
 
 </template>
 
@@ -76,17 +75,17 @@ export default {
         align-items: center;
     }
     .flex{
-        width: 430px;
+        width: 400px;
         display: flex;
         justify-content: space-between;
-        margin: 15px 15px;
+        margin: 10px 15px;
     }
     .text-card{
         display: flex;
-        font-size: 50px;
+        font-size:45px;
        margin-bottom: 50px;
         margin-left: 270px;
-        margin-top: 20px;
+        margin-top: 25px;
         justify-content: flex-start;
         font-weight:bold;
         font-family: sans-serif;
@@ -101,16 +100,18 @@ export default {
         margin: 15px auto 15px;
         justify-content:center;
         align-items: center;
-        margin-left: 270px;
+        margin-left: 180px;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
     .numer1,
     .numer2,
     .numer3,
     .numer4{
-        width: 60px;
+        width: 40px;
         margin: 8px  8px;
         background:#22BBEA ;
-        padding: 8px 8px;
+        padding: 5px 8px;
         text-align: center;
         justify-content: center;
         border-radius: 5px;
