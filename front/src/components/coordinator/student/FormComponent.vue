@@ -77,7 +77,7 @@
         </div>
         <div class="mb-2 px-2 w-full">
             <label class="block mb-1 text-sm " for="input1">Email</label>
-            <input class="w-full border px-4 py-1 focus:border-blue-500 focus:shadow-outline outline-none rounded" autofocus placeholder="Email" v-model="email" />
+            <input class="w-full border px-4 py-1 focus:border-blue-500 focus:shadow-outline outline-none rounded" autofocus placeholder="Email" v-model="email_user" />
             <error-message v-if="email_validation == false">*PNC Email is required</error-message>
         </div>
         <div class="flex items-center justify-end p-2 border-slate-200 mt-2 rounded-b">
@@ -184,7 +184,19 @@ export default {
             } else {
                 this.email_validation = false;
             }
+        },
+        get_email(){
+             if (this.first_name != '' && this.last_name != '') {
+                this.email = this.first_name.toLowerCase() + '.' + this.last_name.toLowerCase() + '@student.passerellesnumeriques.org';
+                return this.email;
+            }
         }
+    },
+    computed:{
+        email_user(){
+            return this.get_email()   
+        }
+
     }
 }
 </script>
