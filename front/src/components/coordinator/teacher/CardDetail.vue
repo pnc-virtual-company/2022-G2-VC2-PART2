@@ -15,7 +15,8 @@
                   <div class="mt-[18px] leading-loose">
                       <p>Gender: {{user_info.users.gender}}</p>
                       <p>Position: {{user_info.position}}</p>
-                      <p>Role: {{user_info.users.role}}</p>
+                      <p v-if="user_info.users.role == 'teacher'"></p>
+                      <p v-else>Role: Teacher</p>
                       <p>Tel: {{user_info.phone}}</p>
                       <p class="mb-5">Email: {{user_info.users.email}}</p>
                   </div>
