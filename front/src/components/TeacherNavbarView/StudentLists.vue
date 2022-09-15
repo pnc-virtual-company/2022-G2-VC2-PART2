@@ -1,13 +1,14 @@
 <template>
-  <h1>Hello student Narong List</h1>
+<h1></h1>
 </template>
 
 <script>
-export default {
 
+export default {
+  components: { }
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

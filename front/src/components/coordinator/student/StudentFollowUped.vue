@@ -1,6 +1,6 @@
 <template>
     <div class="student">
-      <FilterFollowed/>
+    <FilterFollowed/>
     <table class="bg-white w-[82.6%] m-auto box-border mt-4">
       <thead class="text-white ">
         <tr>
@@ -68,7 +68,7 @@
 // import axiosClient from "../../../axios-http";
 // import Swal from "sweetalert2";
 
-import FilterFollows from './FilterFollowedUp.vue';
+import FilterFollows from '../../TeacherNavbarView/FilterStudent.vue';
 
 export default {
 

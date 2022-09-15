@@ -2,12 +2,10 @@
 <student-lists/>
 </template>
 <script>
-import StudentLists from '../../components/TeacherNavbarView/StudentLists.vue'
+import StudentList from '@/components/TeacherNavbarView/StudentLists.vue'
 export default {
-
     components:{
-        "student-lists":StudentLists
-
+        "student-lists":StudentList
     }
 }
 </script>
