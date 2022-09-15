@@ -1,5 +1,5 @@
 <template>
-    <div class="student">
+    <div>
       <div class="container w-10/12 m-auto flex justify-between box-border">
         <div class="side-left"></div>
         <div class="side-right">
@@ -24,7 +24,7 @@
   <script>
   import ButtonViewVue from "@/components/button/ButtonView.vue";
   import FormComponent from "./FormComponent.vue"
- 
+
   export default {
     components: {
       'add-student-button': ButtonViewVue,
@@ -43,9 +43,9 @@
       on_cancel(cancel){
         this.showModal = cancel;
       },
-      onChange(isShow,data){
+      onChange(isShow,data,isCreated,isExist){
         this.showModal = isShow;
-        this.$emit('add-student',data);
+        this.$emit('add-student',data,isCreated,isExist);
       },
     }
   }

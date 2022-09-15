@@ -50,11 +50,26 @@
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
               <icon-detail @click="show_detail(teacher.id)"/>
-              <icon-edit/>
+              <icon-edit v-on:click="get_teacher_id(teacher.users.id)" @click="toggleModal"/>
               <icon-delete @click="delete_teacher(teacher.users.id)" />
             </span>
           </td>
         </tr>
+        <div
+          v-if="showModal"
+          class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex"
+        >
+          <div class="form-container shadow-md rounded w-2/5">
+            <h2 class="header text-center text-white py-3">
+              Edit Student Account
+            </h2>
+            <form-edit @cancel="onCancel" :teacher_id="teacher_id" @edit-teacher="edit_teacher"></form-edit>
+          </div>
+        </div>
+        <div
+          v-if="showModal"
+          class="opacity-30 fixed inset-0 z-40 bg-black"
+        ></div>
       </tbody>
     </table>
     <div class="flex justify-center mt-[50px]">
@@ -72,15 +87,28 @@
 import axiosClient from "../../../axios-http";
 import Swal from "sweetalert2";
 import CreateTeacher from "./TeacherView.vue";
-import CardDetail from "./CardDetail.vue";
+import FormEdit from './FormEditTeacherComponent.vue';
+import SuccessMessage from '../../message/SuccessMessage.vue'
+import ErrorMessage from '../../message/ErrorMessage.vue'
+import DeleteIcons from "../icons/DeleteIcon.vue"
 export default {
-  components: { "create_teacher": CreateTeacher, CardDetail },
+  components: { 
+    "create_teacher": CreateTeacher,
+    'success-message': SuccessMessage,
+    'error-message': ErrorMessage,
+    'delete-icon': DeleteIcons
+  , 'form-edit' : FormEdit},
   data() {
     return {
       teacher_lists: [],
-      user_info: [],
-      is_show: false,
+      isCreated: false,
+      isAccountExist: false,
+      isDeleted: false,
+      isEdit: false,
+      teacher_id : "",
+      showModal: false,
       img_null:
+     
         "https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
     };
   },
@@ -89,12 +117,31 @@ export default {
       axiosClient.get("teachers").then((res) => {
         this.teacher_lists = res.data;
       });
-    },  
+    },
     create_teacher(teacher) {
-      axiosClient.post("teachers", teacher);
-      this.get_teachers();
+      axiosClient.post("teachers", teacher).then((response) => {
+        this.get_teachers();
+        if (response.status == 200) {
+          this.isCreated = true;
+          this.isDeleted = false;
+          this.isEdit = false;
+          this.isAccountExist = false;
+        }
+      }).catch((error) => {
+        if (error.response.status == 500) {
+          this.isAccountExist = true;
+          this.isDeleted = false;
+          this.isCreated = false;
+          this.isEdit = false;
+        }
+      });
+      
     },
 
+    get_teacher_id(id){
+        this.teacher_id = id;
+        console.log(this.teacher_id);
+    },
     delete_teacher(id) {
       Swal.fire({
         title: "Are you sure?",
@@ -108,19 +155,32 @@ export default {
         if (result.isConfirmed) {
           axiosClient.delete("teachers/" + id);
           this.get_teachers();
+          this.isDeleted = true;
+          this.isAccountExist = false;
+          this.isCreated = false;
+          this.isEdit = false;
         }
       });
     },
-    show_detail(id) {
-      this.is_show = true
-      for(let value of this.teacher_lists) {
-        if(value.id == id) {
-          this.user_info = value
-        }
-      }
+    close_messages() {
+      this.isCreated = false;
+      this.isAccountExist = false;
+      this.isDeleted = false;
+      this.isEdit = false;
     },
     close_detail(close){
       this.is_show = close;
+    }
+    onCancel(is_hide){
+        this.showModal = is_hide;
+    },
+    toggleModal: function () {
+      this.showModal = !this.showModal;
+    },
+    edit_teacher(id_teacher,new_teacher) {
+      console.log(new_teacher);
+      axiosClient.put("teacher_update/"+ id_teacher, new_teacher);
+      this.get_teachers();
     }
   },
   mounted() {
