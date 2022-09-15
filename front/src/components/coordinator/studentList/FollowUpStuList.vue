@@ -92,7 +92,7 @@ export default {
         get_student_follow() {
             axiosClient.get('students')
             .then((res)=>{
-                this.student_follow = res.data.filter(student=>student.status == 1);
+                this.student_follow = res.data.filter(student=>student.status == true);
             })
         },
     },
