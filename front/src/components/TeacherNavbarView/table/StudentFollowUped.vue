@@ -75,13 +75,6 @@ export default {
 .btn-add {
   background: #22bbea;
 }
-.header {
-  background: #22bbea;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  font-weight: bold;
-  font-size: 20px;
-}
 .form-container {
   background: #bbd7e0;
 }
@@ -96,5 +89,4 @@ export default {
   background: teal;
  
 }
-
 </style>
