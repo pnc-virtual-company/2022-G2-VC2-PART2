@@ -1,48 +1,48 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CoorTeacherList from '../views/CoordinatorView/CoorTeacherList.vue'
-import CoorStudentList from '../views/CoordinatorView/CoorStudentList.vue'
-import CoorStudentFollowingList from '../views/CoordinatorView/CoorStudentFollowingList.vue'
+import CoorTeacherList from '../views/CoordinatorView/TeacherList.vue'
+import CoorStudentList from '../views/CoordinatorView/StudentList.vue'
+import CoorStudentFollowingList from '../views/CoordinatorView/StudentFollowUp.vue'
 
-// Teacher Nabar---
-
-import StudenFollowLists from '../views/TeacherNavView/StudentLists.vue';
-import studetnFollowignUp from '../views/TeacherNavView/StudentFollowingUp.vue';
-import studentFollowedUp from '../views/TeacherNavView/StudentFollowedUp.vue';
-
-
+// Teachers view
+import StudentFollowUpTeacherView from '../views/TeacherView/StudentFollowUpView.vue'
+import StudentHistoryTeacherView from '../views/TeacherView/StudentHistoryView.vue'
+import AllStudentTeachersView from '../views/TeacherView/StudentListView.vue'
+// Coordinator view
+// Student view
 const routes = [
+
+  // Coordinator routes
   {
-    path: '/teacherList',
-    name: 'teacherList',
+    path: '/coordinator/teacher_list',
+    name: 'teacher_list',
     component: CoorTeacherList
   },
   {
-    path: '/studentList',
-    name: 'studentList',
+    path: '/coordinator/student_list',
+    name: 'all-student',
     component: CoorStudentList
   },
   {
-    path: '/studentFollowing',
+    path: '/coordinator/student_follow_up',
     name: 'studentFollowingList',
     component: CoorStudentFollowingList
   },
 
-  
-  // Teacher Navbar
+  // Teacher routes
   {
-    path: '/StudenFollowLists',
-    name: 'studentFollowLists',
-    component: StudenFollowLists
+    path: '/teachers/student_list',
+    name: 'student_list',
+    component: AllStudentTeachersView
   },
   {
-    path: '/studentFollowingUp',
-    name: 'studentFollowingUp',
-    component: studetnFollowignUp
+    path: '/teachers/student_follow_up',
+    name: 'student_follow_up',
+    component: StudentFollowUpTeacherView
   },
   {
-    path: '/studentFollowed',
+    path: '/teachers/student_history',
     name: 'studentFollowed',
-    component: studentFollowedUp
+    component: StudentHistoryTeacherView
   },
 
 ]

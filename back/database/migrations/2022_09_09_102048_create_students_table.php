@@ -22,11 +22,10 @@ return new class extends Migration
             $table->string('class')->nullable();
             $table->string('major')->nullable();
             $table->date('date_of_birth');
-            $table->boolean('status')->default(0);
+            $table->boolean('status');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

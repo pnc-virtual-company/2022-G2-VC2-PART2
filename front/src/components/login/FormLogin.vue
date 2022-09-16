@@ -79,7 +79,11 @@ export default {
             axiosClient.post('user/login', user_login).then((response) => {
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('role', response.data.user.role);
-                this.$router.push("/teacherList");
+                if (response.data.user.role == '1'){
+                    this.$router.push('/coordinator/teacher_list')
+                }else if (response.data.user.role == '2'){
+                    this.$router.push('/teachers/student_list')
+                }
                 setTimeout(function () {
                     window.location.reload();
                 }, 80);

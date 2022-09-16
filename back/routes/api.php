@@ -18,15 +18,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// teacher routes
+// users routes
 Route::post('/user/login', [LoginController::class, 'userLogin']);
 
-
 // student route
-Route::apiResource('students',StudentController::class);
-Route::apiResource('teachers',TeacherController::class);
-Route::put('student_update/{id}',[StudentController::class,'updateStudent']);
-Route::put('teacher_update/{id}',[TeacherController::class,'update_teacher']);
-Route::put('student_status/{id}', [StudentController::class,'updateStatus']);
 
 Route::get('get_student_follwing_up/', [StudentController::class,'get_student_follwing_up']);
+Route::get('students/get',[StudentController::class, 'get_students']);
+Route::get('students/get/{id}',[StudentController::class, 'get_student_by_id']);
+Route::post('students/create',[StudentController::class, 'create_student']);
+Route::put('students/update/{id}',[StudentController::class, 'update_student']);
+Route::delete('students/delete/{id}',[StudentController::class, 'delete_student']);
+
+// teacher routes
+Route::get('teachers/get',[TeacherController::class, 'get_teachers']);
+Route::get('teachers/get/{id}',[TeacherController::class, 'get_teacher_by_id']);
+Route::post('teachers/create',[TeacherController::class, 'create_teacher']);
+Route::put('teachers/update/{id}',[TeacherController::class, 'update_teacher']);
+Route::delete('teachers/delete/{id}',[TeacherController::class, 'delete_teacher']);
