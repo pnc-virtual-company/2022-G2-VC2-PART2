@@ -5,4 +5,5 @@ import './index.css'
 
 const app = createApp(App)
 app.use(router)
+app.use(VueAwesomePaginate)
 app.mount('#app')
