@@ -1,11 +1,14 @@
 <template>
-<h1></h1>
+  <student-list/>
 </template>
 
 <script>
-
+  import StudentFollowList from './table/StudentFollowList.vue'
 export default {
-  components: { }
+  components:{
+    "student-list":StudentFollowList
+  }
+
 }
 </script>
 

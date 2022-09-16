@@ -1,6 +1,5 @@
 <template>
     <div class="student">
-    <FilterFollowed/>
     <table class="bg-white w-[82.6%] m-auto box-border mt-4">
       <thead class="text-white ">
         <tr>
@@ -20,26 +19,22 @@
               ><img src="student.users.profile" class="w-10 h-10 rounded-full"
             /></span>
           </td>
-          <td class="border-b-2 py-1 lg:text-2sm">
-            <span class="flex justify-center text-xl m-3"
+          <td class="border-b-2 py-1">
+            <span class="flex justify-center m-3"
               >Narong
                Hong</span>
           </td>
           <td class="border-b-2 py-1 ">
-            <span class="flex justify-center text-xl m-3">narongbunyon@student.passerellesnueriques.org</span>
+            <span class="flex justify-center m-3">narongbunyon@student.passerellesnueriques.org</span>
           </td>
-
           <td class="border-b-2 py-1">
-            <span class="flex justify-center text-xl">2022</span>
+            <span class="flex justify-center">2022</span>
           </td>
-
           <td class="border-b-2 py-1">
-            <span class="flex justify-center text-xl">Rady</span>
+            <span class="flex justify-center">Rady</span>
           </td>
-
           <td class="border-b-2 py-1 text-white">
             <span class="flex justify-center space-x-2 icons">
-              
               <svg class="h-8 w-8 text-orange-500"  
               viewBox="0 0 24 24"  fill="none"  stroke="currentColor"
                 stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"> 
@@ -62,26 +57,13 @@
     </div>
   </div>
 </template>
-
 <script>
-
 // import axiosClient from "../../../axios-http";
 // import Swal from "sweetalert2";
-
-import FilterFollows from '../../TeacherNavbarView/FilterStudent.vue';
-
-export default {
-
-    components:{
-      "FilterFollowed":FilterFollows
-
-    }
-
+export default { 
 }
 </script>
-
 <style scoped>
-
 .icons {
   display: none;
 }
