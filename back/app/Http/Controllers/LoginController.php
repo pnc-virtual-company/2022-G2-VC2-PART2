@@ -1,17 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Cookie;
-
 class LoginController extends Controller
 {
-    
     public function userLogin(Request $request)
     {
         $user = User::where('email', $request->email)->first();
@@ -22,6 +17,4 @@ class LoginController extends Controller
         $token = $user->createToken('myToken')->plainTextToken;
         return response()->json(['token' => $token, 'message' => 'success', 'user' => $user], 200);
     }
-
-  
 }

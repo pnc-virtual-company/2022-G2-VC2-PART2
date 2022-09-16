@@ -1,7 +1,6 @@
 <?php
-
 namespace Database\Seeders;
-
+use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::create(['first_name' => 'Sim', "last_name" => 'Hul' , 'email' => 'sim.hul@passerellesnueriques.org',  'password' => bcrypt('12345'),'gender' => 'Male', 'profile' => 'https://drjollydiagnostics.com/wp-content/uploads/2017/11/profile-placeholder.png', 'role' => '1']);
     }
 }
