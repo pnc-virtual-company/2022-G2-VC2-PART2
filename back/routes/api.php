@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoordinatorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\LoginController;
@@ -18,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::post('/coordinators', [CoordinatorController::class, 'create_coordinator']);
 // users routes
 Route::post('/user/login', [LoginController::class, 'userLogin']);
-
 // student route
 
 Route::get('get_student_follwing_up/', [StudentController::class,'get_student_follwing_up']);
