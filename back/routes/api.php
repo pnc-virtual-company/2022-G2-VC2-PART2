@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::post('/coordinators', [CoordinatorController::class, 'create_coordinator']);
 // users routes
 Route::post('/user/login', [LoginController::class, 'userLogin']);
 // student route
