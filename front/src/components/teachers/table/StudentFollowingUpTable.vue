@@ -57,6 +57,7 @@
               />
             </svg>
             <svg
+              @click="stopFollowUp(student.id)"
               class="h-8 w-8 text-green-400"
               width="24"
               height="24"
@@ -80,10 +81,21 @@
 </template>
 
 <script>
+
 export default {
 props:{
     students : Array,
-}
+},
+  data(){
+    return{
+
+    }
+  },
+  methods: {
+    stopFollowUp(student_id){
+      this.$emit('student_id',student_id);
+    }
+  }
 };
 </script>
 
