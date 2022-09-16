@@ -37,8 +37,11 @@
           <th class="lg:text-md text-md lg:p-3 bg-color">Actions</th>
         </tr>
       </thead>
-      <tbody>
-        <tr class="cursor-pointer show hover:bg-gray-200" v-for="student of student_lists" :key="student">
+  
+      <tbody v-for="student of student_lists" :key="student">
+        <tr 
+        v-if="student.status == true" :style="{backgroundColor:'#eecdad'}"
+        class="cursor-pointer show hover:bg-gray-200">
           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center"><img :src="student.users.profile" class="w-10 h-10 rounded-full" /></span>
           </td>
@@ -63,6 +66,40 @@
             <span class="flex justify-center space-x-2 icons">
               <icon-detail @click="show_detail(student.id)"/>
               <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
+              <!-- <add-icon @click="move_follow"/> -->
+              <icon-delete @click="deleteStudent(student.users.id)" />
+            </span>
+          </td>
+        </tr>
+
+        <tr 
+        v-if="student.status == false" :style="{backgroundColor:'#ffffff'}"
+        class="cursor-pointer show hover:bg-gray-200">
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center"><img :src="student.users.profile" class="w-10 h-10 rounded-full" /></span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{ student.users.first_name }}
+              {{ student.users.last_name }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{
+            student.users.gender
+            }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{ student.generation }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{
+              student.users.email
+            }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm text-white">
+            <span class="flex justify-center space-x-2 icons">
+              <icon-detail @click="show_detail(student.id)"/>
+              <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
+              <add-icon @click="move_follow(student.id,student.status)"/>
               <icon-delete @click="deleteStudent(student.users.id)" />
             </span>
           </td>
@@ -100,6 +137,7 @@ import SuccessMessage from '../../message/SuccessMessage.vue'
 import ErrorMessage from '../../message/ErrorMessage.vue'
 import DeleteIcons from "../icons/DeleteIcon.vue"
 import CardDetail from "./CardDetail.vue"
+import AddIcon from "../icons/AddIcon.vue"
 export default {
   components: {
     "form-edit-student": FormEdit,
@@ -107,6 +145,7 @@ export default {
     'success-message': SuccessMessage,
     'error-message': ErrorMessage,
     'delete-icon': DeleteIcons,
+    'add-icon': AddIcon,
     CardDetail
   },
   data() {
@@ -160,7 +199,30 @@ export default {
         }
       });
     },
-
+    move_follow(id, my_status) {
+      let body = {};
+      if (my_status == false) {
+        body['status'] = true;
+        console.log(body);
+        Swal.fire({
+        title: "Are you sure?",
+        text: "You want to move student to follow up list!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#22BBEA",
+        cancelButtonColor: "#FFAD5C",
+        confirmButtonText: "Move",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axiosClient.put('student_status/'+ id, body)
+          .then((res) => {
+            console.log(res.data.student.id)
+          })
+          this.get_students()
+        }
+      })
+      }
+    },
     edit_student(new_student, user_id) {
       axiosClient.put("student_update/"+ user_id, new_student)
       this.get_students();
@@ -169,6 +231,7 @@ export default {
       this.isDeleted = false;
       this.isCreated = false;
     },
+
     create_student(student) {
       axiosClient.post("students", student).then((response) => {
         this.get_students();
@@ -240,4 +303,5 @@ export default {
 .bg-color {
   background: #22bbea;
 }
+
 </style>
