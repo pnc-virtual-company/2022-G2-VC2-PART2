@@ -9,7 +9,7 @@
       >
       </vue-awesome-paginate>
     </div>
-    <student-table :students="data"></student-table>
+    <student-table :students="data" @student_id="add_to_follow_up"></student-table>
   </div>
 </template>
 
@@ -42,6 +42,12 @@ export default {
       this.perPage = responseData.per_page;
       this.total = responseData.total;
     },
+    add_to_follow_up(student_id){
+      let body={}
+      body['status']=false;
+      axiosClient.put("teachers/student_status/"+ student_id, body)
+      this.getData()
+    }
   },
   mounted() {
     this.currentPage = 1;

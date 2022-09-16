@@ -37,3 +37,5 @@ Route::get('teachers/get/{id}',[TeacherController::class, 'get_teacher_by_id']);
 Route::post('teachers/create',[TeacherController::class, 'create_teacher']);
 Route::put('teachers/update/{id}',[TeacherController::class, 'update_teacher']);
 Route::delete('teachers/delete/{id}',[TeacherController::class, 'delete_teacher']);
+
+Route::put('teachers/student_status/{id}', [StudentController::class,'update_status']);
