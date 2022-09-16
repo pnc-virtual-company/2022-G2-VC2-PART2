@@ -1,5 +1,7 @@
 <template>
   <div class="student relative">
+    <!----------------------------------card-detail------------------------------->
+    <CardDetail :user_info="user_info" v-if="is_show" @close_detail="close_detail"/>
     <div class="w-[82.6%] m-auto">
       <!-- created's message -->
       <success-message v-if="isCreated" class="text-green-500 items-center">
@@ -30,8 +32,8 @@
           <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Full Name</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Gender</th>
-          <th class="lg:text-md text-md lg:p-3 bg-color">Email</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Generation</th>
+          <th class="lg:text-md text-md lg:p-3 bg-color">Email</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Actions</th>
         </tr>
       </thead>
@@ -50,17 +52,17 @@
             }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{ student.generation }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center text-sm">{{
               student.users.email
             }}</span>
           </td>
-          <td class="border-b-2 py-1 lg:text-sm">
-            <span class="flex justify-center text-sm">{{ student.generation }}</span>
-          </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
-              <icon-detail />
-              <icon-edit v-on:click="get_student_id(student.users.id)" @click="toggleModal" />
+              <icon-detail @click="show_detail(student.id)"/>
+              <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
               <icon-delete @click="deleteStudent(student.users.id)" />
             </span>
           </td>
@@ -71,7 +73,7 @@
             <h2 class="header text-center text-white py-3">
               Edit Student Account
             </h2>
-            <form-edit-student @isShow="onChange" :student_id="student_id" @edit-student="edit_student">
+            <form-edit-student @isShow="onChange" :user_id="user_id" :student_id="student_id" @edit-student="edit_student">
             </form-edit-student>
           </div>
         </div>
@@ -97,24 +99,29 @@ import CreateStudent from "./CreateStudent.vue";
 import SuccessMessage from '../../message/SuccessMessage.vue'
 import ErrorMessage from '../../message/ErrorMessage.vue'
 import DeleteIcons from "../icons/DeleteIcon.vue"
+import CardDetail from "./CardDetail.vue"
 export default {
   components: {
     "form-edit-student": FormEdit,
     "create-student": CreateStudent,
     'success-message': SuccessMessage,
     'error-message': ErrorMessage,
-    'delete-icon': DeleteIcons
+    'delete-icon': DeleteIcons,
+    CardDetail
   },
   data() {
     return {
       student_lists: [],
+      user_info: [],
       img_null: "https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
       showModal: false,
       student_id: "",
+      user_id: "",
       isCreated: false,
       isAccountExist: false,
       isDeleted: false,
       isEdit: false,
+      is_show: false
     };
   },
   methods: {
@@ -123,8 +130,9 @@ export default {
         this.student_lists = res.data;
       });
     },
-    get_student_id(id) {
-      this.student_id = id;
+    get_student_id(u_id,st_id) {
+      this.user_id = u_id;
+      this.student_id  = st_id;
     },
     toggleModal: function () {
       this.showModal = !this.showModal;
@@ -153,15 +161,14 @@ export default {
       });
     },
 
-    edit_student(new_student, id_stu) {
-      axiosClient.put("student_update/" + id_stu, new_student)
+    edit_student(new_student, user_id) {
+      axiosClient.put("student_update/"+ user_id, new_student)
       this.get_students();
       this.isEdit = true;
       this.isAccountExist = false;
       this.isDeleted = false;
       this.isCreated = false;
     },
-
     create_student(student) {
       axiosClient.post("students", student).then((response) => {
         this.get_students();
@@ -185,7 +192,18 @@ export default {
       this.isAccountExist = false;
       this.isDeleted = false;
       this.isEdit = false;
-    }
+    },
+    show_detail(id) {
+      this.is_show = true
+      for(let value of this.student_lists) {
+        if(value.id == id) {
+          this.user_info = value;
+        }
+      }
+    },
+    close_detail(close){
+      this.is_show = close;
+    },
   },
   mounted() {
     this.get_students();
