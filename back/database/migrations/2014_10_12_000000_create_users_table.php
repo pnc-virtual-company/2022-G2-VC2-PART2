@@ -24,9 +24,8 @@ return new class extends Migration
             $table->string('role')->nullable();
             $table->timestamps();
         });
-        
+
     }
-    
 
     /**
      * Reverse the migrations.

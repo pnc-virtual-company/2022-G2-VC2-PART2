@@ -13,7 +13,7 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function get_students()
     {
         return Student::with('users')->get();
     }
@@ -23,7 +23,7 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create_student(Request $request)
     {
         $student = new Student();
         $student->generation=$request->generation;
@@ -31,7 +31,7 @@ class StudentController extends Controller
         $student->class = $request->class;
         $student->major = $request->major;
         $student->date_of_birth = $request->date_of_birth;
-        $student->status = $request->status;
+        $student->status = false;
         $user = new User();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
@@ -44,13 +44,13 @@ class StudentController extends Controller
             'message'=>'success'
         ]);
     }
-    public function show($id)
+    public function get_student_by_id($id)
     {
         return Student::where("user_id", $id)->with('users')->get();
     }
 
 
-    public function updateStudent(Request $request,$id)
+    public function update_student(Request $request,$id)
     {
         $student_id = $request->student_id;
         $student=Student::findOrFail($student_id);
@@ -76,7 +76,7 @@ class StudentController extends Controller
      * @param  \App\Models\User  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete_student($id)
     {
         $delete = User::destroy($id);
         if ($delete){
@@ -86,7 +86,7 @@ class StudentController extends Controller
         }
     }
 
-    public function updateStatus(Request $request, $id) 
+    public function update_status(Request $request, $id)
     {
         $student=Student::findOrFail($id);
         $student->status = $request->status;
@@ -97,6 +97,10 @@ class StudentController extends Controller
 
     }
 
+    // get only student that teacher at to student_following_up list
+    public function get_student_follwing_up(){
+        return Student::with('users')->where('status','1')->paginate(10);
+    }
 
-    
+
 }

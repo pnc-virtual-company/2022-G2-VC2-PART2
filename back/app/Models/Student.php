@@ -13,8 +13,8 @@ class Student extends Model
         'generation',
         'phone',
         'date_of_birth',
+        'status'
     ];
-
     protected $hidden = [
         'created_at',
         'updated_at'

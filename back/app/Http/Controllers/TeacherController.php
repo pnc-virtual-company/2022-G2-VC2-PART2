@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 class TeacherController extends Controller
 {
-    public function index()
+    public function get_teachers()
     {
         return Teacher::with('users')->get();
     }
@@ -16,7 +16,7 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create_teacher(Request $request)
     {
         //
         $teacher = new Teacher();
@@ -33,15 +33,15 @@ class TeacherController extends Controller
         return "Create successfully";
     }
     // find teacher by id
-    public function show($id)
+    public function get_teacher_by_id($id)
     {
-        return Teacher::where("user_id", $id)->with('users')->get();
+        return Teacher::where("id", $id)->with('users')->get();
     }
-    public function destroy($id)
+    public function delete_teacher($id)
     {
         return User::destroy($id);
     }
-    
+
     public function update_teacher(Request $request, $id){
         $teacher_id = $request->teacher_id;
         $teacher = Teacher::findOrFail($teacher_id);
