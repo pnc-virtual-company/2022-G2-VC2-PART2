@@ -1,7 +1,7 @@
 <template>
   <div class="student-list">
     <!---------------------------filter---------------------------------------->
-    <div class="flex justify-center space-x-5 mb-2">
+    <div class="flex justify-center space-x-5 mt-[2rem] mb-2">
       <div class="flex">
         <span
           class="bg-span flex justify-center items-center text-center rounded-l-lg py-2 px-4"
@@ -9,7 +9,7 @@
         >
         <!--filter-by-generation-->
         <select
-          class="w-80 p-2 py-2 text-gray-900 rounded-r-lg focus:border-blue-300 outline-none text-slate-500"
+          class="w-[396px] p-2 py-2 text-gray-900 rounded-r-lg focus:border-blue-300 outline-none text-slate-500"
           v-model="filter_generation"
         >
           <option disabled value="Choose" aria-placeholder="Choose">
@@ -28,15 +28,15 @@
         >
         <input
           type="search"
-          class="w-80 rounded-r-lg p-2 py-2 border focus:border-blue-300 outline-none appearance-none"
+          class="w-[396px] rounded-r-lg p-2 py-2 border focus:border-blue-300 outline-none appearance-none"
           placeholder="Search"
           v-model="search_name"
         />
       </div>
     </div>
     <!---------------------------------end------------------------------------>
-    <p class="text-2xl ml-[4.3rem] mt-5">Student Lists</p>
-    <table class="bg-white w-[87.5%] m-auto box-border mt-2">
+    <p class="text-3xl ml-[7.3rem] font-bold mt-5">Student Lists</p>
+    <table class="bg-white w-[82.6%] m-auto box-border mt-2">
       <thead class="text-white">
         <tr>
           <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>
@@ -75,7 +75,12 @@
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center text-sm">
-              <svg  @click="add_to_follow_up(student.id)" class="h-8 w-8 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />  <circle cx="8.5" cy="7" r="4" />  <line x1="18" y1="8" x2="23" y2="13" />  <line x1="23" y1="8" x2="18" y2="13" /></svg>
+              <p
+                class="rounded-full p-2 bg-red-500 hover:bg-red-600 border-none"
+                @click="add_to_follow_up(student.id)"
+              >
+                Add-Follow Up
+              </p>
             </span>
           </td>
         </tr>
@@ -163,11 +168,10 @@ export default {
           confirmButtonText: "Move From Follow-Up",
         }).then((result) => {
           if (result.isConfirmed) {
-            console.log(student_id);
               axiosClient.put("teachers/student_status/"+ student_id, body);
               this.get_students()
           }
-        });
+          });
     }
   },
   computed: {

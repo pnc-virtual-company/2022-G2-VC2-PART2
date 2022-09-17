@@ -10,8 +10,6 @@
           students</router-link>
         <router-link class="px-3 py-2 rounded-md text-white text-xl ml-5 active" to="/teachers/student_follow_up">Follow
           Up</router-link>
-        <router-link class="px-3 py-2 rounded-md text-white text-xl ml-5 active" to="/teachers/student_history">History
-        </router-link>
       </div>
 
       <div class="flex items-center">
