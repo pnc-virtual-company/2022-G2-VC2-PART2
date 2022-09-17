@@ -15,7 +15,7 @@
     </div>
     <div v-if="showModal">
       <add-to-follow-up>
-        <div class="container w-full mt-[-125px]">
+        <div class="container w-full">
           <div class="relative w-auto my-6 mx-auto max-w-6xl">
             <div
               class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-300 outline-none focus:outline-none">
@@ -48,7 +48,7 @@
 import FormView from "../../coordinators/teacher/FormCreateTeacherComponent.vue";
 import StudentFollowingTable from "../table/StudentFollowingUpTable.vue";
 import axiosClient from "../../../axios-http";
-import StudentFollowList from '.././../teachers/studentList/StudentLists.vue'
+import StudentFollowList from '.././../teachers/studentList/StudentView.vue'
 export default {
   components: {
     "student-table": StudentFollowingTable,
