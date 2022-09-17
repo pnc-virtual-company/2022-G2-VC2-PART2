@@ -1,7 +1,7 @@
 <template>
-<section>
+  <section>
     <div class="text-card">
-        <h1>Student Followed-Up</h1>
+      <h1>Student Followed-Up</h1>
     </div>
     <div class="followed">
         <div class="flex">
@@ -20,6 +20,7 @@
                 </select>
             </div>
         </div>
+      </div>
 
         <div class="flex">
             <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200  focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">Filter By Name </button>
@@ -31,6 +32,7 @@
             </div>
             </div>
         </div>
+      </div>
 
         <div class="flex">
             <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-center text-gray-900 bg-sky-100 border border-gray-300 rounded-l-lg hover:bg-gray-200  focus:outline-none focus:ring-gray-100 dark:bg-sky-700 dark:hover:bg-sky-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">Filter By Totor </button>
@@ -42,6 +44,7 @@
             </div>
             </div>
         </div>
+      </div>
     </div>
     <div class="box-number">
         <svg class="h-12 w-12 text-black"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,59 +67,56 @@
 <script>
 export default {
 
-}
+};
 </script>
 
 <style scoped>
-    .followed{
-        display: flex;
-        margin: auto;
-        justify-content: center;
-        align-items: center;
-    }
-    .flex{
-        width: 400px;
-        display: flex;
-        justify-content: space-between;
-        margin: 10px 15px;
-    }
-    .text-card{
-        display: flex;
-        font-size:45px;
-       margin-bottom: 50px;
-        margin-left: 270px;
-        margin-top: 25px;
-        justify-content: flex-start;
-        font-weight:bold;
-        font-family: sans-serif;
-    }
-    #dropdown-button{
-        background: #22BBEA;
-    
-    }
-    .box-number{
-        display: flex;
-        width: 400px;
-        margin: 15px auto 15px;
-        justify-content:center;
-        align-items: center;
-        margin-left: 180px;
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
-    .numer1,
-    .numer2,
-    .numer3,
-    .numer4{
-        width: 40px;
-        margin: 8px  8px;
-        background:#22BBEA ;
-        padding: 5px 8px;
-        text-align: center;
-        justify-content: center;
-        border-radius: 5px;
-        font-weight: bold;
-        color: white;
-        font-size: 18px;
-    }
+.followed {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+.flex {
+  width: 430px;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 15px;
+}
+.text-card {
+  display: flex;
+  font-size: 50px;
+  margin-bottom: 50px;
+  margin-left: 270px;
+  margin-top: 20px;
+  justify-content: flex-start;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+#dropdown-button {
+  background: #22bbea;
+}
+.box-number {
+  display: flex;
+  width: 400px;
+  margin: 15px auto 15px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 270px;
+}
+.numer1,
+.numer2,
+.numer3,
+.numer4 {
+  width: 60px;
+  margin: 8px 8px;
+  background: #22bbea;
+  padding: 8px 8px;
+  text-align: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+}
 </style>

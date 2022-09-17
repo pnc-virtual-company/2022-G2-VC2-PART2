@@ -79,6 +79,13 @@
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center">
               <detail-icon class="icons"/>
+            <span class="flex justify-center text-sm">
+              <p
+                class="rounded-full p-2 bg-red-500 hover:bg-red-600 border-none"
+                @click="add_to_follow_up(student.id)"
+              >
+                Add-Follow Up
+              </p>
             </span>
           </td>
         </tr>
@@ -93,6 +100,7 @@ import axiosClient from "../../../axios-http";
 import DetailIcon from '../../coordinators/icons/DetailIcon.vue';
 import CardDetail from '../../coordinators/StudentList/CardDetail.vue'
 // import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 export default {
   components: { DetailIcon, "card-detail": CardDetail },
   data() {
@@ -106,9 +114,26 @@ export default {
     get_students() {
       axiosClient.get("students/get").then((res) => {
         this.student_lists = res.data;
-        console.log(this.student_lists);
       });
     },
+    add_to_follow_up(student_id){
+      let body={}
+      body['status']=true; 
+      Swal.fire({
+          title: "Are you sure?",
+          text: "You want to move student to follow up list!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#22BBEA",
+          cancelButtonColor: "#FFAD5C",
+          confirmButtonText: "Move From Follow-Up",
+        }).then((result) => {
+          if (result.isConfirmed) {
+              axiosClient.put("teachers/student_status/"+ student_id, body);
+              this.get_students()
+          }
+          });
+    }
   },
   computed: {
     data_filters() {

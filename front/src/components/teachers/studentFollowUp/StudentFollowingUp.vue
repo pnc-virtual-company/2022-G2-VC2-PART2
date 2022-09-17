@@ -16,6 +16,7 @@
 <script>
 import StudentFollowingTable from "../table/StudentFollowingUpTable.vue";
 import axiosClient from "../../../axios-http";
+import Swal from "sweetalert2";
 export default {
   components: {
     "student-table": StudentFollowingTable,
@@ -44,9 +45,21 @@ export default {
     },
     add_to_follow_up(student_id){
       let body={}
-      body['status']=false;
-      axiosClient.put("teachers/student_status/"+ student_id, body)
-      this.getData()
+      body['status']=false; 
+      Swal.fire({
+          title: "Are you sure?",
+          text: "You want to unfollow this student!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#22BBEA",
+          cancelButtonColor: "#FFAD5C",
+          confirmButtonText: "Unfollow-Up",
+        }).then((result) => {
+          if (result.isConfirmed) {
+               axiosClient.put("teachers/student_status/"+ student_id, body);
+              this.getData()
+          }
+          });
     }
   },
   mounted() {
