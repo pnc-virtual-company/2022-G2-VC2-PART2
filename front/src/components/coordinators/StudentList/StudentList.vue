@@ -66,7 +66,6 @@
             <span class="flex justify-center space-x-2 icons">
               <icon-detail @click="show_detail(student.id)"/>
               <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
-              <!-- <add-icon @click="move_follow"/> -->
               <icon-delete @click="deleteStudent(student.users.id)" />
             </span>
           </td>
@@ -99,7 +98,7 @@
             <span class="flex justify-center space-x-2 icons">
               <icon-detail @click="show_detail(student.id)"/>
               <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
-              <add-icon @click="move_follow(student.id,student.status)"/>
+              <icon-move @click="move_follow(student.id,student.status)"/>
               <icon-delete @click="deleteStudent(student.users.id)" />
             </span>
           </td>
@@ -140,6 +139,8 @@ import EditIcons from "../icons/EditIcon.vue";
 import CardDetail from "./CardDetail.vue";
 import RemoveIcons from "../icons/RemoveView.vue";
 import DetailIcon from "../icons/DetailIcon.vue";
+import MoveIcon from "../icons/MoveIcon.vue";
+
 export default {
   components: {
     "form-edit-student": FormEdit,
@@ -150,6 +151,7 @@ export default {
     'icon-delete': RemoveIcons,
     'icon-edit': EditIcons,
     'icon-detail': DetailIcon,
+    'icon-move': MoveIcon,
     CardDetail
   },
   data() {
@@ -218,15 +220,14 @@ export default {
         confirmButtonText: "Move",
       }).then((result) => {
         if (result.isConfirmed) {
-          axiosClient.put('student_status/'+ id, body)
-          .then((res) => {
-            console.log(res.data.student.id)
-          })
+          axiosClient.put('teachers/student_status/'+ id, body)
+
           this.get_students()
         }
       })
       }
     },
+
     edit_student(new_student, user_id) {
       axiosClient.put("students/update/"+ user_id, new_student)
       this.get_students();
