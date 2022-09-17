@@ -91,10 +91,8 @@
 <script>
 import axiosClient from "../../../axios-http";
 import DetailIcon from '../../coordinators/icons/DetailIcon.vue';
-import CardDetail from '../../coordinators/StudentList/CardDetail.vue'
-// import Swal from "sweetalert2";
 export default {
-  components: { DetailIcon, "card-detail": CardDetail },
+  components: { DetailIcon },
   data() {
     return {
      student_lists: [],
@@ -108,24 +106,6 @@ export default {
         this.student_lists = res.data;
       });
     },
-    add_to_follow_up(student_id){
-      let body={}
-      body['status']=true; 
-      Swal.fire({
-          title: "Are you sure?",
-          text: "You want to move student to follow up list!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#22BBEA",
-          cancelButtonColor: "#FFAD5C",
-          confirmButtonText: "Move From Follow-Up",
-        }).then((result) => {
-          if (result.isConfirmed) {
-              axiosClient.put("teachers/student_status/"+ student_id, body);
-              this.get_students()
-          }
-          });
-    }
   },
   computed: {
     data_filters() {
