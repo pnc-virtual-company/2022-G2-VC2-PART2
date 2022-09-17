@@ -1,7 +1,7 @@
 <template>
   <div class="student-list">
     <!--------------------------card-detail------------------------------------>
-    <card-detail/>
+    <card-detail :user_info="user_info" v-if="is_show" @close_detail="close_detail"/>
     <!---------------------------filter---------------------------------------->
     <div class="flex justify-center space-x-5 mt-[2rem] mb-2">
       <div class="flex">
@@ -38,7 +38,7 @@
       </div>
     </div>
     <!---------------------------------end------------------------------------>
-    <p class="text-3xl ml-[7.3rem] font-bold mt-3">Student Lists</p>
+    <p class="text-2xl ml-[7.3rem] mt-3">Student Lists</p>
     <table class="bg-white w-[82.6%] m-auto box-border mt-2">
       <thead class="text-white">
         <tr>
@@ -78,7 +78,7 @@
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center">
-              <detail-icon class="icons"/>
+              <detail-icon class="icons" @click="show_detail(student.id)"/>
             </span>
           </td>
         </tr>
@@ -91,13 +91,16 @@
 <script>
 import axiosClient from "../../../axios-http";
 import DetailIcon from '../../coordinators/icons/DetailIcon.vue';
+import CardDetail from '../../coordinators/StudentList/CardDetail.vue'
 export default {
-  components: { DetailIcon },
+  components: { DetailIcon, CardDetail },
   data() {
     return {
-     student_lists: [],
+      student_lists: [],
+      user_info: [],
       filter_generation: "",
       search_name: "",
+      is_show: false
     };
   },
   methods: {
@@ -105,6 +108,18 @@ export default {
       axiosClient.get("students/get").then((res) => {
         this.student_lists = res.data;
       });
+    },
+    show_detail(id) {
+      this.is_show = true
+      for(let value of this.student_lists) {
+        if(value.id == id) {
+          this.user_info = value
+          console.log(this.user_info);
+        }
+      }
+    },
+    close_detail(close){
+      this.is_show = close;
     },
   },
   computed: {
