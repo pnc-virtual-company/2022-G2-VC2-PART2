@@ -1,5 +1,7 @@
 <template>
   <div class="student-list">
+    <!--------------------------card-detail------------------------------------>
+    <card-detail/>
     <!---------------------------filter---------------------------------------->
     <div class="flex justify-center space-x-5 mt-[2rem] mb-2">
       <div class="flex">
@@ -15,6 +17,7 @@
           <option disabled value="Choose" aria-placeholder="Choose">
             Choose
           </option>
+          <option value="">Show All</option>
           <option value="2023">2023</option>
           <option value="2024">2024</option>
           <option value="2025">2025</option>
@@ -35,7 +38,7 @@
       </div>
     </div>
     <!---------------------------------end------------------------------------>
-    <p class="text-3xl ml-[7.3rem] font-bold mt-5">Student Lists</p>
+    <p class="text-3xl ml-[7.3rem] font-bold mt-3">Student Lists</p>
     <table class="bg-white w-[82.6%] m-auto box-border mt-2">
       <thead class="text-white">
         <tr>
@@ -49,7 +52,7 @@
       <tbody>
         <tr
           class="cursor-pointer show hover:bg-gray-200"
-          v-for="student of filter_Generation"
+          v-for="student of data_filters"
           :key="student"
         >
           <td class="border-b-2 py-1 lg:text-sm">
@@ -74,76 +77,27 @@
             }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
-            <span class="flex justify-center text-sm">
-              <p
-                class="rounded-full p-2 bg-red-500 hover:bg-red-600 border-none"
-              >
-                Add-Follow Up
-              </p>
+            <span class="flex justify-center">
+              <detail-icon class="icons"/>
             </span>
           </td>
         </tr>
       </tbody>
     </table>
-    <div class="flex justify-center items-center p-5">
-      <svg
-        class="h-12 w-12 text-black"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M15 19l-7-7 7-7"
-        />
-      </svg>
-      <div class="flex items-center">
-        <div
-          class="h-8 w-8 bg-orange-300 text-center text-white font-bold flex justify-center items-center m-1"
-        >
-          1
-        </div>
-        <div
-          class="h-8 w-8 bg-orange-300 text-center text-white font-bold flex justify-center items-center m-1"
-        >
-          2
-        </div>
-        <div
-          class="h-8 w-8 bg-orange-300 text-center text-white font-bold flex justify-center items-center m-1"
-        >
-          3
-        </div>
-        <div
-          class="h-8 w-8 bg-orange-300 text-center text-white font-bold flex justify-center items-center m-1"
-        >
-          4
-        </div>
-      </div>
-      <svg
-        class="h-12 w-12 text-black"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M9 5l7 7-7 7"
-        />
-      </svg>
-    </div>
+    <!-- <div class="flex justify-center items-center p-5">
+    </div> -->
   </div>
 </template>
 <script>
 import axiosClient from "../../../axios-http";
+import DetailIcon from '../../coordinators/icons/DetailIcon.vue';
+import CardDetail from '../../coordinators/StudentList/CardDetail.vue'
 // import Swal from "sweetalert2";
 export default {
+  components: { DetailIcon, "card-detail": CardDetail },
   data() {
     return {
-      student_lists: [],
+     student_lists: [],
       filter_generation: "",
       search_name: "",
     };
@@ -157,24 +111,33 @@ export default {
     },
   },
   computed: {
-    filter_Generation() {
-      if (!this.filter_generation) {
-        return this.student_lists;
-      } else {
-        return this.student_lists.filter(
-          (student) => (student.generation == this.filter_generation)
-        );
+    data_filters() {
+      if(this.filter_generation != "") {
+        return  this.student_lists.filter(student => (student.generation == this.filter_generation)
+        && (student.users.first_name.toLowerCase().includes(this.search_name.toLowerCase()) || student.users.last_name.toLowerCase().includes(this.search_name.toLowerCase())));
+      }else if(this.search_name != "") {
+        return this.student_lists.filter(student => (student.users.first_name.toLowerCase().includes(this.search_name.toLowerCase()) || student.users.last_name.toLowerCase().includes(this.search_name.toLowerCase())));
+      }else {
+        return this.student_lists
       }
     },
   },
   mounted() {
     this.get_students();
-  },
-};
+  }
+}
 </script>
 <style scoped>
 .bg-color,
 .bg-span {
   background: #22bbea;
+}
+.icons {
+  display: none;
+}
+.show:hover .icons {
+  display: flex;
+  padding: 0;
+  margin: 0;
 }
 </style>
