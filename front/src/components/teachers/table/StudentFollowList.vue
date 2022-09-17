@@ -79,13 +79,6 @@
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center">
               <detail-icon class="icons"/>
-            <span class="flex justify-center text-sm">
-              <p
-                class="rounded-full p-2 bg-red-500 hover:bg-red-600 border-none"
-                @click="add_to_follow_up(student.id)"
-              >
-                Add-Follow Up
-              </p>
             </span>
           </td>
         </tr>
@@ -100,7 +93,6 @@ import axiosClient from "../../../axios-http";
 import DetailIcon from '../../coordinators/icons/DetailIcon.vue';
 import CardDetail from '../../coordinators/StudentList/CardDetail.vue'
 // import Swal from "sweetalert2";
-import Swal from "sweetalert2";
 export default {
   components: { DetailIcon, "card-detail": CardDetail },
   data() {
