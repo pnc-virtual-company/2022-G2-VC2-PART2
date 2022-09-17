@@ -46,7 +46,7 @@
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
-              <remove-stu-follow/>
+              <move-out @click="move_from_follow(student.id, student.status)"/>
             </span>
           </td>
         </tr>
@@ -88,10 +88,12 @@
 </template>
 <script>
 import axiosClient from "../../../axios-http";
+import Swal from "sweetalert2";
+import MoveOut from "../icons/RemoveIcon.vue"
 
 export default {
   components: {
-  
+  'move-out': MoveOut
   },
   data() {
     return {
@@ -106,6 +108,29 @@ export default {
           (student) => student.status == true
         );
       });
+    },
+
+    move_from_follow(id, my_status) {
+      let body = {};
+      if (my_status == true) {
+        body["status"] = false;
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You want to move student to follow up list!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#22BBEA",
+          cancelButtonColor: "#FFAD5C",
+          confirmButtonText: "Move From Follow-Up",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axiosClient.put("teachers/student_status/" + id, body).then((res) => {
+              console.log(res.data.student.id);
+            });
+            this.get_student_follow();
+          }
+        });
+      }
     },
     
   },
