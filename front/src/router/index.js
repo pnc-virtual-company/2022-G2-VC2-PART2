@@ -5,7 +5,6 @@ import CoorStudentFollowingList from '../views/CoordinatorView/StudentFollowUp.v
 
 // Teachers view
 import StudentFollowUpTeacherView from '../views/TeacherView/StudentFollowUpView.vue'
-import StudentHistoryTeacherView from '../views/TeacherView/StudentHistoryView.vue'
 import AllStudentTeachersView from '../views/TeacherView/StudentListView.vue'
 // Coordinator view
 // Student view
@@ -38,11 +37,6 @@ const routes = [
     path: '/teachers/student_follow_up',
     name: 'student_follow_up',
     component: StudentFollowUpTeacherView
-  },
-  {
-    path: '/teachers/student_history',
-    name: 'studentFollowed',
-    component: StudentHistoryTeacherView
   },
 
 ]

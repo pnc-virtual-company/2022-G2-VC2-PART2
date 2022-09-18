@@ -97,6 +97,7 @@ components:{
   data(){
     return{
          showModal: false,
+         list_students:this.students
     }
   },
   methods: {
@@ -105,7 +106,7 @@ components:{
     }, 
     add_message(){
       this.showModal = !this.showModal;
-    }
+    },
   }
 };
 </script>
