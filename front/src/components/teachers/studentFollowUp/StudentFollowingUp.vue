@@ -25,7 +25,7 @@
                 </h2>
               </div>
               <div class="body-model px-4 py-4">
-                <div @click="showModal=false"
+                <div @click="back_page"
                   class="back bg-sky-300 w-12 h-12 rounded-full hover:bg-light_blue cursor-pointer flex justify-center items-center">
                   <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -87,6 +87,11 @@ export default {
     add_student_list() {
       this.showModal = true;
     },
+    back_page(){
+      this.showModal=false
+       this.getData()
+
+    }
   },
   mounted() {
     this.currentPage = 1;
