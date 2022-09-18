@@ -1,7 +1,7 @@
 <template>
     <section class="h-screen bg-light_blue">
         <!-- form-pass-confirm -->
-        <FormConfirm v-if="show_form"/>
+        <FormConfirm/>
         <!-- form-forgot-password -->
         <FormReset v-if="show_modal" @close_form="close_form"/>
         <div class="container p-9 h-full">
@@ -54,7 +54,7 @@
                                   focus:bg-white focus:border-blue-600 focus:outline-none"
                                 placeholder="Password" v-model="password" />
                             </div>
-                            <small id="smali2" v-if="paasswrod_validation">Password is required</small>
+                            <small id="smali2" v-if="password_validation">Password is required</small>
                         <!-- Submit button -->
                         <button type="submit" @click="validateion"
                             class="inline-block mb-2 py-3 bg-warning text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-warning_300 hover:shadow-lg focus:bg-warning-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-warning-800 active:shadow-lg transition duration-150 ease-in-out w-full"
@@ -83,9 +83,9 @@ export default {
             email: "",
             password: "",
             show_modal: false,
-            show_form: false
+            show_form: false,
             email_validation:false,
-            paasswrod_validation:false,
+            password_validation:false,
         }
     },
     methods: {
@@ -122,9 +122,9 @@ export default {
             }
 
             if(this.password.trim().length==0){
-                this.paasswrod_validation=true
+                this.password_validation=true
             }else{
-                this.paasswrod_validation=false
+                this.password_validation=false
             }
         }, 
     
