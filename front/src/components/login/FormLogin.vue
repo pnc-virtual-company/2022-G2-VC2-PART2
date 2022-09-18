@@ -1,5 +1,9 @@
 <template>
     <section class="h-screen bg-light_blue">
+        <!-- form-pass-confirm -->
+        <!-- <FormConfirm/> -->
+        <!-- form-forgot-password -->
+        <FormReset v-if="show_modal" @close_form="close_form"/>
         <div class="container p-9 h-full">
             <div class="flex justify-center items-center w-10/12 m-auto g-6 h-full">
                 <div class="w-6/12 mr-6">
@@ -32,9 +36,10 @@
                             <input type="text"
                                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-r transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 placeholder="Email address" v-model="email" />
-                        </div>
+                            </div>
+                            <small id="smali1" v-if="email_validation">Email is required</small>
                         <!-- Password input -->
-                        <div class="mb-8 mt-8 flex">
+                        <div class="mb-8 mt-8 flex py-2">
                             <div class="pass bg-primary px-4 flex justify-center items-center rounded-l">
                                 <svg class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -42,35 +47,53 @@
                                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                                 </svg>
                             </div>
-                            <input type="password"
-                                class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-r transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            <input type="password" required
+                                class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700
+                                 bg-white bg-clip-padding border border-solid border-gray-300 rounded-r
+                                  transition ease-in-out m-0 focus:text-gray-700 
+                                  focus:bg-white focus:border-blue-600 focus:outline-none"
                                 placeholder="Password" v-model="password" />
-                        </div>
+                            </div>
+                            <small id="smali2" v-if="password_validation">Password is required</small>
                         <!-- Submit button -->
-                        <button type="submit"
-                            class="inline-block mb-8 py-3 bg-warning text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-warning_300 hover:shadow-lg focus:bg-warning-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-warning-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+                        <button type="submit" @click="validateion"
+                            class="inline-block mb-2 py-3 bg-warning text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-warning_300 hover:shadow-lg focus:bg-warning-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-warning-800 active:shadow-lg transition duration-150 ease-in-out w-full"
                             data-mdb-ripple="true" data-mdb-ripple-color="light">
                             log in
                         </button>
+                        <a @click="is_show" class="text-blue-400 flex justify-center cursor-pointer hover:underline">Forgot password</a>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-</template>
 
+</template>
 <script>
+
 import axiosClient from "@/axios-http";
+import FormReset from "./FormReset.vue"
 export default {
     components: {
+        FormReset
     },
     data() {
         return {
             email: "",
             password: "",
+            show_modal: false,
+            show_form: false,
+            email_validation:false,
+            password_validation:false,
         }
     },
     methods: {
+        is_show() {
+            this.show_modal = true
+        },
+        close_form() {
+            this.show_modal = false
+        },
         on_login() {
             let user_login = {
                 email: this.email,
@@ -88,11 +111,47 @@ export default {
                     window.location.reload();
                 }, 80);
             })
-        }
+        },
+
+        validateion(){
+            if(this.email.trim().length==0){
+                this.email_validation=true;
+            }else{
+                this.email_validation=false
+            }
+
+            if(this.password.trim().length==0){
+                this.password_validation=true
+            }else{
+                this.password_validation=false
+            }
+        }, 
+    
+    },
+
+    computed:{
+
+
     }
+
 }
 </script>
-
-<style>
-
+<style scoped>
+    small{
+        color: red;
+        position: absolute
+    }
+    
+    #smali1{
+        margin-top: -22px;
+        font-size: 15px;
+    }
+    #smali2{
+        
+        margin-top: -35px;
+        font-size: 15px;
+    }
+    button{
+        margin-top: 20px;
+    }
 </style>
