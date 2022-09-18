@@ -1,5 +1,9 @@
 <template>
     <section class="h-screen bg-light_blue">
+        <!-- form-pass-confirm -->
+        <FormConfirm v-if="show_form"/>
+        <!-- form-forgot-password -->
+        <FormReset v-if="show_modal" @close_form="close_form"/>
         <div class="container p-9 h-full">
             <div class="flex justify-center items-center w-10/12 m-auto g-6 h-full">
                 <div class="w-6/12 mr-6">
@@ -48,10 +52,11 @@
                         </div>
                         <!-- Submit button -->
                         <button type="submit"
-                            class="inline-block mb-8 py-3 bg-warning text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-warning_300 hover:shadow-lg focus:bg-warning-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-warning-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+                            class="inline-block mb-2 py-3 bg-warning text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-warning_300 hover:shadow-lg focus:bg-warning-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-warning-800 active:shadow-lg transition duration-150 ease-in-out w-full"
                             data-mdb-ripple="true" data-mdb-ripple-color="light">
                             log in
                         </button>
+                        <a @click="is_show" class="text-blue-400 flex justify-center cursor-pointer hover:underline">Forgot password</a>
                     </form>
                 </div>
             </div>
@@ -61,16 +66,27 @@
 
 <script>
 import axiosClient from "@/axios-http";
+import FormReset from "./FormReset.vue"
+import FormConfirm from "./FormCofirm.vue"
 export default {
     components: {
+        FormReset, FormConfirm
     },
     data() {
         return {
             email: "",
             password: "",
+            show_modal: false,
+            show_form: false
         }
     },
     methods: {
+        is_show() {
+            this.show_modal = true
+        },
+        close_form() {
+            this.show_modal = false
+        },
         on_login() {
             let user_login = {
                 email: this.email,
@@ -92,7 +108,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>
