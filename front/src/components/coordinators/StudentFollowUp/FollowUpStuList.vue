@@ -1,5 +1,5 @@
 <template>
-   <div class="student">
+  <div class="student">
     <table class="bg-white w-[82.6%] m-auto box-border mt-4">
       <thead class="text-white">
         <tr>
@@ -13,9 +13,8 @@
       </thead>
       <tbody>
         <tr
+          v-for="student of student_follow" :key="student"
           class="cursor-pointer show hover:bg-gray-200"
-          v-for="student of student_follow"
-          :key="student"
         >
           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center"
@@ -30,27 +29,40 @@
           </td>
           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center text-sm">
-              {{ student.users.gender }}</span>
+              {{ student.users.gender }}</span
+            >
           </td>
 
-           <td class="border-b-2 py-1 lg:text-sm">
+          <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center text-sm">{{
               student.users.email
             }}</span>
           </td>
 
           <td class="border-b-2 py-1 lg:text-sm">
-            <span class="flex justify-center text-sm">{{ student.generation }}</span>
+            <span class="flex justify-center text-sm">{{
+              student.generation
+            }}</span>
           </td>
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
-              <remove-stu-follow />
+              <move-out @click="move_from_follow(student.id, student.status)"/>
             </span>
           </td>
         </tr>
         <div
           v-if="showModal"
-          class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex"
+          class="
+            overflow-x-hidden overflow-y-auto
+            fixed
+            inset-0
+            z-50
+            outline-none
+            focus:outline-none
+            justify-center
+            items-center
+            flex
+          "
         >
           <div class="form-container shadow-md rounded w-2/5">
             <h2 class="header text-center text-white py-3">
@@ -74,46 +86,73 @@
     </div>
   </div>
 </template>
-
 <script>
 import axiosClient from "../../../axios-http";
-import moveStu from '../icons/MoveIcon.vue';
+import Swal from "sweetalert2";
+import MoveOut from "../icons/RemoveIcon.vue"
+
 export default {
-    components: {
-      'remove-stu-follow': moveStu
-    },
-    data() {
-        return {
-            student_follow: [],
-        }
+  components: {
+  'move-out': MoveOut
+  },
+  data() {
+    return {
+      student_follow: [],
+    };
+  },
+
+  methods: {
+    get_student_follow() {
+      axiosClient.get("students/get").then((res) => {
+        this.student_follow = res.data.filter(
+          (student) => student.status == true
+        );
+      });
     },
 
-    methods: {
-        get_student_follow() {
-            axiosClient.get('students/get')
-            .then((res)=>{
-                this.student_follow = res.data.filter(student=>student.status == true);
-            })
-        },
+    move_from_follow(id, my_status) {
+      let body = {};
+      if (my_status == true) {
+        body["status"] = false;
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You want to move student to follow up list!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#22BBEA",
+          cancelButtonColor: "#FFAD5C",
+          confirmButtonText: "Move From Follow-Up",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axiosClient.put("teachers/student_status/" + id, body).then((res) => {
+              console.log(res.data.student.id);
+            });
+            this.get_student_follow();
+          }
+        });
+      }
     },
+    
+  },
 
-    mounted() {
+  mounted() {
     this.get_student_follow();
   },
-}
+};
 </script>
 
 <style scoped>
-    .icons {
-        display: none;
-    }
-    .show:hover .icons {
-    display: flex;
-    margin: 0 -10px;
-    padding: 0;
-    }
+.icons {
+  display: none;
+}
+.show:hover .icons {
+  display: flex;
+  margin: 0 -10px;
+  padding: 0;
+}
 
-    .bg-color {
-    background: #22bbea;
-    }
+.bg-color {
+  background: #22bbea;
+}
+
 </style>

@@ -37,8 +37,11 @@
           <th class="lg:text-md text-md lg:p-3 bg-color">Actions</th>
         </tr>
       </thead>
-      <tbody>
-        <tr class="cursor-pointer show hover:bg-gray-200" v-for="student of student_lists" :key="student">
+  
+      <tbody v-for="student of student_lists" :key="student">
+        <tr 
+        v-if="student.status == true" :style="{backgroundColor:'#eecdad'}"
+        class="cursor-pointer show hover:bg-gray-200">
           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center"><img :src="student.users.profile" class="w-10 h-10 rounded-full" /></span>
           </td>
@@ -63,6 +66,39 @@
             <span class="flex justify-center space-x-2 icons">
               <icon-detail @click="show_detail(student.id)"/>
               <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
+              <icon-delete @click="deleteStudent(student.users.id)" />
+            </span>
+          </td>
+        </tr>
+
+        <tr 
+        v-if="student.status == false" :style="{backgroundColor:'#ffffff'}"
+        class="cursor-pointer show hover:bg-gray-200">
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center"><img :src="student.users.profile" class="w-10 h-10 rounded-full" /></span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{ student.users.first_name }}
+              {{ student.users.last_name }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{
+            student.users.gender
+            }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{ student.generation }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{
+              student.users.email
+            }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm text-white">
+            <span class="flex justify-center space-x-2 icons">
+              <icon-detail @click="show_detail(student.id)"/>
+              <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
+              <icon-move @click="move_follow(student.id,student.status)"/>
               <icon-delete @click="deleteStudent(student.users.id)" />
             </span>
           </td>
@@ -103,6 +139,8 @@ import EditIcons from "../icons/EditIcon.vue";
 import CardDetail from "./CardDetail.vue";
 import RemoveIcons from "../icons/RemoveView.vue";
 import DetailIcon from "../icons/DetailIcon.vue";
+import MoveIcon from "../icons/MoveIcon.vue";
+
 export default {
   components: {
     "form-edit-student": FormEdit,
@@ -113,6 +151,7 @@ export default {
     'icon-delete': RemoveIcons,
     'icon-edit': EditIcons,
     'icon-detail': DetailIcon,
+    'icon-move': MoveIcon,
     CardDetail
   },
   data() {
@@ -166,6 +205,28 @@ export default {
         }
       });
     },
+    move_follow(id, my_status) {
+      let body = {};
+      if (my_status == false) {
+        body['status'] = true;
+        console.log(body);
+        Swal.fire({
+        title: "Are you sure?",
+        text: "You want to move student to follow up list!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#22BBEA",
+        cancelButtonColor: "#FFAD5C",
+        confirmButtonText: "Move",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axiosClient.put('teachers/student_status/'+ id, body)
+
+          this.get_students()
+        }
+      })
+      }
+    },
 
     edit_student(new_student, user_id) {
       axiosClient.put("students/update/"+ user_id, new_student)
@@ -175,6 +236,7 @@ export default {
       this.isDeleted = false;
       this.isCreated = false;
     },
+
     create_student(student) {
       axiosClient.post("students/create", student).then((response) => {
         console.log(student)
@@ -247,4 +309,5 @@ export default {
 .bg-color {
   background: #22bbea;
 }
+
 </style>

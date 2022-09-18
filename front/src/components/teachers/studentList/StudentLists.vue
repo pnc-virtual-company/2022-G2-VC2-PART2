@@ -1,3 +1,4 @@
+
 <template>
   <student-list/>
 </template>
@@ -12,6 +13,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
