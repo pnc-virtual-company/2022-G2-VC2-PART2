@@ -1,7 +1,7 @@
 <template>
     <section class="h-screen bg-light_blue">
         <!-- form-pass-confirm -->
-        <FormConfirm/>
+        <!-- <FormConfirm/> -->
         <!-- form-forgot-password -->
         <FormReset v-if="show_modal" @close_form="close_form"/>
         <div class="container p-9 h-full">
@@ -73,10 +73,9 @@
 
 import axiosClient from "@/axios-http";
 import FormReset from "./FormReset.vue"
-import FormConfirm from "./FormCofirm.vue"
 export default {
     components: {
-        FormReset, FormConfirm
+        FormReset
     },
     data() {
         return {
