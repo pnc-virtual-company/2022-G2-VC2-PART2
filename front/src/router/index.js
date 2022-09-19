@@ -6,11 +6,16 @@ import CoorStudentFollowingList from '../views/CoordinatorView/StudentFollowUp.v
 // Teachers view
 import StudentFollowUpTeacherView from '../views/TeacherView/StudentFollowUpView.vue'
 import AllStudentTeachersView from '../views/TeacherView/StudentListView.vue'
-// Coordinator view
-// Student view
+// User Login
+import UserLogin from '../components/login/FormLogin.vue'
 const routes = [
 
   // Coordinator routes
+  {
+    path: '/users/login',
+    name: 'login',
+    component: UserLogin
+  },
   {
     path: '/coordinator/teacher_list',
     name: 'teacher_list',
@@ -38,7 +43,6 @@ const routes = [
     name: 'student_follow_up',
     component: StudentFollowUpTeacherView
   },
-
 ]
 
 const router = createRouter({
