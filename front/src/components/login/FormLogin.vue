@@ -68,6 +68,24 @@
         </div>
     </section>
 
+    <MDBNavbar expan="lg" light bg="light" container>
+    <MDBNavbarNav>
+      <!-- Notification dropdown -->
+      <MDBDropdown class="nav-item" v-model="dropdown4">
+        <MDBDropdownToggle tag="a" class="nav-link" @click="dropdown4 = !dropdown4"
+          ><MDBIcon icon="bell" />
+          <MDBBadge notification color="danger" pill>1</MDBBadge>
+        </MDBDropdownToggle>
+        <MDBDropdownMenu>
+          <MDBDropdownItem href="#">Action</MDBDropdownItem>
+          <MDBDropdownItem href="#">Another Action</MDBDropdownItem>
+          <MDBDropdownItem href="#">Something else here</MDBDropdownItem>
+        </MDBDropdownMenu>
+      </MDBDropdown>
+      <!-- Notification dropdown -->
+    </MDBNavbarNav>
+  </MDBNavbar>
+
 </template>
 <script>
 
