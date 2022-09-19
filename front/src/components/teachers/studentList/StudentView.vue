@@ -120,9 +120,9 @@ export default {
       filter_generation: "",
       search_name: "",
       is_follow_up: false,
-      currentPage : "",
+      currentPage : 1,
       total: "",
-      perPage: "",
+      perPage: 5,
     };
   },
   methods: {

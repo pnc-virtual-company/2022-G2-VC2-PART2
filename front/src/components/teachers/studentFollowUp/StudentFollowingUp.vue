@@ -1,8 +1,14 @@
 <template>
   <div class="student-following-up">
-    <div class="create w-[82.6%] m-auto box-border mt-4">
+    <div class="create justify-between w-[87.5%] m-auto box-border mt-4">
+      <div class="filter-student m-auto w-[87.5%] box-border mt-8">
+        <filter-table
+          @by_generation="filter_student_by_generation"
+          @by_name="filter_student_by_name"
+        ></filter-table>
+      </div>
       <div
-        class="bg-sky-300 w-12 h-12 rounded-full hover:bg-light_blue flex justify-center items-center cursor-pointer"
+        class="bg-sky-300 w-12 h-12 rounded-full hover:bg-light_blue flex justify-center items-center cursor-pointer m-auto w-10/12 box-border mt-8"
         @click="showModal = true"
       >
         <svg
@@ -37,11 +43,22 @@
                 </h2>
               </div>
               <div class="body-model px-4 py-4">
-                <div @click="back_page"
-                  class="back bg-sky-300 w-12 h-12 rounded-full hover:bg-light_blue cursor-pointer flex justify-center items-center">
-                  <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                <div
+                  @click="back_page"
+                  class="back bg-sky-300 w-12 h-12 rounded-full hover:bg-light_blue cursor-pointer flex justify-center items-center"
+                >
+                  <svg
+                    class="h-6 w-6 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
+                    />
                   </svg>
                 </div>
                 <student-list
@@ -59,7 +76,7 @@
       ></div>
     </div>
     <student-table
-      :students="data"
+      :students="student_filter"
       @student_id="add_to_follow_up"
     ></student-table>
     <div class="pagination-student w-[82.6%] m-auto box-border mt-4">
@@ -80,11 +97,13 @@ import FormView from "../../coordinators/teacher/FormCreateTeacherComponent.vue"
 import StudentFollowingTable from "../table/StudentFollowingUpTable.vue";
 import axiosClient from "../../../axios-http";
 import StudentFollowList from ".././../teachers/studentList/StudentView.vue";
+import filterStudent from "./FilterStudentFollowingUp.vue";
 export default {
   components: {
     "student-table": StudentFollowingTable,
     "add-to-follow-up": FormView,
     "student-list": StudentFollowList,
+    "filter-table": filterStudent,
   },
   data() {
     return {
@@ -93,6 +112,7 @@ export default {
       perPage: 10,
       data: [],
       showModal: false,
+      student_filter: []
     };
   },
   methods: {
@@ -106,6 +126,7 @@ export default {
       );
       let responseData = response.data;
       this.data = responseData.data;
+      this.student_filter = this.data;
       this.perPage = responseData.per_page;
       this.total = responseData.total;
     },
@@ -118,11 +139,36 @@ export default {
     add_student_list() {
       this.showModal = true;
     },
-    back_page(){
-      this.showModal=false
-       this.getData()
-
-    }
+    back_page() {
+      this.showModal = false;
+      this.getData();
+    },
+    filter_student_by_generation(generation) {
+      console.log(generation);
+      if (generation != "All Generation") {
+        this.student_filter = this.data.filter(
+          (student) =>
+            student.generation == generation &&
+            student.users.first_name.toLowerCase()
+        );
+      } else {
+        this.student_filter = this.data.filter((student) =>
+          student.users.first_name.toLowerCase()
+        );
+      }
+    },
+    filter_student_by_name(name) {
+      console.log(name);
+      console.log(
+        (this.student_filter = this.data.filter(
+          (student) =>
+            student.users.first_name
+              .toLowerCase()
+              .includes(name.toLowerCase()) ||
+            student.users.last_name.toLowerCase().includes(name.toLowerCase())
+        ))
+      );
+    },
   },
   mounted() {
     this.currentPage = 1;
@@ -167,5 +213,12 @@ export default {
 .pagination-student {
   display: flex;
   justify-content: center;
+}
+.bg-color,
+.bg-span {
+  background: #22bbea;
+}
+.bg-follow-up {
+  background: rgba(237, 212, 86, 0.743);
 }
 </style>
