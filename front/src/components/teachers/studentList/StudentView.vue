@@ -149,7 +149,7 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#22BBEA",
         cancelButtonColor: "#FFAD5C",
-        confirmButtonText: "Move From Follow-Up",
+        confirmButtonText: "Move",
       }).then((result) => {
         if (result.isConfirmed) {
           this.is_follow_up = !this.is_follow_up;

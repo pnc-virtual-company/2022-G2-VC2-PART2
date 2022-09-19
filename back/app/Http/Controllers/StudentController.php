@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\User;
+use Mail;
 use Illuminate\Http\Request;
+
+
 class StudentController extends Controller
 {
     /**
@@ -26,7 +29,7 @@ class StudentController extends Controller
     public function create_student(Request $request)
     {
         $student = new Student();
-        $student->generation=$request->generation;
+        $student->generation = $request->generation;
         $student->phone = $request->phone;
         $student->class = $request->class;
         $student->major = $request->major;
@@ -41,7 +44,7 @@ class StudentController extends Controller
         $user->save();
         $user->students()->save($student);
         return response()->json([
-            'message'=>'success'
+            'message' => 'success'
         ]);
     }
     public function get_student_by_id($id)
@@ -50,11 +53,11 @@ class StudentController extends Controller
     }
 
 
-    public function update_student(Request $request,$id)
+    public function update_student(Request $request, $id)
     {
         $student_id = $request->student_id;
-        $student=Student::findOrFail($student_id);
-        $student->generation=$request->generation;
+        $student = Student::findOrFail($student_id);
+        $student->generation = $request->generation;
         $student->phone = $request->phone;
         $student->class = $request->class;
         $student->major = $request->major;
@@ -67,10 +70,10 @@ class StudentController extends Controller
         $user->save();
         $user->students()->save($student);
         return response()->json([
-            'message'=>'success'
+            'message' => 'success'
         ]);
     }
-      /**
+    /**
      * Remove the specified user from storage.
      *
      * @param  \App\Models\User  $student
@@ -79,27 +82,27 @@ class StudentController extends Controller
     public function delete_student($id)
     {
         $delete = User::destroy($id);
-        if ($delete){
+        if ($delete) {
             return response()->json([
-                'message'=>'success'
+                'message' => 'success'
             ]);
         }
     }
 
     public function update_status(Request $request, $id)
     {
-        $student=Student::findOrFail($id);
+        $student = Student::findOrFail($id);
         $student->status = $request->status;
         $student->save();
         return response()->json([
-            'message'=>'Status Updated successfully'
+            'message' => 'Status Updated successfully'
         ]);
-
     }
 
     // get only student that teacher at to student_following_up list
-    public function get_student_follwing_up(){
-        return Student::with('users')->where('status','1')->paginate(10);
+    public function get_student_follwing_up()
+    {
+        return Student::with('users')->where('status', '1')->paginate(10);
     }
 
     // get student to display in follow up list

@@ -1,5 +1,9 @@
 <template>
     <section class="h-screen bg-light_blue">
+        <!-- form-pass-confirm -->
+        <!-- <FormConfirm/> -->
+        <!-- form-forgot-password -->
+        <FormReset v-if="show_modal" @close_form="close_form"/>
         <div class="container p-9 h-full">
             <div class="flex justify-center items-center w-10/12 m-auto g-6 h-full">
                 <div class="w-6/12 mr-6">
@@ -50,13 +54,14 @@
                                   focus:bg-white focus:border-blue-600 focus:outline-none"
                                 placeholder="Password" v-model="password" />
                             </div>
-                            <small id="smali2" v-if="paasswrod_validation">Password is required</small>
+                            <small id="smali2" v-if="password_validation">Password is required</small>
                         <!-- Submit button -->
                         <button type="submit" @click="validateion"
-                            class="inline-block mb-8 py-3 bg-warning text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-warning_300 hover:shadow-lg focus:bg-warning-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-warning-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+                            class="inline-block mb-2 py-3 bg-warning text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-warning_300 hover:shadow-lg focus:bg-warning-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-warning-800 active:shadow-lg transition duration-150 ease-in-out w-full"
                             data-mdb-ripple="true" data-mdb-ripple-color="light">
                             log in
                         </button>
+                        <a @click="is_show" class="text-blue-400 flex justify-center cursor-pointer hover:underline">Forgot password</a>
                     </form>
                 </div>
             </div>
@@ -67,18 +72,28 @@
 <script>
 
 import axiosClient from "@/axios-http";
-
-
+import FormReset from "./FormReset.vue"
 export default {
+    components: {
+        FormReset
+    },
     data() {
         return {
             email: "",
             password: "",
+            show_modal: false,
+            show_form: false,
             email_validation:false,
-            paasswrod_validation:false,
+            password_validation:false,
         }
     },
     methods: {
+        is_show() {
+            this.show_modal = true
+        },
+        close_form() {
+            this.show_modal = false
+        },
         on_login() {
             let user_login = {
                 email: this.email,
@@ -106,9 +121,9 @@ export default {
             }
 
             if(this.password.trim().length==0){
-                this.paasswrod_validation=true
+                this.password_validation=true
             }else{
-                this.paasswrod_validation=false
+                this.password_validation=false
             }
         }, 
     
@@ -121,7 +136,6 @@ export default {
 
 }
 </script>
-
 <style scoped>
     small{
         color: red;
@@ -140,5 +154,4 @@ export default {
     button{
         margin-top: 20px;
     }
-
 </style>

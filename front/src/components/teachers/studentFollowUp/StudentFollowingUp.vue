@@ -37,22 +37,11 @@
                 </h2>
               </div>
               <div class="body-model px-4 py-4">
-                <div
-                  @click="showModal = false"
-                  class="back bg-sky-300 w-12 h-12 rounded-full hover:bg-light_blue cursor-pointer flex justify-center items-center"
-                >
-                  <svg
-                    class="h-6 w-6 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
-                    />
+                <div @click="back_page"
+                  class="back bg-sky-300 w-12 h-12 rounded-full hover:bg-light_blue cursor-pointer flex justify-center items-center">
+                  <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
                   </svg>
                 </div>
                 <student-list
@@ -129,6 +118,11 @@ export default {
     add_student_list() {
       this.showModal = true;
     },
+    back_page(){
+      this.showModal=false
+       this.getData()
+
+    }
   },
   mounted() {
     this.currentPage = 1;

@@ -1,4 +1,3 @@
-
 <template>
   <student-list/>
 </template>

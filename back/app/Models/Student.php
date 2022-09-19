@@ -23,6 +23,9 @@ class Student extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function comments(){
+        return $this->belongsToMany(Student::class, 'student_id');
+    }
 
     protected $casts = [
         'status'=> 'boolean',
