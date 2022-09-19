@@ -104,4 +104,9 @@ class StudentController extends Controller
     {
         return Student::with('users','comments')->where('status', '1')->paginate(10);
     }
+
+    // get student to display in follow up list
+    public function get_student_display_follow_up(){
+        return Student::with('users')->paginate(5);
+    }
 }
