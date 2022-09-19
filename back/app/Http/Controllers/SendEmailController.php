@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\CodeGenerater;
 use App\Models\User;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -53,5 +53,21 @@ class SendEmailController extends Controller
         }else{
             return response()->json(['success' => false]);
         }
+    }
+    // send mail to student
+    public function send_mail(Request $request)
+
+    { 
+        $user = User::where('email', $request->email);
+        if($user) {
+            $data = array('name' => $request->first_name);
+            Mail::send('Emails.SendMessage', $data, function ($message) {
+                $message->from('sfu@passerellesnumeriques.org', "SFU");
+                $message->to('sopha.rathwep2022@gmail.com')->subject('Message:');
+            });
+    
+            return 'Email sent Successfully';
+        }
+    
     }
 }
