@@ -26,7 +26,7 @@
      <div v-for="coordinate of coordinator" :key="coordinate" class="flex items-center">
         <h1 class="w-full font-bold text-white">{{coordinate.first_name}} {{coordinate.last_name}}</h1>
         <div>
-          <img @click="show_profile" class="w-24 rounded-full" :src=coordinate.profile alt="">
+          <img @click="show_profile" class="w-24 h-11 rounded-full cusor-pointer" :src=coordinate.profile alt="">
         </div>
         <a href="log_out"
           ><LogoutIcon @click="log_out" class="cusor-pointer ml-3 mr-3"
@@ -74,7 +74,7 @@
             <div class="text-center">
               <div>
                 <img
-                  class="m-auto w-32 rounded-full"
+                  class="m-auto w-24 h-24 rounded-full"
                   :src="coordinate.profile"
                   alt=""
                 />
@@ -169,7 +169,7 @@ export default {
 
     get_coordinator() {
       this.id = localStorage.getItem('id');
-      axiosClient.get("coordinator/get/" + this.id).then((response) => {
+      axiosClient.get("coordinator/get/1").then((response) => {
         this.coordinator = response.data;
       });
       console.log(this.coordinator);
@@ -192,57 +192,22 @@ export default {
     background-color: #ffad5c;
   }
 
-  .modal-mask {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
-}
+  .modal-container,
+  .header {
+    width: auto;
+    width: 30%;
+    height: auto;
+    margin: 0px auto;
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+    z-index: 10;
+  }
 
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: top;
-
-}
-.modal-container,
-.header {
-  width: auto;
-  width: 30%;
-  height: auto;
-  margin: 0px auto;
-  transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
-  z-index: 10;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
-}
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-active .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.profile {
-  text-decoration: none;
-  position: absolute;
-  font-size: 1.3rem;
-  margin: -2.5rem 14rem;
-  color: gray;
-}
+  .profile {
+    text-decoration: none;
+    position: absolute;
+    font-size: 1.3rem;
+    margin: -2.5rem 13.5rem;
+    color: gray;
+  }
 </style>
