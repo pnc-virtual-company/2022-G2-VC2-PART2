@@ -6,6 +6,7 @@ import CoorStudentFollowingList from '../views/CoordinatorView/StudentFollowUp.v
 // Teachers view
 import StudentFollowUpTeacherView from '../views/TeacherView/StudentFollowUpView.vue'
 import AllStudentTeachersView from '../views/TeacherView/StudentListView.vue'
+// import StudentNav from '../views/StudentView/StudentInfoView.vue'
 // Coordinator view
 // Student view
 const routes = [
@@ -38,6 +39,13 @@ const routes = [
     name: 'student_follow_up',
     component: StudentFollowUpTeacherView
   },
+
+  // {
+  //   path: '/student_nav',
+  //   name: 'student_nav',
+  //   component: StudentNav
+  // },
+
 
 ]
 

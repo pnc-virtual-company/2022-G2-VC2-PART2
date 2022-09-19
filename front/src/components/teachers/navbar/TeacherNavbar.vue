@@ -12,34 +12,228 @@
           Up</router-link>
       </div>
 
-      <div class="flex items-center">
-        <img src="../../../assets/logo.png" class="mr-8 w-12">
-        <a href="log_out"><LogoutIcon @click="log_out" class="cusor-pointer mr-3"/></a>
+      <div v-for="teacher of teachers" :key="teacher"  class="flex items-center">
+        <h1 class="w-full font-bold text-white">{{teacher.users.first_name}} {{teacher.users.last_name}}</h1>
+        <div>
+          <img @click="show_profile()" class="w-24 rounded-full" :src=teacher.users.profile alt="">
+        </div>
+        <a href="log_out"
+          ><LogoutIcon @click="log_out" class="cusor-pointer ml-3 mr-3"
+        /></a>
       </div>
     </nav>
+    <teacher-profile v-if="is_show" @close_profile="close_profile">
+      <div class="modal-mask">
+        <div class="modal-wrapper">
+          <div
+            class="
+              flex
+              items-start
+              justify-center
+              py-2
+              rounded-t
+              header
+              bg-blue-400
+            "
+          >
+            <h2 class="flex justify-center w-full text-white text-xl">
+              Profile
+            </h2>
+            <svg
+              @click="close_profile"
+              class="h-6 w-6 text-red-500 m-auto mr-3 cursor-pointer"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </div>
+
+          <div
+            class="modal-container p-2 bg-blue-200"
+            v-for="teacher of teachers"
+            :key="teacher"
+          >
+            <div class="text-center">
+              <div>
+                <img
+                  class="m-auto w-32 rounded-full"
+                  :src="teacher.users.profile"
+                  alt=""
+                />
+                <label for="file"
+                  ><svg
+                    class="h-8 w-8 text-gray profile"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <path
+                      d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2"
+                    />
+                    <circle cx="12" cy="13" r="3" /></svg
+                ></label>
+                <input type="file" id="file" name="image" hidden />
+              </div>
+              <p class="text-xl font-bold mb-5">
+                
+              </p>
+            </div>
+
+            <div class="flex justify-center item-center">
+              <div>
+                <p><span class="font-bold">Gendar</span></p>
+                <p><span class="font-bold">Role</span></p>
+                <p>
+                  <span class="font-bold">Email</span>
+                </p>
+              </div>
+
+              <div class="mr-3 ml-3">
+                <p><span class="font-bold">:</span></p>
+                <p><span class="font-bold">:</span></p>
+                <p class="mb-5">
+                  <span class="font-bold">:</span>
+                </p>
+              </div>
+
+              <div>
+                <p><span class="font-bold"></span>{{teacher.users.gender}}</p>
+                <p v-if="teacher.users.role == 2">
+                  <span class="font-bold"></span>Teacher
+                </p>
+                <p class="mb-5">
+                  <span class="font-bold"></span>
+                  {{teacher.users.email}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </teacher-profile>
     <router-view />
   </div>
 </template>
 
 <script>
 import LogoutIcon from '../../coordinators/icons/LogoutIcon.vue'
+import axiosClient from '../../../axios-http'
+import TeacherProfile from '../../profiles/SlotProfile.vue';
 export default {
-  components: {LogoutIcon},
+  components: {
+    LogoutIcon,
+    'teacher-profile': TeacherProfile
+  },
+
+  data() {
+    return {
+      teachers: [],
+      id: null,
+      is_show: false,
+    }
+  },
+
   methods: {
     log_out() {
       localStorage.clear();
+    },
+
+    show_profile() {
+      this.is_show = true;
+    },
+
+    close_profile() {
+      this.is_show = false;
+    },
+
+    get_teacher() {
+      this.id = localStorage.getItem('id');
+      axiosClient.get("teachers/get/" + this.id)
+      .then((response) => {
+        this.teachers = response.data
+      })
     }
+  },
+
+  mounted() {
+    this.get_teacher()
   }
 }
 </script>
 
 
-<style>
+<style scoped>
 nav {
   background-color: #22BBEA;
 }
 
 nav a.router-link-exact-active.active {
   background-color: #FFAD5C;
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: top;
+
+}
+.modal-container,
+.header {
+  width: auto;
+  width: 30%;
+  height: auto;
+  margin: 0px auto;
+  transition: all 0.3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+  z-index: 10;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-active .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.profile {
+  text-decoration: none;
+  position: absolute;
+  font-size: 1.3rem;
+  margin: -2.5rem 14rem;
+  color: gray;
 }
 </style>
