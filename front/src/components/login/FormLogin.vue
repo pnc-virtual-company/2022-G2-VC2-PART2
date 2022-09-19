@@ -12,7 +12,7 @@
                     </h3>
                 </div>
                 <div class="w-2/5 bg-white rounded ml-6">
-                    <form class="w-full m-auto px-6 py-5 box-border" @submit.prevent="on_login">
+                    <form class="w-full m-auto px-6 py-5 box-border shadow-inner" @submit.prevent="on_login">
                         <div class="header flex justify-center">
                             <h3 class="text-sky-300 font-bold text-3xl">Login</h3>
                         </div>
