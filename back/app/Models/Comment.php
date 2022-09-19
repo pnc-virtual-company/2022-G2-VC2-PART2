@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,10 +11,14 @@ class Comment extends Model
 
     public function teachers()
     {
-        return $this->hasMany(Comment::class,'teacher_id');
+        return $this->belongsTo(Teacher::class,'teacher_id');
     }
     public function students()
     {
-        return $this->hasMany(Comment::class,'student_id');
+        return $this->belongsTo(Student::class,'student_id');
+    }
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i A');
     }
 }
