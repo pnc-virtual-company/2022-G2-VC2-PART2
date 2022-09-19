@@ -98,6 +98,16 @@
         </tr>
       </tbody>
     </table>
+    <div class="pagination-student w-[82.6%] m-auto box-border mt-4">
+      <vue-awesome-paginate
+        class="text-orange-600"
+        :current-page="currentPage"
+        :total-items="total"
+        :items-per-page="perPage"
+        :on-click="pageChange"
+      >
+      </vue-awesome-paginate>
+    </div>
   </div>
 </template>
 <script>
@@ -110,13 +120,24 @@ export default {
       filter_generation: "",
       search_name: "",
       is_follow_up: false,
+      currentPage : 1,
+      total: "",
+      perPage: 5,
     };
   },
   methods: {
-    get_students() {
-      axiosClient.get("students/get").then((res) => {
-        this.student_lists = res.data;
-      });
+    pageChange(pageNumber) {
+      this.currentPage = pageNumber;
+      this.getData();
+    },
+    async getData() {
+      let response = await axiosClient.get(
+        `get_student_follow_up/?page=${this.currentPage}`
+      );
+      let responseData = response.data;
+      this.student_lists = responseData.data;
+      this.perPage = responseData.per_page;
+      this.total = responseData.total;
     },
     add_to_follow_up(student_id) {
       let body = {};
@@ -128,7 +149,7 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#22BBEA",
         cancelButtonColor: "#FFAD5C",
-        confirmButtonText: "Move From Follow-Up",
+        confirmButtonText: "Move",
       }).then((result) => {
         if (result.isConfirmed) {
           this.is_follow_up = !this.is_follow_up;
@@ -167,7 +188,8 @@ export default {
     },
   },
   mounted() {
-    this.get_students();
+    this.currentPage = 1;
+    this.getData();
   },
 };
 </script>
