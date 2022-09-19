@@ -56,9 +56,9 @@
 
           <div class="modal-container p-2 bg-blue-200">
             <div class="text-center">
-              <div>
+              <div class="img ">
                 <img
-                  class="m-auto w-32 rounded-full"
+                  class="m-auto w-full w-32 h-32 rounded-full"
                   :src="user.profile"
                   alt=""
                 />
@@ -80,7 +80,7 @@
                     />
                     <circle cx="12" cy="13" r="3" /></svg
                 ></label>
-                <input type="file" id="file" name="image" hidden />
+                <input type="file" id="file" name="image" hidden @change="add_user_profile"/>
               </div>
               <p class="text-xl font-bold mb-5">
                 
@@ -137,6 +137,8 @@ export default {
     return {
       user: {},
       is_show: false,
+      studentProfile: "",
+      studentId:null,
     }
   },
 
@@ -159,7 +161,20 @@ export default {
       .then((response) => {
         this.user = response.data[0]
       })
-    }
+    },
+    async add_user_profile(event) {
+      var id = localStorage.getItem('id');
+      this.studentProfile = event.target.files[0];
+      console.log(this.studentProfile);
+      const body = new FormData();
+      body.append('profile',this.studentProfile)
+      body.append('_method', 'PUT')
+      axiosClient.post("update_img_user/"+id ,body).then((reponse) => {
+        console.log(reponse.data);
+        this.get_teacher()
+      });
+
+    },
   },
 
   mounted() {

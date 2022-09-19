@@ -50,7 +50,7 @@
           <div class="modal-container p-2 bg-blue-200">
             <div class="text-center">
               <div>
-                <img class="m-auto w-32 rounded-full" :src="coordinator.profile" alt="" />
+                <img class="m-auto w-32 h-32 rounded-full" :src="coordinator.profile" alt="" />
                 <label for="file"><svg class="h-8 w-8 text-gray profile" width="32" height="32" viewBox="0 0 24 24"
                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -58,7 +58,7 @@
                       d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" />
                     <circle cx="12" cy="13" r="3" />
                   </svg></label>
-                <input type="file" id="file" name="image" hidden />
+                <input type="file" id="file" name="image" hidden @change="add_user_profile"/>
               </div>
               <p class="text-xl font-bold mb-5">
                 {{ coordinator.first_name }} {{ coordinator.last_name }}
@@ -113,6 +113,8 @@ export default {
     return {
       is_show: false,
       coordinator: {},
+      studentId:null,
+      studentProfile: "",
     };
   },
   methods: {
@@ -133,6 +135,19 @@ export default {
       axiosClient.get("coordinators/get/" + id).then((response) => {
         this.coordinator = response.data;
       });
+    },
+    async add_user_profile(event) {
+      var id = localStorage.getItem('id');
+      this.studentProfile = event.target.files[0];
+      console.log(this.studentProfile);
+      const body = new FormData();
+      body.append('profile',this.studentProfile)
+      body.append('_method', 'PUT')
+      axiosClient.post("update_img_user/"+id ,body).then((reponse) => {
+        console.log(reponse.data);
+        this.get_coordinator();
+      });
+
     },
   },
 

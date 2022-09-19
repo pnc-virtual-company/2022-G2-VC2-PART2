@@ -5,7 +5,7 @@
     <teachernav-nav v-else-if="my_role == 2" />
     <!-- <ForgotPassword/> -->
     <!-- <FormConfirm/> -->
-    <student-Nabar/>
+    <!-- <student-Nabar/> -->
   </section>
 </template>
 <script>
@@ -14,7 +14,7 @@ import TeacherNav from './components/teachers/navbar/TeacherNavbar.vue'
 import CoordinatorNav from './components/coordinators/navbar/CoordinatorNav.vue'
 // import ForgotPassword from './components/login/ForgotPassword.vue'
 // import FormConfirm from './components/login/FormConfirm.vue'
-import StudentNav from './components/students/navbar/StudentNavbar.vue';
+// import StudentNav from './components/students/navbar/StudentNavbar.vue';
 export default {
   data() {
     return {
@@ -27,7 +27,7 @@ export default {
     "coordinator-nav": CoordinatorNav,
     // ForgotPassword,
     // FormConfirm,
-    "student-Nabar":StudentNav
+    // "student-Nabar":StudentNav
 },
   methods: {
     user_role() {
