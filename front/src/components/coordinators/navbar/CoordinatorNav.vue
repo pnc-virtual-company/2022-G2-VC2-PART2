@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="flex pl-4 pr-4 text-center w-full">
+    <nav class="flex pl-4 pr-4 text-center w-full drop-shadow-lg sticky">
       <div class="flex items-center">
         <img src="../../../assets/logo.png" class="w-20">
       </div>
