@@ -54,4 +54,4 @@ Route::post('comments/add', [CommentController::class,'add_comments']);
 Route::get('comments/get', [CommentController::class,'get_comment_by_id']);
 
 // coordinator Routes
-Route::get('coordinator/get/{id}', [CoordinatorController::class, 'get_coordinator_first']);
+Route::get('coordinators/get/{id}', [CoordinatorController::class, 'get_coordinator_first']);
