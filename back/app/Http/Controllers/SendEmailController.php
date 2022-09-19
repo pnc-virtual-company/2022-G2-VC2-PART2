@@ -17,7 +17,7 @@ class SendEmailController extends Controller
             $code = random_int(100000, 999999);
             $user_code = new CodeGenerater();
             $data = array('name' => $request->first_name, 'message' => 'Here is your verification code', 'code' => $code);
-            Mail::send('Emails.SendMail', $data, function ($message) use ($email) {
+            Mail::send('Emails.SendMail', $data, function ($message) use($email) {
                 $message->from('sfu@passerellesnumeriques.org', "SFU");
                 $message->to($email)->subject('Verification code');
             });
@@ -35,8 +35,8 @@ class SendEmailController extends Controller
         }
     }
 
-    public function confirm_code(Request $request, $id){
-        $code = CodeGenerater::where('id', $id)->first();
+    public function confirm_code(Request $request){
+        $code = CodeGenerater::where('id',$request->code_id)->first();
         if (Hash::check($request->code, $code->user_code)) {
             return response()->json(['success' => true]);
         }else{
@@ -46,7 +46,7 @@ class SendEmailController extends Controller
 
     public function update_password(Request $request, $id){
         $student = User::find($id);
-        if ($request->password === $request->confirm_password){
+        if ($request->password === $request->pass_confirm){
             $student->password = bcrypt($request->password);
             $student->save();
             return response()->json(['success' => true]);
