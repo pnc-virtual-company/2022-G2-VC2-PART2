@@ -9,6 +9,6 @@ class CoordinatorController extends Controller
 {
     public function get_coordinator_first($id)
     {
-        return User::where("id", $id)->get();
+        return User::where("id", $id)->first();
     }
 }
