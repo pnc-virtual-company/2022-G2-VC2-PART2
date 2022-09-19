@@ -3,6 +3,7 @@
 use App\Http\Controllers\CoordinatorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
@@ -38,9 +39,14 @@ Route::put('update_password/{id}',[SendEmailController::class, 'update_password'
 // teacher routes
 Route::get('teachers/get',[TeacherController::class, 'get_teachers']);
 Route::get('teachers/get/{id}',[TeacherController::class, 'get_teacher_by_id']);
+Route::get('teachers/get_teacher_id/{id}',[TeacherController::class, 'get_id_teacher']);
 Route::post('teachers/create',[TeacherController::class, 'create_teacher']);
 Route::put('teachers/update/{id}',[TeacherController::class, 'update_teacher']);
 Route::delete('teachers/delete/{id}',[TeacherController::class, 'delete_teacher']);
 
 Route::put('teachers/student_status/{id}', [StudentController::class,'update_status']);
+
+
+
+
 

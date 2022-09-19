@@ -102,6 +102,7 @@ export default {
             axiosClient.post('user/login', user_login).then((response) => {
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('role', response.data.user.role);
+                localStorage.setItem('id', response.data.user.id);
                 if (response.data.user.role == '1'){
                     this.$router.push('/coordinator/teacher_list')
                 }else if (response.data.user.role == '2'){

@@ -102,6 +102,6 @@ class StudentController extends Controller
     // get only student that teacher at to student_following_up list
     public function get_student_follwing_up()
     {
-        return Student::with('users')->where('status', '1')->paginate(10);
+        return Student::with('users','comments')->where('status', '1')->paginate(10);
     }
 }
