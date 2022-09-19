@@ -109,4 +109,7 @@ class StudentController extends Controller
     public function get_student_display_follow_up(){
         return Student::with('users')->paginate(5);
     }
+
+
+
 }

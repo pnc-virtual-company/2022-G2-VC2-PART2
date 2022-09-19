@@ -45,3 +45,4 @@ Route::delete('teachers/delete/{id}',[TeacherController::class, 'delete_teacher'
 
 Route::put('teachers/student_status/{id}', [StudentController::class,'update_status']);
 
+
