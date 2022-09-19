@@ -110,6 +110,24 @@ class StudentController extends Controller
         return Student::with('users')->paginate(5);
     }
 
+    // update student image
+    public function update_user_img(Request $request, $id)
+    {
 
+        $user = User::findOrFail($id);
+        $path = public_path('profile');
+        if (!file_exists($path) ) {
+            mkdir($path, 0777, true);
+        }
+        $file = $request->file('profile');
+        if($file!=null){
+            $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
+            $file->move($path, $fileName);
+            $user->profile = asset('profile/' . $fileName);
+            $user->save();
+            return response()->json(["message" => "user update successfully"]);
+        }
+        
+    }
 
 }
