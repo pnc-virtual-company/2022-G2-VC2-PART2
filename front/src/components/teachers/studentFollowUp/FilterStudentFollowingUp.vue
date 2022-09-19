@@ -36,6 +36,7 @@
               type="text"
               v-model="text"
               @keyup="filter_by_name"
+              placeholder="Search"
             />
           </div>
         </div>
