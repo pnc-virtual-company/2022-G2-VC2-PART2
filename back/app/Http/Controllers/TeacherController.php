@@ -42,6 +42,10 @@ class TeacherController extends Controller
         return User::destroy($id);
     }
 
+    public function get_id_teacher($id){
+        return User::where('id', $id)->with('teachers')->get();
+    }
+
     public function update_teacher(Request $request, $id){
         $teacher_id = $request->teacher_id;
         $teacher = Teacher::findOrFail($teacher_id);

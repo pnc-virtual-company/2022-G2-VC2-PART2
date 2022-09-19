@@ -7,7 +7,7 @@ module.exports = {
         warning : '#FFAD5C',
         primary : '#22BBEA',
         light_blue : '#BBD7E0',
-        warning_300 : '#FFBD7C'
+        warning_300 : '#FFBD7C',
       }
     },
   },
