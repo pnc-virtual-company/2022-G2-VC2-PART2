@@ -31,8 +31,10 @@ Route::delete('students/delete/{id}',[StudentController::class, 'delete_student'
 Route::post('students/forgot_password',[StudentController::class, 'forgot_password']);
 
 Route::post('sendMail',[SendEmailController::class, 'forgot_password']);
-Route::put('confirmCode/{id}',[SendEmailController::class, 'confirm_code']);
+// Route::put('confirmCode/{id}',[SendEmailController::class, 'confirm_code']);
 Route::put('update_password/{id}',[SendEmailController::class, 'update_password']);
+
+Route::post('confirmCode',[SendEmailController::class, 'confirm_code']);
 
 
 // teacher routes
