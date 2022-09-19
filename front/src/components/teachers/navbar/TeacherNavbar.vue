@@ -160,7 +160,7 @@ export default {
 
     get_teacher() {
       this.id = localStorage.getItem('id');
-      axiosClient.get("teachers/get/" + this.id)
+      axiosClient.get("teachers/get/2" + this.id)
       .then((response) => {
         this.teachers = response.data
       })
