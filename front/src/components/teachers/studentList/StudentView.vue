@@ -24,7 +24,7 @@
       <div class="flex">
         <!--search-by-name-->
         <span
-          class="bg-span items-center py-2 px-4 text-gray-900 border-gray-300 rounded-l-lg"
+          class="bg-span items-center py-2 px-4 border-gray-300 rounded-l-lg"
           >Search By Name</span
         >
         <input

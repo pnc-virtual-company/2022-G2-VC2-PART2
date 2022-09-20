@@ -89,7 +89,10 @@
       >
       </vue-awesome-paginate>
     </div>
+    <div class="uploadImg">
+    </div>
   </div>
+ 
 </template>
 
 <script>

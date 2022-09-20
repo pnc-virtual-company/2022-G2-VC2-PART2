@@ -9,6 +9,7 @@
 import FormLogin from './components/login/FormLogin.vue'
 import TeacherNav from './components/teachers/navbar/TeacherNavbar.vue'
 import CoordinatorNav from './components/coordinators/navbar/CoordinatorNav.vue'
+import StudentNav from './components/students/navbar/StudentNavbar.vue';
 export default {
   data() {
     return {
