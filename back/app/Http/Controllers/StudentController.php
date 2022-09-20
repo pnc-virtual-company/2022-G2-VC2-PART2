@@ -88,7 +88,7 @@ class StudentController extends Controller
             ]);
         }
     }
-
+    
     public function update_status(Request $request, $id)
     {
         $student = Student::findOrFail($id);
