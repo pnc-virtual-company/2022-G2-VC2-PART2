@@ -169,49 +169,6 @@ export default {
         }, 80);
       });
     },
-    methods: {
-        is_show() {
-            this.show_modal = true
-        },
-        close_form() {
-            this.show_modal = false
-        },
-        on_login() {
-            let user_login = {
-                email: this.email,
-                password: this.password
-            }
-            axiosClient.post('user/login', user_login).then((response) => {
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('role', response.data.user.role);
-                localStorage.setItem('id', response.data.user.id);
-                if (response.data.user.role == '1'){
-                    this.$router.push('/coordinator/teacher_list')
-                }else if (response.data.user.role == '2'){
-                    this.$router.push('/teachers/student_list')
-                }
-                setTimeout(function () {
-                    window.location.reload();
-                }, 80);
-            })
-        },
-
-        validateion(){
-            if(this.email.trim().length==0){
-                this.email_validation=true;
-            }else{
-                this.email_validation=false
-            }
-
-            if(this.password.trim().length==0){
-                this.password_validation=true
-            }else{
-                this.password_validation=false
-            }
-        }, 
-    
-    },
-
     validateion() {
       if (this.email.trim().length == 0) {
         this.email_validation = true;
@@ -226,8 +183,6 @@ export default {
       }
     },
   },
-
-  computed: {},
 };
 </script>
 <style scoped>
