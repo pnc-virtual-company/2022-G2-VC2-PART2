@@ -48,9 +48,10 @@ Route::put('teachers/update/{id}',[TeacherController::class, 'update_teacher']);
 Route::delete('teachers/delete/{id}',[TeacherController::class, 'delete_teacher']);
 Route::put('teachers/student_status/{id}', [StudentController::class,'update_status']);
 
-
 // comment route
 Route::post('comments/add', [CommentController::class,'add_comments']);
 Route::get('comments/get', [CommentController::class,'get_comment_by_id']);
 
 Route::post('/send/email', [SendEmailController::class, 'send_mail']);
+
+Route::get('coordinators/get/{id}', [CoordinatorController::class, 'get_coordinator_first']);
