@@ -125,10 +125,11 @@
 import LogoutIcon from '../../coordinators/icons/LogoutIcon.vue'
 import axiosClient from '../../../axios-http'
 import TeacherProfile from '../../profiles/SlotProfile.vue';
+
 export default {
   components: {
     LogoutIcon,
-    'teacher-profile': TeacherProfile
+    'teacher-profile': TeacherProfile,
   },
 
   data() {

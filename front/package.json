@@ -18,6 +18,7 @@
     "tailwindcss": "^3",
     "vue": "^3.2.13",
     "vue-awesome-paginate": "^1.0.23",
+    "vue-cropperjs": "^5.0.0",
     "vue-date-picker": "^2.5.0",
     "vue-router": "^4.0.3",
     "vue-weblineindia-image-crop-upload": "^1.0.1",
