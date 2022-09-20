@@ -7,18 +7,32 @@
       
       <div  class="flex items-center text-white">
         <img src="../../../assets/Narong.png" class="w-10 py-2 mr-3">
-        <svg class="h-8 w-8 text-white-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" 
-        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> 
-         <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-           <path d="M7 12h14l-3 -3m0 6l3 -3" />
-          </svg>
+        <a href="log_out"
+          ><Logout @click="log_out" class="cusor-pointer ml-3 mr-3"
+        /></a>
       </div>
     </nav>
   </nav>
 </template>
-
 <script>
-export default {};
+  import Logout from '../../coordinators/icons/LogoutIcon.vue';
+export default {
+  components:{
+    Logout
+
+  },
+
+  data(){
+    return{
+
+    }
+  },
+  methods:{
+    log_out(){
+      localStorage.clear();
+    }
+  }
+};
 </script>
 
 <style>

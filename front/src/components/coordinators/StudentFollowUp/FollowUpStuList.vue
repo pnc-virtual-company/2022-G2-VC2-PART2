@@ -98,6 +98,7 @@ export default {
   data() {
     return {
       student_follow: [],
+      img_null:"https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png"
     };
   },
 
@@ -134,7 +135,6 @@ export default {
     },
     
   },
-
   mounted() {
     this.get_student_follow();
   },

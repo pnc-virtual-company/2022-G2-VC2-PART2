@@ -3,17 +3,12 @@
     <login-form v-if="my_role == 0"/>
     <coordinator-nav v-else-if="my_role == 1" @log_out="log_out"></coordinator-nav>
     <teachernav-nav v-else-if="my_role == 2" />
-    <!-- <ForgotPassword/> -->
-    <!-- <FormConfirm/> -->
-    <!-- <student-Nabar/> -->
   </section>
 </template>
 <script>
 import FormLogin from './components/login/FormLogin.vue'
 import TeacherNav from './components/teachers/navbar/TeacherNavbar.vue'
 import CoordinatorNav from './components/coordinators/navbar/CoordinatorNav.vue'
-// import ForgotPassword from './components/login/ForgotPassword.vue'
-// import FormConfirm from './components/login/FormConfirm.vue'
 // import StudentNav from './components/students/navbar/StudentNavbar.vue';
 export default {
   data() {
@@ -25,9 +20,6 @@ export default {
     "login-form": FormLogin,
     "teachernav-nav": TeacherNav,
     "coordinator-nav": CoordinatorNav,
-    // ForgotPassword,
-    // FormConfirm,
-    // "student-Nabar":StudentNav
 },
   methods: {
     user_role() {
