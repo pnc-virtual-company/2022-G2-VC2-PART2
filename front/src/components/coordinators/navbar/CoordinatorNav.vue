@@ -6,39 +6,29 @@
       </div>
 
       <div class="flex justify-center items-center w-full">
-        <router-link
-          class="px-3 py-2 rounded-md text-white text-xl active"
-          to="/coordinator/teacher_list"
-          >All Teachers</router-link
-        >
-        <router-link
-          class="px-3 py-2 rounded-md text-white text-xl active"
-          to="/coordinator/student_list"
-          >All Students</router-link
-        >
-        <router-link
-          class="px-3 py-2 rounded-md text-white text-xl active"
-          to="/coordinator/student_follow_up"
-          >Student Follow Up</router-link
-        >
+        <router-link class="px-3 py-2 rounded-md text-white text-xl active" to="/coordinator/teacher_list">All Teachers
+        </router-link>
+        <router-link class="px-3 py-2 rounded-md text-white text-xl active" to="/coordinator/student_list">All Students
+        </router-link>
+        <router-link class="px-3 py-2 rounded-md text-white text-xl active" to="/coordinator/student_follow_up">Student
+          Follow Up</router-link>
       </div>
 
-     <div v-for="coordinate of coordinator" :key="coordinate" class="flex items-center">
-        <h1 class="w-full font-bold text-white">{{coordinate.first_name}} {{coordinate.last_name}}</h1>
+      <div class="flex items-center">
+        <h1 class="w-full font-bold text-white">{{coordinator.first_name}} {{coordinator.last_name}}</h1>
         <div>
           <img @click="show_profile" class="w-24 h-11 rounded-full cusor-pointer" :src=coordinate.profile alt="">
         </div>
-        <a href="log_out"
-          ><LogoutIcon @click="log_out" class="cusor-pointer ml-3 mr-3"
-        /></a>
+        <a href="log_out">
+          <LogoutIcon @click="log_out" class="cusor-pointer ml-3 mr-3" />
+        </a>
       </div>
     </nav>
 
     <coor-profile v-if="is_show" @close_profile="close_profile">
       <div class="modal-mask">
         <div class="modal-wrapper">
-          <div
-            class="
+          <div class="
               flex
               items-start
               justify-center
@@ -46,31 +36,18 @@
               rounded-t
               header
               bg-blue-400
-            "
-          >
+            ">
             <h2 class="flex justify-center w-full text-white text-xl">
               Profile
             </h2>
-            <svg
-              @click="close_profile"
-              class="h-6 w-6 text-red-500 m-auto mr-3 cursor-pointer"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
+            <svg @click="close_profile" class="h-6 w-6 text-red-500 m-auto mr-3 cursor-pointer" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </div>
 
-          <div
-            class="modal-container p-2 bg-blue-200"
-            v-for="coordinate of coordinator"
-            :key="coordinate"
-          >
+          <div class="modal-container p-2 bg-blue-200">
             <div class="text-center">
               <div>
                 <img
@@ -92,14 +69,13 @@
                   >
                     <path stroke="none" d="M0 0h24v24H0z" />
                     <path
-                      d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2"
-                    />
-                    <circle cx="12" cy="13" r="3" /></svg
-                ></label>
-                <input type="file" id="file" name="image" hidden />
+                      d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" />
+                    <circle cx="12" cy="13" r="3" />
+                  </svg></label>
+                <input type="file" id="file" name="image" hidden @change="add_user_profile"/>
               </div>
               <p class="text-xl font-bold mb-5">
-                {{ coordinate.first_name }} {{ coordinate.last_name }}
+                {{ coordinator.first_name }} {{ coordinator.last_name }}
               </p>
             </div>
 
@@ -121,12 +97,12 @@
               </div>
 
               <div>
-                <p><span class="font-bold"></span>{{ coordinate.gender }}</p>
-                <p v-if="coordinate.role == 1">
+                <p><span class="font-bold"></span>{{ coordinator.gender }}</p>
+                <p v-if="coordinator.role == 1">
                   <span class="font-bold"></span>Coordinator
                 </p>
                 <p class="mb-5">
-                  <span class="font-bold"></span>{{ coordinate.email }}
+                  <span class="font-bold"></span>{{ coordinator.email }}
                 </p>
               </div>
             </div>
@@ -150,8 +126,9 @@ export default {
   data() {
     return {
       is_show: false,
-      id: null,
-      coordinator: [],
+      coordinator: {},
+      studentId:null,
+      studentProfile: "",
     };
   },
   methods: {
@@ -172,7 +149,19 @@ export default {
       axiosClient.get("coordinator/get/1").then((response) => {
         this.coordinator = response.data;
       });
-      console.log(this.coordinator);
+    },
+    async add_user_profile(event) {
+      var id = localStorage.getItem('id');
+      this.studentProfile = event.target.files[0];
+      console.log(this.studentProfile);
+      const body = new FormData();
+      body.append('profile',this.studentProfile)
+      body.append('_method', 'PUT')
+      axiosClient.post("update_img_user/"+id ,body).then((reponse) => {
+        console.log(reponse.data);
+        this.get_coordinator();
+      });
+
     },
   },
 
@@ -184,24 +173,41 @@ export default {
 
 
 <style scoped>
-  nav {
-    background-color: #22bbea;
+nav {
+  background-color: #22bbea;
+}
+
+nav a.router-link-exact-active.active {
+  background-color: #ffad5c;
   }
 
-  nav a.router-link-exact-active.active {
-    background-color: #ffad5c;
-  }
+  .modal-mask {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
 
-  .modal-container,
-  .header {
-    width: auto;
-    width: 30%;
-    height: auto;
-    margin: 0px auto;
-    transition: all 0.3s ease;
-    font-family: Helvetica, Arial, sans-serif;
-    z-index: 10;
-  }
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: top;
+
+}
+.modal-container,
+.header {
+  width: auto;
+  width: 30%;
+  height: auto;
+  margin: 0px auto;
+  transition: all 0.3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+  z-index: 10;
+}
 
   .profile {
     text-decoration: none;

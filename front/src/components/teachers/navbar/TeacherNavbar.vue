@@ -12,10 +12,10 @@
           Up</router-link>
       </div>
 
-      <div v-for="teacher of teachers" :key="teacher"  class="flex items-center">
-        <h1 class="w-full font-bold text-white">{{teacher.users.first_name}} {{teacher.users.last_name}}</h1>
+      <div class="flex items-center">
+        <h1 class="w-full font-bold text-white">{{user.first_name}} {{user.last_name}}</h1>
         <div>
-          <img @click="show_profile()" class="w-24 rounded-full" :src=teacher.users.profile alt="">
+          <img @click="show_profile()" class="w-24 rounded-full" :src=user.profile alt="">
         </div>
         <a href="log_out"
           ><LogoutIcon @click="log_out" class="cusor-pointer ml-3 mr-3"
@@ -54,13 +54,9 @@
             </svg>
           </div>
 
-          <div
-            class="modal-container p-2 bg-blue-200"
-            v-for="teacher of teachers"
-            :key="teacher"
-          >
+          <div class="modal-container p-2 bg-blue-200">
             <div class="text-center">
-              <div>
+              <div class="img ">
                 <img
                   class="m-auto w-24 h-24 rounded-full"
                   :src="teacher.users.profile"
@@ -84,7 +80,7 @@
                     />
                     <circle cx="12" cy="13" r="3" /></svg
                 ></label>
-                <input type="file" id="file" name="image" hidden />
+                <input type="file" id="file" name="image" hidden @change="add_user_profile"/>
               </div>
               <p class="text-xl font-bold mb-5">
                 
@@ -109,13 +105,13 @@
               </div>
 
               <div>
-                <p><span class="font-bold"></span>{{teacher.users.gender}}</p>
-                <p v-if="teacher.users.role == 2">
+                <p><span class="font-bold"></span>{{user.gender}}</p>
+                <p v-if="user.role == 2">
                   <span class="font-bold"></span>Teacher
                 </p>
                 <p class="mb-5">
                   <span class="font-bold"></span>
-                  {{teacher.users.email}}
+                  {{user.email}}
                 </p>
               </div>
             </div>
@@ -139,9 +135,10 @@ export default {
 
   data() {
     return {
-      teachers: [],
-      id: null,
+      user: {},
       is_show: false,
+      studentProfile: "",
+      studentId:null,
     }
   },
 
@@ -159,12 +156,25 @@ export default {
     },
 
     get_teacher() {
-      this.id = localStorage.getItem('id');
-      axiosClient.get("teachers/get/2" + this.id)
+      var id = localStorage.getItem('id');
+      axiosClient.get("teachers/get_teacher_id/" + id)
       .then((response) => {
-        this.teachers = response.data
+        this.user = response.data[0]
       })
-    }
+    },
+    async add_user_profile(event) {
+      var id = localStorage.getItem('id');
+      this.studentProfile = event.target.files[0];
+      console.log(this.studentProfile);
+      const body = new FormData();
+      body.append('profile',this.studentProfile)
+      body.append('_method', 'PUT')
+      axiosClient.post("update_img_user/"+id ,body).then((reponse) => {
+        console.log(reponse.data);
+        this.get_teacher()
+      });
+
+    },
   },
 
   mounted() {

@@ -30,6 +30,7 @@ Route::post('students/create',[StudentController::class, 'create_student']);
 Route::put('students/update/{id}',[StudentController::class, 'update_student']);
 Route::delete('students/delete/{id}',[StudentController::class, 'delete_student']);
 Route::post('students/forgot_password',[StudentController::class, 'forgot_password']);
+Route::put('update_img_user/{id}',[StudentController::class, 'update_user_img']);
 
 Route::post('sendMail',[SendEmailController::class, 'forgot_password']);
 // Route::put('confirmCode/{id}',[SendEmailController::class, 'confirm_code']);
@@ -45,13 +46,12 @@ Route::get('teachers/get_teacher_id/{id}',[TeacherController::class, 'get_id_tea
 Route::post('teachers/create',[TeacherController::class, 'create_teacher']);
 Route::put('teachers/update/{id}',[TeacherController::class, 'update_teacher']);
 Route::delete('teachers/delete/{id}',[TeacherController::class, 'delete_teacher']);
-
 Route::put('teachers/student_status/{id}', [StudentController::class,'update_status']);
 
 
-
+// comment route
 Route::post('comments/add', [CommentController::class,'add_comments']);
 Route::get('comments/get', [CommentController::class,'get_comment_by_id']);
 
 // coordinator Routes
-Route::get('coordinator/get/{id}', [CoordinatorController::class, 'get_coordinator_first']);
+Route::get('coordinators/get/{id}', [CoordinatorController::class, 'get_coordinator_first']);
