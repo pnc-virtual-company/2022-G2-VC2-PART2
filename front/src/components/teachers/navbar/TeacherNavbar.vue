@@ -12,13 +12,11 @@
           Up</router-link>
       </div>
 
-      <div class="flex items-center">
-        <h1 class="w-full font-bold text-white">{{user.first_name}} {{user.last_name}}</h1>
-        <div>
-          <img @click="show_profile()" class="w-24 rounded-full" :src=user.profile alt="">
-        </div>
+      <div class="flex items-center w-[20%]">
+        <h1 class="p-2 w-full font-bold text-white">{{user.first_name}} {{user.last_name}}</h1>
+        <img @click="show_profile" class="h-[50px] w-[50px] rounded-full cursor-pointer" :src=user.profile>
         <a href="log_out"
-          ><LogoutIcon @click="log_out" class="cusor-pointer ml-3 mr-3"
+          ><LogoutIcon @click="log_out" class="cursor-pointer ml-3 mr-3"
         /></a>
       </div>
     </nav>
@@ -41,7 +39,7 @@
             </h2>
             <svg
               @click="close_profile"
-              class="h-6 w-6 text-red-500 m-auto mr-3 cursor-pointer"
+              class="h-6 w-6 text-red-500 m-auto mr-3 cursor-pointer bg-gray-200 p-1 rounded-full"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -58,13 +56,13 @@
             <div class="text-center">
               <div class="img ">
                 <img
-                  class="m-auto w-24 h-24 rounded-full"
-                  :src="teacher.users.profile"
+                  class="m-auto h-[100px] w-[100px] rounded-full border border-gray-500"
+                  :src="user.profile"
                   alt=""
                 />
                 <label for="file"
                   ><svg
-                    class="h-8 w-8 text-gray profile"
+                    class="h-8 w-8 text-gray profile "
                     width="32"
                     height="32"
                     viewBox="0 0 24 24"
@@ -83,7 +81,7 @@
                 <input type="file" id="file" name="image" hidden @change="add_user_profile"/>
               </div>
               <p class="text-xl font-bold mb-5">
-                
+                {{user.first_name}} {{user.last_name}}
               </p>
             </div>
 
@@ -106,7 +104,7 @@
 
               <div>
                 <p><span class="font-bold"></span>{{user.gender}}</p>
-                <p v-if="user.role == 2">
+                <p>
                   <span class="font-bold"></span>Teacher
                 </p>
                 <p class="mb-5">
@@ -137,8 +135,7 @@ export default {
     return {
       user: {},
       is_show: false,
-      studentProfile: "",
-      studentId:null,
+      teacher_profile: "",
     }
   },
 
@@ -164,16 +161,15 @@ export default {
     },
     async add_user_profile(event) {
       var id = localStorage.getItem('id');
-      this.studentProfile = event.target.files[0];
-      console.log(this.studentProfile);
+      this.teacher_profile = event.target.files[0];
+      console.log(this.teacher_profile);
       const body = new FormData();
-      body.append('profile',this.studentProfile)
+      body.append('profile',this.teacher_profile)
       body.append('_method', 'PUT')
-      axiosClient.post("update_img_user/"+id ,body).then((reponse) => {
+      axiosClient.post("update_img_user/"+ id ,body).then((reponse) => {
         console.log(reponse.data);
         this.get_teacher()
       });
-
     },
   },
 
@@ -196,7 +192,7 @@ nav a.router-link-exact-active.active {
 .modal-container,
   .header {
     width: auto;
-    width: 30%;
+    width: 40%;
     height: auto;
     margin: 0px auto;
     transition: all 0.3s ease;
@@ -208,8 +204,8 @@ nav a.router-link-exact-active.active {
     text-decoration: none;
     position: absolute;
     font-size: 1.3rem;
-    margin: -2.5rem 13.5rem;
-    color: gray;
+    margin: -2.2rem 17.8rem;
+    color: rgb(69, 67, 67);
   }
 
 </style>
