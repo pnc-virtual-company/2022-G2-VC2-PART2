@@ -82,9 +82,7 @@
                 ></label>
                 <input type="file" id="file" name="image" hidden @change="add_user_profile"/>
               </div>
-              <p class="text-xl font-bold mb-5">
-                
-              </p>
+              
             </div>
 
             <div class="flex justify-center item-center">
@@ -127,10 +125,11 @@
 import LogoutIcon from '../../coordinators/icons/LogoutIcon.vue'
 import axiosClient from '../../../axios-http'
 import TeacherProfile from '../../profiles/SlotProfile.vue';
+
 export default {
   components: {
     LogoutIcon,
-    'teacher-profile': TeacherProfile
+    'teacher-profile': TeacherProfile,
   },
 
   data() {
