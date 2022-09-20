@@ -54,19 +54,22 @@ class SendEmailController extends Controller
             return response()->json(['success' => false]);
         }
     }
-     // send mail to student
-     public function send_mail(Request $request)
+    // send mail to student
+    public function send_mail(Request $request)
 
-     { 
-         $user = User::where('email', $request->email);
-         if($user) {
-             $data = array('name' => $request->first_name);
-             Mail::send('emails.SendMessage', $data, function ($message) {
-                 $message->from('sfu@passerellesnumeriques.org', "SFU");
-                 $message->to('sopha.rathwep2022@gmail.com')->subject('Message:');
-             });
-     
-             return 'Email sent Successfully';
-         }
+    { 
+        $user = User::where('email', $request->email);
+        if($user) {
+            $email = $request->email;
+            $data = array('first_name' => $request->first_name, 'last_name' => $request->last_name
+        , 'comments'=> $request->comments);
+            Mail::send('emails.SendMessage', $data, function($message) use($email) {
+                $message->from('sfu@passerellesnumeriques.org', "SFU");
+                $message->to($email)->subject('Message: Student FollowUp');
+            });
+            return 'Email sent Successfully';
+        }else {
+        return 'Email sent not found';
+        }
     }
 }

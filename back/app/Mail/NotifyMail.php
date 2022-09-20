@@ -27,6 +27,6 @@ class NotifyMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.SendMail');
+        return $this->view('emails.SendMail');
     }
 }
