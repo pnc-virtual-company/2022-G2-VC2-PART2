@@ -74,4 +74,5 @@ class SendEmailController extends Controller
         return 'Email sent not found';
         }
     }
+
 }
