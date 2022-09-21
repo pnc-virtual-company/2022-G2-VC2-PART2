@@ -19,7 +19,8 @@
     "vue-awesome-paginate": "^1.0.23",
     "vue-date-picker": "^2.5.0",
     "vue-router": "^4.0.3",
-    "vue3-datepicker": "^0.3.4"
+    "vue3-datepicker": "^0.3.4",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

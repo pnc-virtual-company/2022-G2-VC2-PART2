@@ -51,3 +51,5 @@ Route::put('teachers/student_status/{id}', [StudentController::class,'update_sta
 Route::post('comments/add', [CommentController::class,'add_comments']);
 Route::get('comments/get', [CommentController::class,'get_comment_by_id']);
 
+Route::post('import_file', [StudentController::class,'import']);
+
