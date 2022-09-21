@@ -22,9 +22,11 @@
     "vue-cryptojs": "^2.3.0",
     "vue-date-picker": "^2.5.0",
     "vue-router": "^4.0.3",
+    "vue3-datepicker": "^0.3.4",
+    "xlsx": "^0.18.5",
     "vue-weblineindia-image-crop-upload": "^1.0.1",
     "vue3-cookies": "^1.0.6",
-    "vue3-datepicker": "^0.3.4"
+ 
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

@@ -54,21 +54,43 @@ class SendEmailController extends Controller
             return response()->json(['success' => false]);
         }
     }
-    // send mail to student
+    // send mail (comment) to student
     public function send_mail(Request $request)
 
     {
-        $user = User::where('email', $request->email);
+        $user = User::where(['email', 'user_id'], $request->email, $request->user_id);
         if($user) {
-            $data = array('name' => $request->first_name);
-            Mail::send('Emails.SendMessage', $data, function ($message) {
+            $email = $request->email;
+            $id = $request->user_id;
+            $data = array('first_name' => $request->first_name, 'last_name' => $request->last_name
+        , 'comments'=> $request->comments);
+            Mail::send('emails.SendMessage', $data, function($message) use($email, $id) {
                 $message->from('sfu@passerellesnumeriques.org', "SFU");
-                $message->to('sopha.rathwep2022@gmail.com')->subject('Message:');
-            });
 
+                $message->to($email.$id)->cc(['sopha.rathwep2022@gmail.com'])->subject('Message:Student FollowUp');
+            });
             return 'Email sent Successfully';
         }
+    }
 
+
+    // send mail (reason and tutor) to student and teacher.
+    public function mail_tutor(Request $request)
+    {
+        $user = User::where(['email', 'user_id'], $request->email, $request->user_id);
+        if($user) {
+            $email = $request->email;
+            $id = $request->user_id;
+            $data = array('first_name' => $request->first_name, 'last_name' => $request->last_name
+        , 'reason'=> $request->reason, 'name'=> $request->name, 'email'=>$request->email);
+            Mail::send('Emails.SendTutorStudent', $data, function($message) use($email, $id) {
+                $message->from('sfu@passerellesnumeriques.org', "SFU");
+                $message->to($email.$id)->cc(['sopha.rathwep2022@gmail.com'])->subject('Message:Student FollowUp');
+            });
+            return 'Email sent Successfully';
+        }else {
+        return 'Email sent not found';
+        }
     }
 
     // -------- reset password ---------------

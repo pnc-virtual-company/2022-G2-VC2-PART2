@@ -47,9 +47,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // comment route
     Route::post('comments/add', [CommentController::class, 'add_comments']);
     Route::get('comments/get', [CommentController::class, 'get_comment_by_id']);
-
+Route::post('import_file', [StudentController::class,'import']);
     // coordinator Routes
     Route::get('coordinators/get/{id}', [CoordinatorController::class, 'get_coordinator_first']);
+
+// tutor route
+Route::post('sendTutor/email', [SendEmailController::class, 'mail_tutor']);
 });
 // users routes
 Route::post('/user/login', [LoginController::class, 'userLogin']);
