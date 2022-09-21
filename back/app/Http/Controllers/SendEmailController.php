@@ -17,7 +17,7 @@ class SendEmailController extends Controller
             $code = random_int(100000, 999999);
             $user_code = new CodeGenerater();
             $data = array('name' => $request->first_name, 'message' => 'Here is your verification code', 'code' => $code);
-            Mail::send('emails.SendMail', $data, function ($message) use($email) {
+            Mail::send('Emails.SendMail', $data, function ($message) use($email) {
                 $message->from('sfu@passerellesnumeriques.org', "SFU");
                 $message->to($email)->subject('Verification code');
             });
@@ -57,22 +57,31 @@ class SendEmailController extends Controller
     // send mail to student
     public function send_mail(Request $request)
 
-    { 
-        $user = User::where(['email', 'user_id'], $request->email, $request->user_id);
+    {
+        $user = User::where('email', $request->email);
         if($user) {
-            $email = $request->email;
-            $id = $request->user_id;
-            $data = array('first_name' => $request->first_name, 'last_name' => $request->last_name
-        , 'comments'=> $request->comments);
-            Mail::send('emails.SendMessage', $data, function($message) use($email, $id) {
+            $data = array('name' => $request->first_name);
+            Mail::send('Emails.SendMessage', $data, function ($message) {
                 $message->from('sfu@passerellesnumeriques.org', "SFU");
-
-                $message->to($email.$id)->cc(['sopha.rathwep2022@gmail.com'])->subject('Message:Student FollowUp');
+                $message->to('sopha.rathwep2022@gmail.com')->subject('Message:');
             });
+
             return 'Email sent Successfully';
-        }else {
-        return 'Email sent not found';
         }
+
     }
 
+    // -------- reset password ---------------
+    public function reset_password(Request $request,$id) {
+        $user = User::findOrFail($id);
+        if (count($user) > 0) {
+            if (Hash::check($user->password, $request->old_password)) {
+                if ($request->password === $request->pass_confirm){
+                    $user->password = bcrypt($request->password);
+                    $user->save();
+                    return response()->json(['success' => true]);
+                }
+            }
+        }
+    }
 }

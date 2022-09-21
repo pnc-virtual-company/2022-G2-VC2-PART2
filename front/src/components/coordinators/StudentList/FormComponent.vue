@@ -144,7 +144,6 @@ export default {
                     email: this.email,
                     phone: this.phone,
                 }
-                console.log(new_student)
                 this.$emit('isShow', false, new_student, this.isCreated,this.isExist);
             }
         },
