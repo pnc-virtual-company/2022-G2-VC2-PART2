@@ -170,7 +170,7 @@ export default {
       const body = new FormData();
       body.append('profile',this.teacher_profile)
       body.append('_method', 'PUT')
-      axiosClient.post("update_img_user/"+ id ,body).then((reponse) => {
+      axiosClient.post('update_img_user/'+ id ,body).then((reponse) => {
         console.log(reponse.data);
         this.get_teacher()
       });
