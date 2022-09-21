@@ -24,7 +24,7 @@
       <div class="flex">
         <!--search-by-name-->
         <span
-          class="bg-span items-center py-2 px-4 text-gray-900 border-gray-300 rounded-l-lg"
+          class="bg-span items-center py-2 px-4 border-gray-300 rounded-l-lg"
           >Search By Name</span
         >
         <input
@@ -132,7 +132,7 @@ export default {
     },
     async getData() {
       let response = await axiosClient.get(
-        `get_student_follow_up/?page=${this.currentPage}`
+        `get_student_display_follow_up/?page=${this.currentPage}`
       );
       let responseData = response.data;
       this.student_lists = responseData.data;

@@ -6,7 +6,7 @@
     <div class="flex justify-center space-x-5 mt-[2rem] mb-2">
       <div class="flex">
         <span
-          class="bg-span flex justify-center items-center text-center rounded-l-lg py-2 px-4"
+          class="bg-span flex text-white justify-center items-center text-center rounded-l-lg py-2 px-4"
           >Filter By Generation</span
         >
         <!--filter-by-generation-->
@@ -27,7 +27,7 @@
       <div class="flex">
         <!--search-by-name-->
         <span
-          class="bg-span items-center py-2 px-4 text-gray-900 border-gray-300 rounded-l-lg"
+          class="bg-span items-center text-white py-2 px-4 border-gray-300 rounded-l-lg"
           >Search By Name</span
         >
         <input
@@ -39,8 +39,7 @@
       </div>
     </div>
     <!---------------------------------end------------------------------------>
-    <p class="text-2xl ml-[7.3rem] mt-3">Student Lists</p>
-    <table class="bg-white w-[82.6%] m-auto box-border mt-2">
+    <table class="bg-white w-[82.6%] m-auto box-border mt-2 mt-9">
       <thead class="text-white">
         <tr>
           <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>
@@ -85,8 +84,6 @@
         </tr>
       </tbody>
     </table>
-    <!-- <div class="flex justify-center items-center p-5">
-    </div> -->
   </div>
 </template>
 <script>

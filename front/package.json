@@ -10,6 +10,7 @@
   "dependencies": {
     "@vuepic/vue-datepicker": "^3.4.8",
     "core-js": "^3.8.3",
+    "cropperjs": "^1.5.12",
     "oh-vue-icons": "^1.0.0-rc3",
     "postcss": "^8",
     "sweetalert2": "^11.4.32",
@@ -17,10 +18,13 @@
     "tailwindcss": "^3",
     "vue": "^3.2.13",
     "vue-awesome-paginate": "^1.0.23",
+    "vue-cropperjs": "^5.0.0",
     "vue-date-picker": "^2.5.0",
     "vue-router": "^4.0.3",
     "vue3-datepicker": "^0.3.4",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "vue-weblineindia-image-crop-upload": "^1.0.1"
+ 
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -33,7 +37,9 @@
     "axios": "^0.27.2",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "node-sass": "^7.0.3",
     "postcss": "^8.4.16",
+    "sass-loader": "^13.0.2",
     "tailwindcss": "^3.1.8",
     "vue-cli-plugin-tailwind": "~3.0.0"
   },

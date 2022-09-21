@@ -1,44 +1,23 @@
 <template>
-  <div>
-    <nav class="flex pl-4 pr-4 text-center w-full drop-shadow-lg sticky">
+  <div class="relative flex flex-wrap items-center justify-between bg-sky-500">
+    <nav class="flex pl-4 pr-4 text-center w-full justify-between">
       <div class="flex items-center">
         <img src="../../../assets/logo.png" class="w-20" />
       </div>
 
-      <div class="flex justify-center items-center w-full">
-        <router-link
-          class="px-3 py-2 rounded-md text-white text-xl active"
-          to="/coordinator/teacher_list"
-          >All Teachers
-        </router-link>
-        <router-link
-          class="px-3 py-2 rounded-md text-white text-xl active"
-          to="/coordinator/student_list"
-          >All Students
-        </router-link>
-        <router-link
-          class="px-3 py-2 rounded-md text-white text-xl active"
-          to="/coordinator/student_follow_up"
-          >Student Follow Up</router-link
-        >
-      </div>
-
       <div class="flex items-center w-[20%]">
-        <h1 class="p-2 w-full font-bold text-white">
-          {{ coordinator.first_name }} {{ coordinator.last_name }}
-        </h1>
+        <h1 class="p-2 font-bold text-white">{{ student.first_name }} {{ student.last_name }}</h1>
         <img
           @click="show_profile"
           class="h-[50px] w-[50px] rounded-full cursor-pointer"
-          :src="coordinator.profile"
+          :src="student.profile"
         />
-        <a href="log_out">
-          <LogoutIcon @click="log_out" class="cursor-pointer ml-3 mr-3" />
-        </a>
+        <a href="log_out"
+          ><Logout @click="log_out" class="cusor-pointer ml-3 mr-3"
+        /></a>
       </div>
     </nav>
-
-    <coor-profile v-if="is_show" @close_profile="close_profile">
+    <student-profile v-if="is_show" @close_profile="close_profile">
       <div class="modal-mask">
         <div class="modal-wrapper">
           <div
@@ -57,19 +36,7 @@
             </h2>
             <svg
               @click="close_profile"
-              class="
-                h-6
-                w-6
-                text-red-500
-                m-auto
-                mr-3
-                cursor-pointer
-                bg-gray-200
-                p-1
-                rounded-full
-                bg-gray-200 p-1 
-                rounded-full
-              "
+              class="h-6 w-6 text-red-500 m-auto mr-3 cursor-pointer"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -84,15 +51,15 @@
 
           <div class="modal-container p-2 bg-blue-200">
             <div class="text-center">
-              <div>
+              <div class="img">
                 <img
-                  class="m-auto h-[100px] w-[100px] rounded-full border border-gray-500"
-                  :src="coordinator.profile"
+                  class="m-auto h-[100px] w-[100px] rounded-full border border-gray-600"
+                  :src="student.profile"
                   alt=""
                 />
                 <label for="file"
                   ><svg
-                    class="h-8 w-8 text-gray cursor-pointer profile bg-gray-200 p-1 rounded-full"
+                    class="h-8 w-8 text-gray profile cursor-pointer bg-gray-200 p-1 rounded-full"
                     width="32"
                     height="32"
                     viewBox="0 0 24 24"
@@ -108,23 +75,21 @@
                     />
                     <circle cx="12" cy="13" r="3" /></svg
                 ></label>
-                <input
-                  type="file"
-                  id="file"
-                  name="image"
-                  hidden
-                  @change="add_user_profile"
-                />
+                <input type="file" id="file" name="image" hidden @change="add_user_profile" />
               </div>
               <p class="text-xl font-bold mb-5">
-                {{ coordinator.first_name }} {{ coordinator.last_name }}
+                {{ student.first_name }} {{ student.last_name }}
               </p>
             </div>
 
             <div class="flex justify-center item-center">
               <div>
+                <p><span class="font-bold">Major</span></p>
+                <p><span class="font-bold">Generation</span></p>
                 <p><span class="font-bold">Gendar</span></p>
                 <p><span class="font-bold">Role</span></p>
+                <p><span class="font-bold">Date Of Birth</span></p>
+                <p><span class="font-bold">Phone Number</span></p>
                 <p>
                   <span class="font-bold">Email</span>
                 </p>
@@ -133,16 +98,25 @@
               <div class="mr-3 ml-3">
                 <p><span class="font-bold">:</span></p>
                 <p><span class="font-bold">:</span></p>
+                <p><span class="font-bold">:</span></p>
+                <p><span class="font-bold">:</span></p>
+                <p><span class="font-bold">:</span></p>
+                <p><span class="font-bold">:</span></p>
                 <p class="mb-5">
                   <span class="font-bold">:</span>
                 </p>
               </div>
 
               <div>
-                <p><span class="font-bold"></span>{{ coordinator.gender }}</p>
-                <p><span class="font-bold"></span>Coordinator</p>
+                <p><span class="font-bold"></span>{{ student.students.major }}</p>
+                <p><span class="font-bold"></span>{{ student.students.generation }}</p>
+                <p><span class="font-bold"></span>{{ student.gender }}</p>
+                <p><span class="font-bold"></span>Student</p>
+                 <p><span class="font-bold"></span>{{ student.students.date_of_birth }}</p>
+                  <p><span class="font-bold"></span>{{ student.students.phone }}</p>
                 <p class="mb-5">
-                  <span class="font-bold"></span>{{ coordinator.email }}
+                  <span class="font-bold"></span>
+                  {{ student.email }}
                 </p>
               </div>
             </div>
@@ -152,25 +126,25 @@
           </div>
         </div>
       </div>
-    </coor-profile>
-
+    </student-profile>
     <router-view />
   </div>
 </template>
 <script>
-import LogoutIcon from "../icons/LogoutIcon.vue";
-import SlotProfile from "../../profiles/SlotProfile.vue";
+import Logout from "../../coordinators/icons/LogoutIcon.vue";
 import axiosClient from "../../../axios-http";
+import StudentProfile from "../../profiles/SlotProfile.vue";
 export default {
   components: {
-    LogoutIcon,
-    "coor-profile": SlotProfile,
+    Logout,
+    "student-profile": StudentProfile,
   },
+
   data() {
     return {
+      student: {},
       is_show: false,
-      coordinator: {},
-      coordinator_profile: "",
+      student_profile: "",
     };
   },
   methods: {
@@ -186,41 +160,33 @@ export default {
       this.is_show = false;
     },
 
-    get_coordinator() {
-      axiosClient.get("coordinators/get/1").then((response) => {
-        this.coordinator = response.data;
+    get_student() {
+      var id = localStorage.getItem("id");
+      axiosClient.get("students/get/" + id).then((response) => {
+        this.student = response.data[0];
       });
     },
     async add_user_profile(event) {
-      var id = localStorage.getItem("id");
-      this.coordinator_profile = event.target.files[0];
-      console.log(this.coordinator_profile);
+      var id = localStorage.getItem('id');
+      this.student_profile = event.target.files[0];
+      console.log(this.student_profile);
       const body = new FormData();
-      body.append("profile", this.coordinator_profile);
-      body.append("_method", "PUT");
-      axiosClient.post("update_img_user/" + id, body).then((reponse) => {
-        console.log(reponse.data);
-        this.get_coordinator();
+      body.append('profile',this.student_profile)
+      body.append('_method', 'PUT')
+      axiosClient.post("update_img_user/"+ id ,body).then((reponse) => {
+        console.log(reponse.data)
+        this.get_student()
       });
     },
   },
 
   mounted() {
-    this.get_coordinator();
+    this.get_student();
   },
 };
 </script>
 
-
 <style scoped>
-nav {
-  background-color: #22bbea;
-}
-
-nav a.router-link-exact-active.active {
-  background-color: #ffad5c;
-}
-
 .modal-container,
 .header {
   width: auto;

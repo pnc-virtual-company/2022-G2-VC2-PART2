@@ -51,7 +51,7 @@ class StudentController extends Controller
     }
     public function get_student_by_id($id)
     {
-        return Student::where("user_id", $id)->with('users')->get();
+        return User::where("id", $id)->with('students')->get();
     }
 
 
@@ -90,7 +90,7 @@ class StudentController extends Controller
             ]);
         }
     }
-
+    
     public function update_status(Request $request, $id)
     {
         $student = Student::findOrFail($id);
@@ -119,4 +119,24 @@ class StudentController extends Controller
             'message' => 'import successfully'
         ]);
     }
+    // update student image
+    public function update_user_img(Request $request, $id)
+    {
+
+        $user = User::findOrFail($id);
+        $path = public_path('profile');
+        if (!file_exists($path) ) {
+            mkdir($path, 0777, true);
+        }
+        $file = $request->file('profile');
+        if($file!=null){
+            $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
+            $file->move($path, $fileName);
+            $user->profile = asset('profile/' . $fileName);
+            $user->save();
+            return response()->json(["message" => "user update successfully"]);
+        }
+        
+    }
+
 }

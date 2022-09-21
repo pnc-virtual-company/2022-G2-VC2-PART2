@@ -1,6 +1,6 @@
-.card {
-    background: #555555;
-}
-p {
+strong {
+    background: red;
+    height: 12vh;
+    width: 40%;
     color: red;
 }

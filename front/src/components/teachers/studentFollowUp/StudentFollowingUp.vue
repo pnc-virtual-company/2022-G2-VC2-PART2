@@ -26,6 +26,7 @@
           <line x1="12" y1="5" x2="12" y2="19" />
           <line x1="5" y1="12" x2="19" y2="12" />
         </svg>
+
       </div>
     </div>
     <div v-if="showModal">
@@ -60,6 +61,7 @@
                       d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
                     />
                   </svg>
+                  
                 </div>
                 <student-list
                   :students="data"
@@ -89,7 +91,10 @@
       >
       </vue-awesome-paginate>
     </div>
+    <div class="uploadImg">
+    </div>
   </div>
+ 
 </template>
 
 <script>
