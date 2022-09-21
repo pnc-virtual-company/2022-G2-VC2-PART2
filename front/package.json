@@ -8,7 +8,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@vuepic/vue-datepicker": "^3.4.8",
     "core-js": "^3.8.3",
     "cropperjs": "^1.5.12",
     "oh-vue-icons": "^1.0.0-rc3",
@@ -22,10 +21,9 @@
     "vue-cryptojs": "^2.3.0",
     "vue-date-picker": "^2.5.0",
     "vue-router": "^4.0.3",
-    "vue3-datepicker": "^0.3.4",
     "xlsx": "^0.18.5",
     "vue-weblineindia-image-crop-upload": "^1.0.1",
-    "vue3-cookies": "^1.0.6",
+    "vue3-cookies": "^1.0.6"
  
   },
   "devDependencies": {
