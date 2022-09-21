@@ -108,7 +108,6 @@ export default {
     LogoutIcon,
     'teacher-profile': TeacherProfile
   },
-
   data() {
     return {
       user: {},
@@ -145,7 +144,7 @@ export default {
     get_teacher() {
       axiosClient.get("teachers/get_teacher_id/" + this.decrypt_id())
         .then((response) => {
-          this.user = response.data[0]
+          this.user = response.data
         });
     },
     async add_user_profile(event) {
