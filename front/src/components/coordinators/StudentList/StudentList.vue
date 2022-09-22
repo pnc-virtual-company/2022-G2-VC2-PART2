@@ -1,6 +1,5 @@
 <template>
   <div class="student">
-
     <div class="student relative" v-if="is_show_form_tutor == false">
       <!----------------------------------card-detail------------------------------->
       <CardDetail :user_info="user_info" v-if="is_show" @close_detail="close_detail"/>

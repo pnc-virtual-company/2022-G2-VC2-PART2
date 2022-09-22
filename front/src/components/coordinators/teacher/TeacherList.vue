@@ -2,7 +2,7 @@
   <div class="teacher_list">
     <!----------------------------------card-detail------------------------------->
     <CardDetail :user_info="user_info" v-if="is_show" @close_detail="close_detail"/>
-    <div class="w-[82.6%] m-auto">
+    <div class="w-[82.6%] m-auto  mt-[5rem]">
       <!-- created's message -->
       <success-message v-if="isCreated" class="text-green-500 items-center">
         <p><strong>Congratulation!</strong> Teacher was successfully created</p>
@@ -27,7 +27,7 @@
     </div>
     <!---------------------------------table-view-teacher------------------------->
     <create_teacher @add-teacher="create_teacher"></create_teacher>
-    <table class="bg-white w-[82.6%] m-auto box-border mt-4">
+    <table class="bg-white w-[82.6%] m-auto box-border mt-[3.5rem]">
       <thead class="text-white">
         <tr>
           <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>

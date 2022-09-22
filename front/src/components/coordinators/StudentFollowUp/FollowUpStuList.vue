@@ -1,6 +1,6 @@
 <template>
   <div class="student">
-    <table class="bg-white w-[82.6%] m-auto box-border mt-4">
+    <table class="bg-white w-[82.6%] m-auto box-border mt-[5rem]">
       <thead class="text-white">
         <tr>
           <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>
@@ -154,5 +154,4 @@ export default {
 .bg-color {
   background: #22bbea;
 }
-
 </style>
