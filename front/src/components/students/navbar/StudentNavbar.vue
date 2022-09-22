@@ -136,13 +136,13 @@
   import LogoutIcon from '../../coordinators/icons/LogoutIcon.vue';
   import axiosClient from '../../../axios-http'
   import SlotProfile from '../../profiles/SlotProfile.vue';
-  import StudentContent from '../studentView/AllTeachersPlaceComment.vue';
-  import DetailAccount from '../studentView/StudentDetailAccountview.vue'
+  // import StudentContent from '../studentView/AllTeachersPlaceComment.vue';
+  // import DetailAccount from '../studentView/StudentDetailAccountview.vue'
 export default {
   components:{
-    'log-out': Logout,
-    StudentContent,
-    "detail-account":DetailAccountIcon,
+    'log-out': LogoutIcon,
+    // StudentContent,
+    // "detail-account":DetailAccountIcon,
     'student-profile': SlotProfile
   },
 

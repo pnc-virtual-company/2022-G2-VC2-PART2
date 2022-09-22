@@ -102,7 +102,9 @@
                 </p>
               </div>
             </div>
-            
+             <div class="text-center">
+               <button class="bg-blue-400 text-white p-1 rounded " type="submit">Reset Password</button>
+            </div>
           </div>
         </div>
       </div>
