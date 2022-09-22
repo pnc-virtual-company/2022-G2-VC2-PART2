@@ -50,7 +50,7 @@
             </span>
           </td>
         </tr>
-        <div
+        <div 
           v-if="showModal"
           class="
             overflow-x-hidden overflow-y-auto

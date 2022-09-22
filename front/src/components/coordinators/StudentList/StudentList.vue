@@ -94,7 +94,7 @@
               student.users.email
             }}</span>
           </td>
-          <td class="border-b-2 py-1 lg:text-sm text-white">
+          <td class="border-b-2 py-1 lg:text-sm text-white  w-36">
             <span class="flex justify-center space-x-2 icons">
               <icon-detail @click="show_detail(student.id)"/>
               <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
