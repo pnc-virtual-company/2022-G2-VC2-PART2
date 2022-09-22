@@ -54,7 +54,7 @@
           <div class="modal-container p-2 bg-blue-200">
             <div class="text-center">
               <div>
-                <img class="m-auto w-32 h-32 rounded-full w-[100px] h-[100px] border-sky-300" :src="coordinator.profile" alt="" />
+                <img class="border border-gray-500 m-auto w-32 h-32 rounded-full w-[100px] h-[100px]" :src="coordinator.profile" alt="" />
                 <label for="file">
                   <svg class="h-8 w-8 p-1 rounded-full bg-gray-300 text-gray profile" width="32" height="32" viewBox="0 0 24 24"
                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -150,7 +150,7 @@ export default {
       body.append('profile', this.studentProfile)
       body.append('_method', 'PUT')
       axiosClient.post("update_img_user/"+ id, body).then((response) => {
-        console.log(response);
+        console.log(response.data);
         this.get_coordinator();
       });
 
@@ -173,54 +173,22 @@ nav a.router-link-exact-active.active {
   background-color: #ffad5c;
 }
 
-.modal-mask {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
-}
+  .modal-container,
+  .header {
+    width: auto;
+    width: 40%;
+    height: auto;
+    margin: 0px auto;
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+    z-index: 10;
+  }
 
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: center;
-
-}
-
-.modal-container,
-.header {
-  width: auto;
-  width: 40%;
-  height: auto;
-  margin: 0px auto;
-  transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
-  z-index: 10;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
-}
-.navbar {
+  .navbar {
     position:fixed;
     top: 0;
     margin: 0;
     padding: 0;
   }
 
-  .profile{
-      text-decoration: none;
-      position: absolute;
-      font-size: 1.3rem;
-      margin:-2.5rem 18.5rem;
-      color: black;
-  }
 </style>

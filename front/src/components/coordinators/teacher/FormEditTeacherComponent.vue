@@ -193,7 +193,7 @@ export default {
       this.$emit("cancel", false);
     },
     show_teacher_data() {
-      axiosClient.get("teachers/get/" + this.teacher_id).then((response) => {
+      axiosClient.get("" + this.teacher_id).then((response) => {
         let teacher_data = response.data[0];
         console.log(this.teacher_id)
         this.first_name = teacher_data.users.first_name;

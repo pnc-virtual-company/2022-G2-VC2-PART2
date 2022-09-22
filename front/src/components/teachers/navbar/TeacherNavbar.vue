@@ -52,7 +52,7 @@
                 />
                 <label for="file"
                   ><svg
-                    class="h-8 w-8 text-gray profile bg-gray-200 p-1 rounded-full "
+                    class="h-8 w-8 text-gray profile bg-gray-200 p-1 rounded-full bg-gray-300 "
                     width="32"
                     height="32"
                     viewBox="0 0 24 24"
@@ -124,7 +124,7 @@ export default {
     return {
       user: {},
       is_show: false,
-      studentProfile: "",
+      teacher_profile: "",
       studentId: null,
     }
   },
@@ -151,15 +151,14 @@ export default {
         .then((response) => {
           this.user = response.data[0]
           console.log(response.data[0]);
-          console.log(this.decrypt_id());
         });
     },
     async add_user_profile(event) {
       const id = this.$cookies.get('user_id');
-      this.studentProfile = event.target.files[0];
-      console.log(this.studentProfile);
+      this.teacher_profile = event.target.files[0];
+      console.log(this.teacher_profile);
       const body = new FormData();
-      body.append('profile', this.studentProfile)
+      body.append('profile', this.teacher_profile)
       body.append('_method', 'PUT')
       axiosClient.post("update_img_user/" + id, body).then((reponse) => {
         console.log(reponse.data);
@@ -183,28 +182,10 @@ nav a.router-link-exact-active.active {
   background-color: #FFAD5C;
 }
 
-.modal-mask {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
-}
-
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: top;
-
-}
-
 .modal-container,
 .header {
   width: auto;
-  width: 30%;
+  width: 40%;
   height: auto;
   margin: 0px auto;
   transition: all 0.3s ease;
@@ -212,13 +193,6 @@ nav a.router-link-exact-active.active {
   z-index: 10;
 }
 
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
-}
   .navbar {
     position:fixed;
     top: 0;

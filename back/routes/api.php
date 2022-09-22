@@ -31,7 +31,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('students/delete/{id}', [StudentController::class, 'delete_student']);
     Route::post('students/forgot_password', [StudentController::class, 'forgot_password']);
     Route::put('update_img_user/{id}', [StudentController::class, 'update_user_img']);
-
     // send mail to student
     Route::post('send/email', [SendEmailController::class, 'send_mail']);
 

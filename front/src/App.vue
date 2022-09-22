@@ -6,11 +6,12 @@
     <teachernav-nav v-else-if="my_role == 2" />
     <!-- <ForgotPassword/> -->
     <!-- <FormConfirm/> -->
-    <student-Nabar v-else-if="my_role == 3"/>
+    <student-navbar v-else-if="my_role == 3"/>
   </section>
 </template>
 <script>
 import FormLogin from './components/login/FormLogin.vue'
+import NavbarStudent from './components/students/navbar/StudentNavbar.vue'
 import TeacherNav from './components/teachers/navbar/TeacherNavbar.vue'
 import CoordinatorNav from './components/coordinators/navbar/CoordinatorNav.vue'
 import CryptoJS from 'crypto-js';
@@ -22,11 +23,13 @@ export default {
       role: '',
     }
   },
+
   components: {
     "login-form": FormLogin,
     "teachernav-nav": TeacherNav,
     "coordinator-nav": CoordinatorNav,
     // FormUpdatePassword,
+    "student-navbar": NavbarStudent,
   },
   methods: {
     decrypt_token() {
