@@ -3,7 +3,7 @@
     <div class="body-tutor">
       <div class="text-show">Tutor</div>
       <div class="account-user">
-        <img id="user-images" src="../../../assets/1s.png">
+        <img id="user-images" src="../../../assets/logo.png">
         <div class="name-user">Kea Nhor</div>
       </div>
     </div>

@@ -131,19 +131,18 @@
     </student-profile>
     <router-view></router-view>
   </div>
+  <student-CommentPlace/>
 </template>
 <script>
   import LogoutIcon from '../../coordinators/icons/LogoutIcon.vue';
   import axiosClient from '../../../axios-http'
-  import SlotProfile from '../../profiles/SlotProfile.vue';
-  // import StudentContent from '../studentView/AllTeachersPlaceComment.vue';
-  // import DetailAccount from '../studentView/StudentDetailAccountview.vue'
+  import SlotProfile from '../../profiles/SlotProfile.vue'
+  import teacherCommentTeacher from '../studentView/AllTeachersPlaceComment.vue'
 export default {
   components:{
     'log-out': LogoutIcon,
-    // StudentContent,
-    // "detail-account":DetailAccountIcon,
-    'student-profile': SlotProfile
+    'student-profile': SlotProfile,
+    "student-CommentPlace":teacherCommentTeacher
   },
 
   data(){
