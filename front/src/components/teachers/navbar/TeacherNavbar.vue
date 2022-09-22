@@ -144,7 +144,9 @@ export default {
     get_teacher() {
       axiosClient.get("teachers/get_teacher_id/" + this.decrypt_id())
         .then((response) => {
-          this.user = response.data
+          this.user = response.data[0]
+          console.log(response.data[0]);
+          console.log(this.decrypt_id());
         });
     },
     async add_user_profile(event) {

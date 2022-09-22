@@ -35,7 +35,7 @@ class TeacherController extends Controller
     // find teacher by id
     public function get_teacher_by_id($id)
     {
-        return Teacher::where("id", $id)->with('users')->get();
+        return Teacher::where("user_id", $id)->get();
     }
     public function delete_teacher($id)
     {

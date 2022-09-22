@@ -113,7 +113,6 @@ export default {
                 password: this.password
             }
             axiosClient.post('user/login', user_login).then((response) => {
-                console.log(response.data);
                 const user = useUserStore();
                 // ----------------- encrypt user token --------------------------------
                 const encryptedToken = this.$CryptoJS.AES.encrypt(response.data.token, "user_token").toString();
@@ -124,7 +123,7 @@ export default {
                 const encryptedRole = this.$CryptoJS.AES.encrypt(response.data.user.role, "user_role").toString();
                 this.$cookies.set('role', encryptedRole);
                 // ----------------- encrypt user id --------------------------------
-                const encryptedId = this.$CryptoJS.AES.encrypt(response.data.user.role, "user_id").toString();
+                const encryptedId = this.$CryptoJS.AES.encrypt(response.data.user.id, "user_id").toString();
                 this.$cookies.set('id', encryptedId);
 
                 if (response.data.user.role == '1') {
