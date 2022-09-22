@@ -5,20 +5,26 @@
         <img src="../../../assets/logo.png" class="w-20">
       </div>
       
-      <div  class="flex items-center text-white">
-        <img src="../../../assets/Narong.png" class="w-10 py-2 mr-3">
+      <div id="none" class="flex items-center text-white">
+        <img v-on:click="toggleModal()" src="../../../assets/Narong.png" class="w-10 py-2 mr-3">
+        <detail-account class="details"/>
         <a href="log_out"
           ><Logout @click="log_out" class="cusor-pointer ml-3 mr-3"
         /></a>
       </div>
     </nav>
   </nav>
+  <StudentContent/>
 </template>
 <script>
   import Logout from '../../coordinators/icons/LogoutIcon.vue';
+  import StudentContent from '../studentView/AllTeachersPlaceComment.vue';
+  import DetailAccount from '../studentView/StudentDetailAccountview.vue'
 export default {
   components:{
-    Logout
+    Logout,
+    StudentContent,
+    "detail-account":DetailAccount
 
   },
 
@@ -35,5 +41,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+  .details{
+    display: flex;
+    position: absolute;
+    padding: 8px 8px;
+    margin: 4px 3px;
+    border-radius: 10px;
+  }
+
 </style>
