@@ -18,13 +18,15 @@
             alt=""
           />
         </label>
-        <add-student-button
-          type="button"
-          class="btn-add text-white text-sm px-3 py-1 mt-3 font-bold rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-          v-on:click="toggleModal()"
-        >
-          Create Student
-        </add-student-button>
+        <div class="w-full flex justify-end">
+          <add-student-button
+            type="button"
+            class="mt-[5rem] fixed btn-add bg-sky-400 text-white text-sm px-3 py-1 mt-3 font-bold rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            v-on:click="toggleModal()"
+          >
+            Create Student
+          </add-student-button>
+        </div>
       </div>
       <div
         v-if="showModal"
@@ -89,9 +91,7 @@ export default {
 </script>
 
 <style scoped>
-.btn-add {
-  background: #22bbea;
-}
+
 .header {
   background: #22bbea;
   border-top-left-radius: 5px;

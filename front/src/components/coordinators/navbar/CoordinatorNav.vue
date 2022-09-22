@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="flex pl-4 pr-4 text-center w-full drop-shadow-lg sticky">
+    <nav class="flex navbar z-10 pl-4 pr-4 text-center w-full drop-shadow-lg">
       <div class="flex items-center">
         <img src="../../../assets/logo.png" class="w-20" />
       </div>
@@ -24,7 +24,7 @@
       </div>
 
       <div class="flex items-center w-[20%]">
-        <h1 class="p-2 w-full font-bold text-white">
+        <h1 class="p-2 font-bold text-white">
           {{ coordinator.first_name }} {{ coordinator.last_name }}
         </h1>
         <img
@@ -239,4 +239,10 @@ nav a.router-link-exact-active.active {
   margin: -2.2rem 17.8rem;
   color: rgb(69, 67, 67);
 }
+.navbar {
+    position:fixed;
+    top: 0;
+    margin: 0;
+    padding: 0;
+  }
 </style>

@@ -201,4 +201,5 @@ export default {
 .bg-follow-up{
     background: rgba(237, 212, 86, 0.743);
 }
+
 </style>

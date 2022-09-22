@@ -4,7 +4,7 @@
       <div class="flex items-center">
         <img src="../../../assets/logo.png" class="w-20" />
       </div>
-
+      
       <div class="flex items-center w-[20%]">
         <h1 class="p-2 font-bold text-white">{{ student.first_name }} {{ student.last_name }}</h1>
         <img
@@ -36,7 +36,7 @@
             </h2>
             <svg
               @click="close_profile"
-              class="h-6 w-6 text-red-500 m-auto mr-3 cursor-pointer"
+              class="h-6 w-6 text-red-500 m-auto mr-3 cursor-pointer bg-gray-200 p-1 rounded-full"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

@@ -8,7 +8,7 @@
         ></filter-table>
       </div>
       <div
-        class="bg-sky-300 w-12 h-12 rounded-full hover:bg-light_blue flex justify-center items-center cursor-pointer m-auto w-10/12 box-border mt-8"
+        class="bg-sky-400 mt-[5rem] w-12 h-12 rounded-full hover:bg-sky-300 flex justify-center items-center cursor-pointer m-auto w-10/12 box-border mt-8"
         @click="showModal = true"
       >
         <svg
@@ -21,6 +21,7 @@
           fill="none"
           stroke-linecap="round"
           stroke-linejoin="round"
+         
         >
           <path stroke="none" d="M0 0h24v24H0z" />
           <line x1="12" y1="5" x2="12" y2="19" />

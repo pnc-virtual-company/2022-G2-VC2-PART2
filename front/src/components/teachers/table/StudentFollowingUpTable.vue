@@ -32,7 +32,8 @@
           <tr>
             <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>
             <th class="lg:text-md text-md lg:p-3 bg-color">Full Name</th>
-            <th class="lg:text-md text-md lg:p-3 bg-color">Email</th>
+            <th class="lg:text-md text-md lg:p-3 bg-color">Class</th>
+            <th class="lg:text-md text-md lg:p-3 bg-color">Major</th>
             <th class="lg:text-md text-md lg:p-3 bg-color">Generation</th>
             <th class="lg:text-md text-md lg:p-3 bg-color">Actions</th>
           </tr>
@@ -53,11 +54,18 @@
                 >{{ student.users.first_name }} {{ student.users.last_name }}</span
               >
             </td>
+            
             <td class="border-b-2 py-1 lg:text-sm">
               <span class="flex justify-center text-sm">{{
-                student.users.email
+                student.class
               }}</span>
             </td>
+            <td class="border-b-2 py-1 lg:text-sm">
+              <span class="flex justify-center text-sm">{{
+                student.major
+              }}</span>
+            </td>
+
             <td class="border-b-2 py-1 lg:text-sm">
               <span class="flex justify-center text-sm">{{
                 student.generation

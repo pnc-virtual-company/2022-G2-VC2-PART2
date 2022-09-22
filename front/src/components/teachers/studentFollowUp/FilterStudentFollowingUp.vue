@@ -1,5 +1,5 @@
 <template>
-    <div class="filter-view flex">
+    <div class="filter-view flex mt-[3.3rem]">
       <div class="mb-4 px-2 w-full">
         <div class="flex w-full">
           <div

@@ -26,7 +26,7 @@
       </error-message>
     </div>
     <create-student @add-student="create_student" @isShow="onChange"></create-student>
-    <table class="bg-white w-[82.6%] m-auto box-border mt-4">
+    <table class="bg-white mt-[5rem] w-[82.6%] m-auto box-border mt-4">
       <thead class="text-white">
         <tr>
           <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>
@@ -61,7 +61,7 @@
               student.users.email
             }}</span>
           </td>
-          <td class="border-b-2 py-1 lg:text-sm text-white">
+          <td class="border-b-2 py-1 w-36 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
               <icon-detail @click="show_detail(student.id)"/>
               <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
