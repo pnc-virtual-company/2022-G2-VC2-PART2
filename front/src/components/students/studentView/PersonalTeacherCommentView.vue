@@ -19,10 +19,10 @@ export default {
 
 <style scoped>
   .card-comment{
-    width: 920px;
+    width: 755px;
   }
   .card-body{
-    background: #BBD7E0;
+    background: #d4cfa9;
     border-radius: 5px;
   }
   .card-body{
@@ -49,7 +49,6 @@ export default {
     text-align: center;
     justify-content: flex-start;
     align-items: center;
-    font-size: 20px;
     width: 800px;
     margin: 5px 5px;
   }

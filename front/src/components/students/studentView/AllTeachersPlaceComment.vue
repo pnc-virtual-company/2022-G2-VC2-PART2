@@ -3,6 +3,7 @@
     <div class="comments">
       <div class="text-show">Teacher's Comments</div>
       <div class="container-comment overflow-y-scroll">
+
         <div class="card-display">
           <div class="body-comment" @click="PersonalTeacherComents()">
             <div class="account">
@@ -27,6 +28,32 @@
           </div>
           <comment-teacher-personal v-show="teacherComents" />
         </div>
+        
+        <div class="card-display">
+          <div class="body-comment" @click="PersonalTeacherComents()">
+            <div class="account">
+              <img id="imageround" src="../../../assets/cut.png" />
+              <div class="m-3">
+                <p class="names">Narong Nhor</p>
+                <p>Web,02-20-2022</p>
+              </div>
+              <div class="num-comments">5 Comments</div>
+              <div class="bells">
+                <svg
+                  class="h-10 w-10 text-sky-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                <h1 class="numbs z-20">12</h1>
+              </div>
+            </div>
+          </div>
+          <comment-teacher-personal v-show="teacherComents" />
+        </div>
+
       </div>
     </div>
     <student-contain class="tutors" />
@@ -60,18 +87,18 @@ export default {
   justify-content: space-between;
 }
 .tutors {
-  margin: 10px 10px;
-  width: 940px;
+  margin: 5px 5px;
+  width: 760px;
 }
 
 .comments {
-  margin: 10px 10px;
-  width: 950px;
+  margin: 5px 5px;
+  width: 760px;
   background: rgb(188, 221, 224);
 }
 
 .body-comment {
-  width: 920px;
+  width: 755px;
   margin: 10px auto 10px;
   justify-content: center;
   align-items: center;
@@ -87,8 +114,7 @@ export default {
 .text-show {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
-  font-size: 30px;
-  height: 8vh;
+  font-size: 28px;
   display: flex;
   text-align: center;
   align-items: center;
@@ -96,10 +122,10 @@ export default {
   font-weight: bold;
   background: #22bbea;
   color: white;
-  padding: 5px 5px;
+  padding: 3px 3px;
 }
 .card-display {
-  width: 920px;
+  width: 755px;
   border-radius: 5px;
   /* display: flex; */
   justify-content: flex-start;
@@ -111,8 +137,8 @@ export default {
   display: flex;
 }
 #imageround {
-  width: 65px;
-  height: 7vh;
+  width: 60px;
+  height: 8vh;
   margin: 10px 11px;
   border-radius: 100px;
 }

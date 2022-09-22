@@ -11,117 +11,63 @@
 
     
       <!-- ------Contain comment -->
-      <div class="card-tutors ">
+      <div class="card-tutors">
         <div class="coorComment">
+          <div class="card-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore nam, saepe eos harum commodi deleniti hic odit magnam aperiam.</div>
           <div class="date-time">
             <div class="year">03-03-2022</div>
             <div class="times">12:00 <small>AM</small></div>
           </div>
-
-          <div class="card-comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium consectetur delectus dolorum architecto nostrum, consequuntur perspiciatis eligendi possimus facere!</div>
         </div>
       </div>
 
       <div class="card-tutors">
         <div class="coorComment">
+          <div class="card-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore nam, saepe eos harum commodi deleniti hic odit magnam aperiam.</div>
           <div class="date-time">
             <div class="year">03-03-2022</div>
             <div class="times">12:00 <small>AM</small></div>
           </div>
-
-          <div class="card-comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium consectetur delectus dolorum architecto nostrum, consequuntur perspiciatis eligendi possimus facere!</div>
         </div>
       </div>
+
       <div class="card-tutors">
         <div class="coorComment">
+          <div class="card-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore nam, saepe eos harum commodi deleniti hic odit magnam aperiam.</div>
           <div class="date-time">
             <div class="year">03-03-2022</div>
             <div class="times">12:00 <small>AM</small></div>
           </div>
-
-          <div class="card-comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium consectetur delectus dolorum architecto nostrum, consequuntur perspiciatis eligendi possimus facere!</div>
         </div>
       </div>
+
       <div class="card-tutors">
         <div class="coorComment">
+          <div class="card-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore nam, saepe eos harum commodi deleniti hic odit magnam aperiam.</div>
           <div class="date-time">
             <div class="year">03-03-2022</div>
             <div class="times">12:00 <small>AM</small></div>
           </div>
-
-          <div class="card-comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium consectetur delectus dolorum architecto nostrum, consequuntur perspiciatis eligendi possimus facere!</div>
         </div>
       </div>
+      
       <div class="card-tutors">
         <div class="coorComment">
+          <div class="card-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore nam, saepe eos harum commodi deleniti hic odit magnam aperiam.</div>
           <div class="date-time">
             <div class="year">03-03-2022</div>
             <div class="times">12:00 <small>AM</small></div>
           </div>
-
-          <div class="card-comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium consectetur delectus dolorum architecto nostrum, consequuntur perspiciatis eligendi possimus facere!</div>
         </div>
       </div>
-      <div class="card-tutors">
-        <div class="coorComment">
-          <div class="date-time">
-            <div class="year">03-03-2022</div>
-            <div class="times">12:00 <small>AM</small></div>
-          </div>
 
-          <div class="card-comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium consectetur delectus dolorum architecto nostrum, consequuntur perspiciatis eligendi possimus facere!</div>
-        </div>
-      </div>
-      <div class="card-tutors">
-        <div class="coorComment">
-          <div class="date-time">
-            <div class="year">03-03-2022</div>
-            <div class="times">12:00 <small>AM</small></div>
-          </div>
+      
 
-          <div class="card-comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium consectetur delectus dolorum architecto nostrum, consequuntur perspiciatis eligendi possimus facere!</div>
-        </div>
-      </div>
-      <div class="card-tutors">
-        <div class="coorComment">
-          <div class="date-time">
-            <div class="year">03-03-2022</div>
-            <div class="times">12:00 <small>AM</small></div>
-          </div>
+      
 
-          <div class="card-comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium consectetur delectus dolorum architecto nostrum, consequuntur perspiciatis eligendi possimus facere!</div>
-        </div>
-      </div>
-      <div class="card-tutors">
-        <div class="coorComment">
-          <div class="date-time">
-            <div class="year">03-03-2022</div>
-            <div class="times">12:00 <small>AM</small></div>
-          </div>
-
-          <div class="card-comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium consectetur delectus dolorum architecto nostrum, consequuntur perspiciatis eligendi possimus facere!</div>
-        </div>
-      </div>
-      <div class="card-tutors">
-        <div class="coorComment">
-          <div class="date-time">
-            <div class="year">03-03-2022</div>
-            <div class="times">12:00 <small>AM</small></div>
-          </div>
-
-          <div class="card-comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium consectetur delectus dolorum architecto nostrum, consequuntur perspiciatis eligendi possimus facere!</div>
-        </div>
-      </div>
-      <div class="card-tutors">
-        <div class="coorComment">
-          <div class="date-time">
-            <div class="year">03-03-2022</div>
-            <div class="times">12:00 <small>AM</small></div>
-          </div>
-
-          <div class="card-comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium consectetur delectus dolorum architecto nostrum, consequuntur perspiciatis eligendi possimus facere!</div>
-        </div>
-      </div>
+      
+      
+    
 
     </div>
 
@@ -149,7 +95,7 @@ export default {
     border-top-left-radius: 5px;
   }
   .text-show{
-    font-size: 30px;
+    font-size: 28px;
     margin: 3px auto 3px;
     display: flex;
     font-weight: bold;
@@ -164,7 +110,7 @@ export default {
   }
 
   .account-user{
-    width: 230px;
+    width: 170px;
     border-top-left-radius: 50px;
    border-bottom-left-radius: 50px;
    border-top-right-radius: 5px;
@@ -174,9 +120,9 @@ export default {
 
 
   #user-images{
-    width: 63px;
-    height: 7vh;
-    margin: 4px 3px;
+    width: 47px;
+    height: 6vh;
+    margin: 2px 3px;
     border-radius: 50px;
   }
   .name-user{
@@ -186,7 +132,7 @@ export default {
     justify-content: center;
     margin: auto;
     color: white;
-    font-size: 22px;
+    font-size: 17px;
     font-weight: bold;
   }
 
@@ -199,24 +145,24 @@ export default {
     background: #FFFFFF;
     border-left: solid 10px #4A90F8;
   }
-  /* .card-tutors:hover{
-    background: #e9e9e9;
-    cursor: pointer;
-
-  } */
-  .date-time{
+  .coorComment{
     display: flex;
-    width: 170px;
-    margin-left: 700px;
-    font-weight: bold;
+  }
+
+  .date-time{
+    width: 100px;
+    text-align: center;
+    font-weight: 450;
+    font-size: 15px;
+    /* margin-left: 500px; */
     justify-content: flex-end;
   }
   .card-comment{
     display: flex;
+    width: 620px;
     text-align: center;
     justify-content: center;
     margin: auto;
-    font-size: 20px;
   }
 
 </style>
