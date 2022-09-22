@@ -6,6 +6,8 @@ use App\Models\Student;
 use App\Models\User;
 use Mail;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\UsersImport;
 
 
 class StudentController extends Controller
@@ -127,6 +129,13 @@ class StudentController extends Controller
         return Student::with('users')->paginate(5);
     }
 
+    public function import(Request $request){
+        echo $request->file;
+        Excel::import(new UsersImport, $request->file('file')->store('files'));
+        return response()->json([
+            'message' => 'import successfully'
+        ]);
+    }
     // update student image
     public function update_user_img(Request $request, $id)
     {

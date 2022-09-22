@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\SendEmailController;
-use Illuminate\Contracts\Mail\Mailer;
-use Illuminate\Mail\Mailer as MailMailer;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});

@@ -58,7 +58,7 @@
                       d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" />
                     <circle cx="12" cy="13" r="3" />
                   </svg></label>
-                <input type="file" id="file" name="image" hidden @change="add_user_profile"/>
+                <input type="file" id="file" name="image" hidden @change="add_user_profile" />
               </div>
               <p class="text-xl font-bold mb-5">
                 {{ coordinator.first_name }} {{ coordinator.last_name }}
@@ -96,8 +96,7 @@
         </div>
       </div>
     </coor-profile>
-
-    <router-view />
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -113,13 +112,16 @@ export default {
     return {
       is_show: false,
       coordinator: {},
-      studentId:null,
+      studentId: null,
       studentProfile: "",
     };
   },
   methods: {
     log_out() {
-      localStorage.clear();
+      this.$cookies.remove('token');
+      this.$cookies.remove('role');
+      this.$cookies.remove('id');
+      this.$emit('logout', '0');
     },
 
     show_profile() {
@@ -131,19 +133,19 @@ export default {
     },
 
     get_coordinator() {
-      var id = localStorage.getItem('id');
-      axiosClient.get("coordinators/get/" + id).then((response) => {
+      axiosClient.get("coordinators/get/1").then((response) => {
         this.coordinator = response.data;
       });
     },
     async add_user_profile(event) {
-      var id = localStorage.getItem('id');
+      var id = this.decrypt_id();
+      console.log(id);
       this.studentProfile = event.target.files[0];
       console.log(this.studentProfile);
       const body = new FormData();
-      body.append('profile',this.studentProfile)
+      body.append('profile', this.studentProfile)
       body.append('_method', 'PUT')
-      axiosClient.post("update_img_user/"+id ,body).then((reponse) => {
+      axiosClient.post("update_img_user/" + id, body).then((reponse) => {
         console.log(reponse.data);
         this.get_coordinator();
       });
@@ -202,24 +204,5 @@ nav a.router-link-exact-active.active {
 
 .modal-default-button {
   float: right;
-}
-
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-active .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.profile {
-  text-decoration: none;
-  position: absolute;
-  font-size: 1.3rem;
-  margin: -2.5rem 14rem;
-  color: gray;
 }
 </style>

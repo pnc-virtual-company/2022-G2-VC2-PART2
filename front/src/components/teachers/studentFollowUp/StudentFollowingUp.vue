@@ -99,7 +99,7 @@
 import FormView from "../../coordinators/teacher/FormCreateTeacherComponent.vue";
 import StudentFollowingTable from "../table/StudentFollowingUpTable.vue";
 import axiosClient from "../../../axios-http";
-import StudentFollowList from ".././../teachers/studentList/StudentView.vue";
+import StudentFollowList from "../studentList/StudentView.vue";
 import filterStudent from "./FilterStudentFollowingUp.vue";
 export default {
   components: {
