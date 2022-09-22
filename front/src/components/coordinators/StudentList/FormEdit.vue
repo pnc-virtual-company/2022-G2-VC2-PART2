@@ -133,15 +133,15 @@ export default {
     show_student_data() {
       axiosClient.get("students/get/" + this.id_user).then((response) => {
         let student_data = response.data[0];
-        this.phone = student_data.students.phone;
-        this.generation = student_data.students.generation;
-        this.first_name = student_data.first_name;
-        this.last_name = student_data.last_name;
-        this.email = student_data.email;
-        this.gender = student_data.gender;
-        this.major=student_data.students.major;
-        this.student_class=student_data.students.class;
-        this.date_of_birth=student_data.students.date_of_birth;
+        this.phone = student_data.phone;
+        this.generation = student_data.generation;
+        this.first_name = student_data.users.first_name;
+        this.last_name = student_data.users.last_name;
+        this.email = student_data.users.email;
+        this.gender = student_data.users.gender;
+        this.major=student_data.major;
+        this.student_class=student_data.class;
+        this.date_of_birth=student_data.date_of_birth;
       });
     },
     onCancel() {

@@ -51,7 +51,7 @@ class StudentController extends Controller
     }
     public function get_student_by_id($id)
     {
-        return User::where("id", $id)->with('students')->get();
+        return Student::where("user_id", $id)->with('users')->get();
     }
 
 
@@ -90,7 +90,7 @@ class StudentController extends Controller
             ]);
         }
     }
-    
+
     public function update_status(Request $request, $id)
     {
         $student = Student::findOrFail($id);

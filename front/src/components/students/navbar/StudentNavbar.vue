@@ -1,8 +1,8 @@
 <template>
-  <div class="relative flex flex-wrap items-center justify-between bg-sky-500">
-    <nav class="flex pl-4 pr-4 text-center w-full justify-between">
+  <nav class="relative flex flex-wrap items-center justify-between bg-sky-500">
+      <nav class="flex pl-4 pr-4 text-center w-full justify-between">
       <div class="flex items-center">
-        <img src="../../../assets/logo.png" class="w-20" />
+        <img src="../../../assets/logo.png" class="w-20">
       </div>
       
       <div class="flex items-center w-[20%]">
@@ -131,78 +131,25 @@
   </div>
 </template>
 <script>
-import Logout from "../../coordinators/icons/LogoutIcon.vue";
-import axiosClient from "../../../axios-http";
-import StudentProfile from "../../profiles/SlotProfile.vue";
+  import Logout from '../../coordinators/icons/LogoutIcon.vue';
 export default {
-  components: {
-    Logout,
-    "student-profile": StudentProfile,
+  components:{
+    Logout
+
   },
 
-  data() {
-    return {
-      student: {},
-      is_show: false,
-      student_profile: "",
-    };
+  data(){
+    return{
+
+    }
   },
-  methods: {
-    log_out() {
+  methods:{
+    log_out(){
       localStorage.clear();
-    },
-
-    show_profile() {
-      this.is_show = true;
-    },
-
-    close_profile() {
-      this.is_show = false;
-    },
-
-    get_student() {
-      var id = localStorage.getItem("id");
-      axiosClient.get("students/get/" + id).then((response) => {
-        this.student = response.data[0];
-      });
-    },
-    async add_user_profile(event) {
-      var id = localStorage.getItem('id');
-      this.student_profile = event.target.files[0];
-      console.log(this.student_profile);
-      const body = new FormData();
-      body.append('profile',this.student_profile)
-      body.append('_method', 'PUT')
-      axiosClient.post("update_img_user/"+ id ,body).then((reponse) => {
-        console.log(reponse.data)
-        this.get_student()
-      });
-    },
-  },
-
-  mounted() {
-    this.get_student();
-  },
+    }
+  }
 };
 </script>
 
-<style scoped>
-.modal-container,
-.header {
-  width: auto;
-  width: 40%;
-  height: auto;
-  margin: 0px auto;
-  transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
-  z-index: 10;
-}
-
-.profile {
-  text-decoration: none;
-  position: absolute;
-  font-size: 1.3rem;
-  margin: -2.2rem 17.8rem;
-  color: rgb(69, 67, 67);
-}
+<style>
 </style>

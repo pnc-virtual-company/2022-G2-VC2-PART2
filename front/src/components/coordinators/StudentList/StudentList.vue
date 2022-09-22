@@ -37,10 +37,11 @@
           <th class="lg:text-md text-md lg:p-3 bg-color">Actions</th>
         </tr>
       </thead>
+  
       <tbody v-for="student of student_lists" :key="student">
         <tr 
-        class="cursor-pointer show hover:bg-gray-200"
-        :class="{'border-follow-up': student.status == true}">
+        v-if="student.status == true" :style="{backgroundColor:'#eecdad'}"
+        class="cursor-pointer show hover:bg-gray-200">
           <td class="border-b-2 py-1 lg:text-sm">
             <span class="flex justify-center"><img :src="student.users.profile" class="w-10 h-10 rounded-full" /></span>
           </td>
@@ -65,7 +66,39 @@
             <span class="flex justify-center space-x-2 icons">
               <icon-detail @click="show_detail(student.id)"/>
               <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
-              <icon-move :class="{'hidden-icon':student.status==true}" @click="move_follow(student.id,student.status)"></icon-move>
+              <icon-delete @click="deleteStudent(student.users.id)" />
+            </span>
+          </td>
+        </tr>
+
+        <tr 
+        v-if="student.status == false" :style="{backgroundColor:'#ffffff'}"
+        class="cursor-pointer show hover:bg-gray-200">
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center"><img :src="student.users.profile" class="w-10 h-10 rounded-full" /></span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{ student.users.first_name }}
+              {{ student.users.last_name }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{
+            student.users.gender
+            }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{ student.generation }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm">
+            <span class="flex justify-center text-sm">{{
+              student.users.email
+            }}</span>
+          </td>
+          <td class="border-b-2 py-1 lg:text-sm text-white">
+            <span class="flex justify-center space-x-2 icons">
+              <icon-detail @click="show_detail(student.id)"/>
+              <icon-edit v-on:click="get_student_id(student.user_id,student.id)" @click="toggleModal" />
+              <icon-move @click="move_follow(student.id,student.status)"/>
               <icon-delete @click="deleteStudent(student.users.id)" />
             </span>
           </td>
@@ -277,11 +310,4 @@ export default {
   background: #22bbea;
 }
 
-.border-follow-up {
-  background-color: hsla(41, 82%, 85%, 0.936);
-}
-
-.hidden-icon {
-  display: none;
-}
 </style>

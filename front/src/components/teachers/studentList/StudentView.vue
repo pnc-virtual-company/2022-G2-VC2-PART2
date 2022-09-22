@@ -132,7 +132,7 @@ export default {
     },
     async getData() {
       let response = await axiosClient.get(
-        `get_student_display_follow_up/?page=${this.currentPage}`
+        `get_student_follow_up/?page=${this.currentPage}`
       );
       let responseData = response.data;
       this.student_lists = responseData.data;

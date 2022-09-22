@@ -48,7 +48,6 @@ components: { FormVerify },
               email: this.email
           })
           this.email = "";
-          console.log(response);
           sessionStorage.setItem('user_id', response.data.user_id);
           sessionStorage.setItem('code_id', response.data.code_id);
       }
