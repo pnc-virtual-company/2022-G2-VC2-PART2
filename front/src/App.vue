@@ -6,7 +6,7 @@
     <teachernav-nav v-else-if="my_role == 2" />
     <!-- <ForgotPassword/> -->
     <!-- <FormConfirm/> -->
-    <!-- <student-Nabar/> -->
+    <student-Nabar v-else-if="my_role == 3"/>
   </section>
 </template>
 <script>

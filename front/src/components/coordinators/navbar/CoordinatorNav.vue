@@ -24,7 +24,7 @@
           :src="coordinator.profile"
         />
         <a href="log_out">
-          <LogoutIcon @click="log_out" class="cusor-pointer ml-3 mr-3" />
+          <LogoutIcon @click="log_out" class="cursor-pointer ml-3 mr-3" />
         </a>
       </div>
     </nav>
@@ -54,8 +54,9 @@
           <div class="modal-container p-2 bg-blue-200">
             <div class="text-center">
               <div>
-                <img class="m-auto w-32 h-32 rounded-full" :src="coordinator.profile" alt="" />
-                <label for="file"><svg class="h-8 w-8 text-gray profile" width="32" height="32" viewBox="0 0 24 24"
+                <img class="m-auto w-32 h-32 rounded-full w-[100px] h-[100px] border-sky-300" :src="coordinator.profile" alt="" />
+                <label for="file">
+                  <svg class="h-8 w-8 p-1 rounded-full bg-gray-300 text-gray profile" width="32" height="32" viewBox="0 0 24 24"
                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" />
                     <path
@@ -187,14 +188,14 @@ nav a.router-link-exact-active.active {
 
 .modal-wrapper {
   display: table-cell;
-  vertical-align: top;
+  vertical-align: center;
 
 }
 
 .modal-container,
 .header {
   width: auto;
-  width: 30%;
+  width: 40%;
   height: auto;
   margin: 0px auto;
   transition: all 0.3s ease;
@@ -214,5 +215,13 @@ nav a.router-link-exact-active.active {
     top: 0;
     margin: 0;
     padding: 0;
+  }
+
+  .profile{
+      text-decoration: none;
+      position: absolute;
+      font-size: 1.3rem;
+      margin:-2.5rem 18.5rem;
+      color: black;
   }
 </style>

@@ -26,7 +26,7 @@
       </error-message>
     </div>
     <create-student @add-student="create_student" @isShow="onChange"></create-student>
-    <table class="bg-white mt-[5rem] w-[82.6%] m-auto box-border mt-4">
+    <table class="bg-white mt-[-10px] w-[82.6%] m-auto box-border">
       <thead class="text-white">
         <tr>
           <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>

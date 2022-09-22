@@ -128,7 +128,7 @@
       </div>
     </student-profile>
     <router-view />
-  </div>
+  </nav>
 </template>
 <script>
   import Logout from '../../coordinators/icons/LogoutIcon.vue';
