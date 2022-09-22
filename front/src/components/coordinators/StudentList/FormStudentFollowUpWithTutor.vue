@@ -5,18 +5,18 @@
       class="px-5 mb-5 box-border "
       @submit.prevent="move_student_to_follow_up"
     >
-      <div class="w-2/4 m-auto  bg-slate-100 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 px-4 py-4">
+      <div class="w-2/4 m-auto header  bg-slate-100 rounded-lg   shadow-md dark:bg-gray-800 dark:border-gray-700 px-4 py-4">
         <div class="mb-2 px-2 w-full">
           <label class="block mb-1 text-sm" for="input1">Reason</label>
           <textarea
             class="w-full border px-4 py-1 focus:border-blue-500 focus:shadow-outline outline-none rounded h-32"
             autofocus
-            placeholder="reasons"
+            placeholder="input text"
             v-model="reason"
           ></textarea>
         </div>
         <div class="mb-2 px-2 w-full">
-          <label class="block mb-1 text-sm" for="input1">Tutor Name</label>
+          <label class="block mb-1 text-sm" for="input1">Tutors Name</label>
           <select
             v-model="tutors"
             class="w-full border px-4 pr-8 py-1 focus:border-blue-500 focus:shadow-outline outline-none appearance-none text-slate-500 rounded"
@@ -35,13 +35,13 @@
         </div>
         <div class="btn">
           <button
-            class="mx-2 px-4 py-2 text-sm rounded font-medium border-2 border-blue-300 text-blue-500 bg-blue-200 focus:outline-none hover:bg-blue-300 mb-4"
+            class="btn-cancel text-white active:bg-orange-600 text-sm rounded px-3 py-2 mr-3 shadow hover:bg-orange-400 hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
             @click="cancle"
           >
             cancle
           </button>
           <button
-            class="mx-2 px-4 py-2 text-sm rounded font-medium border-2 border-blue-300 text-blue-500 bg-blue-200 focus:outline-none hover:bg-blue-300 mb-4"
+            class="btn-submit text-white active:bg-sky-600 text-sm text-sm px-3 py-2 rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
             type="submit"
           >
             Add
@@ -110,5 +110,15 @@ export default {
 }
 textarea{
   resize: none;
+}
+.btn-cancel {
+  background-color: #ffad5c;
+  margin-right: 10px;
+}
+.btn-submit {
+  background-color: #22bbea;
+}
+.header {
+  background-color: #bbd7e0;
 }
 </style>

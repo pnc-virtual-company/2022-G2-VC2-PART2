@@ -24,9 +24,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // student route
     Route::get('get_student_follwing_up/', [StudentController::class, 'get_student_follwing_up']);
+    Route::get('get_student_display_follow_up/', [StudentController::class, 'get_student_display_follow_up']);
     Route::get('students/get', [StudentController::class, 'get_students']);
     Route::get('students/get/{id}', [StudentController::class, 'get_student_by_user_id']);
-Route::get('students/get_by_id/{id}',[StudentController::class, 'get_student_by_id']);
+    Route::get('students/get_by_id/{id}',[StudentController::class, 'get_student_by_id']);
     Route::post('students/create', [StudentController::class, 'create_student']);
     Route::put('students/update/{id}', [StudentController::class, 'update_student']);
     Route::delete('students/delete/{id}', [StudentController::class, 'delete_student']);
