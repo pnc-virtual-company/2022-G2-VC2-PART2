@@ -47,7 +47,7 @@ export default {
         var encryptedRole = CryptoJS.AES.decrypt(cookiesRole, 'user_role');
         var oringinRole = encryptedRole.toString(CryptoJS.enc.Utf8);
         var role = oringinRole;
-       
+
         if (role == '2') {
           this.role = 2;
         } else if (role == '1') {
@@ -70,7 +70,7 @@ export default {
       return this.role;
     },
   },
-  mounted(){
+  mounted() {
     this.get_token();
   }
 }
@@ -79,4 +79,5 @@ export default {
 body {
   background-color: rgb(209 213 219);
 }
+
 </style>

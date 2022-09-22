@@ -10,11 +10,11 @@ class UsersImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         $user = new User([
-            'first_name'         => $row['first_name'],
+            'first_name'       => $row['first_name'],
             'last_name'              => $row['last_name'],
             'email'               => $row['email'],
             'gender'         => $row['gender'],
-            'role'=>3,          
+            'role'=>3,
         ]);
         $student =new Student([
             'generation'         => $row['generation'],
@@ -23,7 +23,7 @@ class UsersImport implements ToModel, WithHeadingRow
             'major'         => $row['major'],
             'date_of_birth' => date('Y-m-d H:i:s', strtotime($row['date_of_birth'])),
             'status'   => false,
-           
+
         ]);
         $user->save();
         $user->students()->save($student);

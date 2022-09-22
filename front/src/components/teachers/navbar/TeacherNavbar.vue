@@ -15,7 +15,7 @@
       <div class="flex items-center">
         <h1 class="w-full font-bold text-white">{{user.first_name}} {{user.last_name}}</h1>
         <div>
-          <img @click="show_profile()" class="w-24 rounded-full" :src=user.profile alt="">
+          <img @click="show_profile()" class="w-24 rounded-full" :src=user.profile>
         </div>
         <a href="log_out">
         <LogoutIcon @click="log_out" class="cusor-pointer ml-3 mr-3" />
@@ -94,7 +94,7 @@
         </div>
       </div>
     </teacher-profile>
-    <router-view />
+    <router-view></router-view>
   </div>
 </template>
 
@@ -120,7 +120,7 @@ export default {
 
   methods: {
     decrypt_id() {
-      var cookiesId = this.$cookies.get('id');
+      var cookiesId = this.$cookies.get('user_id')
       if (cookiesId != null) {
         var encryptedId = CryptoJS.AES.decrypt(cookiesId, 'user_id');
         var oringinId = encryptedId.toString(CryptoJS.enc.Utf8);
@@ -143,7 +143,8 @@ export default {
     },
 
     get_teacher() {
-      axiosClient.get("teachers/get_teacher_id/" + this.decrypt_id())
+      var id = this.$cookies.get('user_id');
+      axiosClient.get("teachers/get_teacher_id/" + id)
         .then((response) => {
           this.user = response.data[0]
         });
@@ -212,24 +213,5 @@ nav a.router-link-exact-active.active {
 
 .modal-default-button {
   float: right;
-}
-
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-active .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.profile {
-  text-decoration: none;
-  position: absolute;
-  font-size: 1.3rem;
-  margin: -2.5rem 14rem;
-  color: gray;
 }
 </style>

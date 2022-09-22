@@ -98,6 +98,7 @@ export default {
             if (cookiesToken != null) {
                 var encryptedToken = CryptoJS.AES.decrypt(cookiesToken, 'user_token');
                 var oringinToken = encryptedToken.toString(CryptoJS.enc.Utf8);
+                console.log(oringinToken);
                 return oringinToken;
             }
         },
@@ -120,12 +121,15 @@ export default {
                 this.$cookies.set('token', encryptedToken);
                 const user_token = this.decrypt_token();
                 user.get_token(user_token);
+                console.log(user_token);
                 // ----------------- encrypt user role --------------------------------
                 const encryptedRole = this.$CryptoJS.AES.encrypt(response.data.user.role, "user_role").toString();
                 this.$cookies.set('role', encryptedRole);
                 // ----------------- encrypt user id --------------------------------
-                const encryptedId = this.$CryptoJS.AES.encrypt(response.data.user.role, "user_id").toString();
-                this.$cookies.set('id', encryptedId);
+                // const encryptedId = this.$CryptoJS.AES.encrypt(response.data.id, "user_id").toString();
+                this.$cookies.set('user_id', response.data.user.id);
+                // var id = this.$cookies.get('user_id');
+                // console.log(id)
 
                 if (response.data.user.role == '1') {
                     this.$router.push('/coordinator/teacher_list')
