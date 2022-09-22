@@ -47,6 +47,7 @@
           <td class="border-b-2 py-1 lg:text-sm text-white">
             <span class="flex justify-center space-x-2 icons">
               <move-out @click="move_from_follow(student.id, student.status)"/>
+             
             </span>
           </td>
         </tr>
@@ -90,10 +91,9 @@
 import axiosClient from "../../../axios-http";
 import Swal from "sweetalert2";
 import MoveOut from "../icons/RemoveIcon.vue"
-
 export default {
   components: {
-  'move-out': MoveOut
+  'move-out': MoveOut,
   },
   data() {
     return {
@@ -124,7 +124,7 @@ export default {
           confirmButtonText: "Move From Follow-Up",
         }).then((result) => {
           if (result.isConfirmed) {
-            axiosClient.put("teachers/student_status/" + id, body).then((res) => {
+            axiosClient.put("teachers/update_status/" + id, body).then((res) => {
               console.log(res.data.student.id);
             });
             this.get_student_follow();

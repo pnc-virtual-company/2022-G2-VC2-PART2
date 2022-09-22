@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('class')->nullable();
             $table->string('major')->nullable();
+            $table->string('tutor')->nullable();
+            $table->string('reasons')->nullable();
             $table->date('date_of_birth');
             $table->boolean('status');
             $table->timestamps();

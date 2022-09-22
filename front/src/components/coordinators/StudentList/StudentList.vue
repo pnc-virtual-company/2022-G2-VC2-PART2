@@ -140,6 +140,7 @@ import CardDetail from "./CardDetail.vue";
 import RemoveIcons from "../icons/RemoveView.vue";
 import DetailIcon from "../icons/DetailIcon.vue";
 import MoveIcon from "../icons/MoveIcon.vue";
+import FormStudentWithTutor from './FormStudentFollowUpWithTutor.vue';
 
 export default {
   components: {
@@ -152,7 +153,8 @@ export default {
     'icon-edit': EditIcons,
     'icon-detail': DetailIcon,
     'icon-move': MoveIcon,
-    CardDetail
+    CardDetail,
+    'student-follow-up': FormStudentWithTutor,
   },
   data() {
     return {
@@ -166,7 +168,8 @@ export default {
       isAccountExist: false,
       isDeleted: false,
       isEdit: false,
-      is_show: false
+      is_show: false,
+      is_show_form_tutor: false,
     };
   },
   methods: {
@@ -184,6 +187,9 @@ export default {
     },
     onChange(isShow) {
       this.showModal = isShow;
+    },
+    on_cancle(cancle){
+      this.is_show_form_tutor = cancle;
     },
     deleteStudent(id) {
       Swal.fire({
@@ -205,29 +211,17 @@ export default {
         }
       });
     },
-    move_follow(id, my_status) {
-      let body = {};
-      if (my_status == false) {
-        body['status'] = true;
-        console.log(body);
-        Swal.fire({
-        title: "Are you sure?",
-        text: "You want to move student to follow up list!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#22BBEA",
-        cancelButtonColor: "#FFAD5C",
-        confirmButtonText: "Move",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          axiosClient.put('teachers/student_status/'+ id, body)
-
-          this.get_students()
-        }
-      })
-      }
+    show_form_follow(id) {
+          this.is_show_form_tutor = true;
+          this.student_id = id;
     },
-
+    move_student_to_follow_up(update_tutor){
+      axiosClient.put("teachers/update_tutor/" + this.student_id,update_tutor)
+      this.is_show_tutor = true;
+      this.is_show = false;
+      this.is_show_form_tutor = false;
+      this.get_students();
+    },
     edit_student(new_student, user_id) {
       axiosClient.put("students/update/"+ user_id, new_student)
       this.get_students();
@@ -283,6 +277,7 @@ export default {
 .icons {
   display: none;
 }
+
 
 .show:hover .icons {
   display: flex;
