@@ -75,6 +75,8 @@
 <script>
 import axiosClient from "@/axios-http";
 import FormReset from "./FormForgot.vue";
+import { useUserStore } from "../../store/index.js"
+import CryptoJS from 'crypto-js';
 export default {
     components: {
         FormReset,
@@ -91,6 +93,15 @@ export default {
         };
     },
     methods: {
+        decrypt_token() {
+            var cookiesToken = this.$cookies.get('token');
+            if (cookiesToken != null) {
+                var encryptedToken = CryptoJS.AES.decrypt(cookiesToken, 'user_token');
+                var oringinToken = encryptedToken.toString(CryptoJS.enc.Utf8);
+                console.log(oringinToken);
+                return oringinToken;
+            }
+        },
         is_show() {
             this.show_modal = true
         },
@@ -103,9 +114,22 @@ export default {
                 password: this.password
             }
             axiosClient.post('user/login', user_login).then((response) => {
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('role', response.data.user.role);
-                localStorage.setItem('id', response.data.user.id);
+                const user = useUserStore();
+                // ----------------- encrypt user token --------------------------------
+                const encryptedToken = this.$CryptoJS.AES.encrypt(response.data.token, "user_token").toString();
+                this.$cookies.set('token', encryptedToken);
+                const user_token = this.decrypt_token();
+                user.get_token(user_token);
+                console.log(user_token);
+                // ----------------- encrypt user role --------------------------------
+                const encryptedRole = this.$CryptoJS.AES.encrypt(response.data.user.role, "user_role").toString();
+                this.$cookies.set('role', encryptedRole);
+                // ----------------- encrypt user id --------------------------------
+                // const encryptedId = this.$CryptoJS.AES.encrypt(response.data.id, "user_id").toString();
+                this.$cookies.set('user_id', response.data.user.id);
+                // var id = this.$cookies.get('user_id');
+                // console.log(id)
+
                 if (response.data.user.role == '1') {
                     this.$router.push('/coordinator/teacher_list')
                 } else if (response.data.user.role == '2') {

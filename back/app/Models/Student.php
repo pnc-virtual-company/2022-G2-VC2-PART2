@@ -30,4 +30,5 @@ class Student extends Model
     protected $casts = [
         'status'=> 'boolean',
     ];
+    
 }

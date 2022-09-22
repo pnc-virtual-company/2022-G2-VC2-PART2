@@ -9,7 +9,7 @@
           <div class="modal-container bg-blue-200">
               <div class="flex space-x-[40px]">
                   <div class="ml-[50px]">
-                      <img :src="user_info.users.profile" width="126" class="mt-5 rounded-full flex justify-center m-auto">
+                      <img :src="user_info.users.profile" width="126" class="mt-5 rounded-full flex justify-center m-auto h-[100px] w-[100px]">
                       <p class="text-center text-xl font-bold mb-5">{{user_info.users.first_name}} {{user_info.users.last_name}}</p>
                   </div>
                   <div class="mt-[18px] leading-loose">
