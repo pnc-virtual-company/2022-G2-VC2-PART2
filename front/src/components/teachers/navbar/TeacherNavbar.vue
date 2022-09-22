@@ -102,7 +102,6 @@
 import LogoutIcon from '../../coordinators/icons/LogoutIcon.vue'
 import axiosClient from '../../../axios-http'
 import TeacherProfile from '../../profiles/SlotProfile.vue';
-import CryptoJS from 'crypto-js';
 export default {
   components: {
     LogoutIcon,
@@ -118,14 +117,6 @@ export default {
   },
 
   methods: {
-    decrypt_id() {
-      var cookiesId = this.$cookies.get('user_id')
-      if (cookiesId != null) {
-        var encryptedId = CryptoJS.AES.decrypt(cookiesId, 'user_id');
-        var oringinId = encryptedId.toString(CryptoJS.enc.Utf8);
-        return oringinId;
-      }
-    },
     log_out() {
       this.$cookies.remove('token');
       this.$cookies.remove('role');
@@ -151,7 +142,7 @@ export default {
         });
     },
     async add_user_profile(event) {
-      var id = this.decrypt_id();
+      const id = this.$cookies.get('user_id');
       this.studentProfile = event.target.files[0];
       console.log(this.studentProfile);
       const body = new FormData();

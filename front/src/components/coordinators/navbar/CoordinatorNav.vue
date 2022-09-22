@@ -138,15 +138,14 @@ export default {
       });
     },
     async add_user_profile(event) {
-      var id = this.decrypt_id();
-      console.log(id);
+      const id = this.$cookies.get('user_id');
       this.studentProfile = event.target.files[0];
       console.log(this.studentProfile);
       const body = new FormData();
       body.append('profile', this.studentProfile)
       body.append('_method', 'PUT')
-      axiosClient.post("update_img_user/" + id, body).then((reponse) => {
-        console.log(reponse.data);
+      axiosClient.post("update_img_user/"+ id, body).then((response) => {
+        console.log(response);
         this.get_coordinator();
       });
 
