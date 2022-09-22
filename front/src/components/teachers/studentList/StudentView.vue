@@ -153,8 +153,8 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           this.is_follow_up = !this.is_follow_up;
-          axiosClient.put("teachers/student_status/" + student_id, body);
-          this.get_students();
+          axiosClient.put("teachers/update_status/" + student_id, body);
+          this.getData();
         }
       });
     },
