@@ -114,7 +114,6 @@ export default {
                 password: this.password
             }
             axiosClient.post('user/login', user_login).then((response) => {
-                console.log(response.data);
                 const user = useUserStore();
                 // ----------------- encrypt user token --------------------------------
                 const encryptedToken = this.$CryptoJS.AES.encrypt(response.data.token, "user_token").toString();

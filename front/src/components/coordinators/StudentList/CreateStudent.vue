@@ -82,6 +82,7 @@ export default {
       body.append('_method', 'post')
       axiosClient.post("import_file",body).then((response) => {
         console.log(response.data);
+        window.location.reload();
       });
     },
   },
