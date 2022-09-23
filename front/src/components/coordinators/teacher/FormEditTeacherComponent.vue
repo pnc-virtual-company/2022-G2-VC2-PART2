@@ -76,21 +76,46 @@
                           </svg>
                         </div>
                       </div>
-                    </div>
-                    <div class="mb-4 px-2 w-full">
+                    </div>         
+
+                     <div class="mb-4 px-2 w-full">
                       <label class="block mb-1 text-sm" for="input1"
                         >Position</label
                       >
-                      <input
-                        id="input1"
-                        class="w-full border px-4 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none"
-                        type="text"
-                        autofocus
-                        placeholder="Position"
-                        v-model="position"
-                      />
-                      <small v-if="positions">Position is required</small>
+                      <div class="relative">
+                        <select
+                          v-model="position"
+                          class="w-full border px-4 pr-8 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-500 appearance-none"
+                          id="select-item"
+                        >
+                          <option>Position</option>
+                          <option value="WEB Trainer" class="text-black">WEB Trainer</option>
+                          <option value="SNA Trainer" class="text-black">
+                            SNA Trainer
+                          </option>
+                          <option value="English Trainer" class="text-black">English Trainer</option>
+                          <option value="PL Trainer" class="text-black">PL Trainer</option>
+                          <option value="Social Affair" class="text-black">Social Affair</option>
+
+                        </select>
+                        <small v-if="positions">Position is required</small>
+                        <div
+                          class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                        >
+                          <svg
+                            class="fill-current h-4 w-4"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
+
+                    
                     <div class="mb-4 px-2 w-full">
                       <label class="block mb-1 text-sm" for="input1"
                         >Email</label
@@ -168,7 +193,7 @@ export default {
       this.$emit("cancel", false);
     },
     show_teacher_data() {
-      axiosClient.get("teachers/get/" + this.teacher_id).then((response) => {
+      axiosClient.get("" + this.teacher_id).then((response) => {
         let teacher_data = response.data[0];
         console.log(this.teacher_id)
         this.first_name = teacher_data.users.first_name;

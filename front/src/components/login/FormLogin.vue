@@ -50,7 +50,7 @@
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                                     </svg>
                                 </div>
-                                <input type="password" required
+                                <input type="password"
                                     class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-r transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                     placeholder="Password" v-model="password" />
                             </div>
@@ -98,6 +98,7 @@ export default {
             if (cookiesToken != null) {
                 var encryptedToken = CryptoJS.AES.decrypt(cookiesToken, 'user_token');
                 var oringinToken = encryptedToken.toString(CryptoJS.enc.Utf8);
+                console.log(oringinToken);
                 return oringinToken;
             }
         },
@@ -113,19 +114,21 @@ export default {
                 password: this.password
             }
             axiosClient.post('user/login', user_login).then((response) => {
-                console.log(response.data);
                 const user = useUserStore();
                 // ----------------- encrypt user token --------------------------------
                 const encryptedToken = this.$CryptoJS.AES.encrypt(response.data.token, "user_token").toString();
                 this.$cookies.set('token', encryptedToken);
                 const user_token = this.decrypt_token();
                 user.get_token(user_token);
+                console.log(user_token);
                 // ----------------- encrypt user role --------------------------------
                 const encryptedRole = this.$CryptoJS.AES.encrypt(response.data.user.role, "user_role").toString();
                 this.$cookies.set('role', encryptedRole);
                 // ----------------- encrypt user id --------------------------------
-                const encryptedId = this.$CryptoJS.AES.encrypt(response.data.user.role, "user_id").toString();
-                this.$cookies.set('id', encryptedId);
+                // const encryptedId = this.$CryptoJS.AES.encrypt(response.data.id, "user_id").toString();
+                this.$cookies.set('user_id', response.data.user.id);
+                // var id = this.$cookies.get('user_id');
+                // console.log(id)
 
                 if (response.data.user.role == '1') {
                     this.$router.push('/coordinator/teacher_list')

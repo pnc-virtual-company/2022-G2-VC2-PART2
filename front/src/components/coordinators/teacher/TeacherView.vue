@@ -2,15 +2,14 @@
   <div class="teacher">
     <div class="container w-10/12 m-auto flex justify-between">
       <div class="side-left"></div>
-      <div class="side-right">
-        <button
-          class="bg-pink-500 text-white mt-3 active:bg-pink-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-          type="button"
-          @click="toggle_model"
-          id="model"
-        >
-          Create Teacher
-        </button>
+      <div class="side-left w-full flex justify-end ">
+          <add-teacher-button
+            type="button"
+            class="fixed text-white bg-sky-400 text-sm px-3 py-1 font-bold rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            @click="toggle_model"
+          >
+            Create Teacher
+        </add-teacher-button>
       </div>
     </div>
     <div class="form">
@@ -30,9 +29,11 @@
 
 <script>
 import FormView from "./FormCreateTeacherComponent.vue";
+import ButtonViewVue from "@/components/button/ButtonView.vue";
 export default {
   components: {
     "form-view": FormView,
+    "add-teacher-button": ButtonViewVue
   },
   data() {
     return {
