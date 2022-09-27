@@ -10,7 +10,7 @@
               <img id="imageround" src="../../../assets/cut.png" />
               <div class="m-3">
                 <p class="names">Narong Nhor</p>
-                <p>Web,02-20-2022</p>
+                <p class="date">Web,02-20-2022</p>
               </div>
               <div class="num-comments">5 Comments</div>
               <div class="bells">
@@ -35,7 +35,7 @@
               <img id="imageround" src="../../../assets/cut.png" />
               <div class="m-3">
                 <p class="names">Narong Nhor</p>
-                <p>Web,02-20-2022</p>
+                <p class="date">Web,02-20-2022</p>
               </div>
               <div class="num-comments">5 Comments</div>
               <div class="bells">
@@ -83,22 +83,25 @@ export default {
 </script>
 <style scoped>
 .body-profils {
+  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
 }
 .tutors {
   margin: 5px 5px;
-  width: 760px;
+  width: 49%;
 }
 
 .comments {
   margin: 5px 5px;
-  width: 760px;
+  width: 49%;
+  height: 86vh;
+  background: #000;
   background: rgb(188, 221, 224);
 }
 
 .body-comment {
-  width: 755px;
+  width: 100%;
   margin: 10px auto 10px;
   justify-content: center;
   align-items: center;
@@ -114,7 +117,7 @@ export default {
 .text-show {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
-  font-size: 28px;
+  font-size: 22px;
   display: flex;
   text-align: center;
   align-items: center;
@@ -122,12 +125,11 @@ export default {
   font-weight: bold;
   background: #22bbea;
   color: white;
-  padding: 3px 3px;
+  padding: 10px;
 }
 .card-display {
-  width: 755px;
+  width: 99%;
   border-radius: 5px;
-  /* display: flex; */
   justify-content: flex-start;
   background: #f0f0f0;
   margin-right: 4px;
@@ -137,8 +139,8 @@ export default {
   display: flex;
 }
 #imageround {
-  width: 60px;
-  height: 8vh;
+  width:55px;
+  height:55px;
   margin: 10px 11px;
   border-radius: 100px;
 }
@@ -147,7 +149,6 @@ export default {
   margin: 5px 5px;
 }
 .body-text {
-  width: 320px;
   padding: 5px;
   margin: 6px;
   font-size: 18px;
@@ -166,15 +167,18 @@ export default {
   justify-content: center;
 }
 .names {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
+}
+.date{
+  font-size: 14px;
 }
 .num-comments {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
-  font-size: 20px;
+  font-size: 17px;
 }
 .bells {
   margin: 10px 5px;
@@ -193,8 +197,7 @@ export default {
 }
 
 .container-comment {
-  width: 945px;
-  height: 80vh;
+  height: 77vh;
   overflow-x: hidden;
 }
 </style>

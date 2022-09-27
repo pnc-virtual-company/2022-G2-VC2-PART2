@@ -60,7 +60,7 @@ export default {
 <style scoped>
   input[type='password']{
     background: rgb(232, 232, 232);
-    width: 500px;
+    width: 50%;
     padding: 10px 10px;
     margin: 6px 6px;
     border-radius: 4px;
@@ -81,7 +81,6 @@ export default {
   }
   .cards-input{
     background: #BBD7E0;
-    width: 555px;
     border-radius: 4px;
   }
   .buttons-input{

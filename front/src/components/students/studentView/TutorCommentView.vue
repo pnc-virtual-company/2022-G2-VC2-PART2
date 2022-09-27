@@ -1,10 +1,11 @@
 <template>
   <div class="tutor">
     <div class="body-tutor">
+      <div></div>
       <div class="text-show">Tutor</div>
       <div class="account-user">
         <img id="user-images" src="../../../assets/logo.png">
-        <div class="name-user">Kea Nhor</div>
+        <div class="name-user">Sarath Orn</div>
       </div>
     </div>
     <div class="scroller  overflow-y-scroll">
@@ -21,54 +22,7 @@
         </div>
       </div>
 
-      <div class="card-tutors">
-        <div class="coorComment">
-          <div class="card-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore nam, saepe eos harum commodi deleniti hic odit magnam aperiam.</div>
-          <div class="date-time">
-            <div class="year">03-03-2022</div>
-            <div class="times">12:00 <small>AM</small></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card-tutors">
-        <div class="coorComment">
-          <div class="card-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore nam, saepe eos harum commodi deleniti hic odit magnam aperiam.</div>
-          <div class="date-time">
-            <div class="year">03-03-2022</div>
-            <div class="times">12:00 <small>AM</small></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card-tutors">
-        <div class="coorComment">
-          <div class="card-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore nam, saepe eos harum commodi deleniti hic odit magnam aperiam.</div>
-          <div class="date-time">
-            <div class="year">03-03-2022</div>
-            <div class="times">12:00 <small>AM</small></div>
-          </div>
-        </div>
-      </div>
       
-      <div class="card-tutors">
-        <div class="coorComment">
-          <div class="card-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore nam, saepe eos harum commodi deleniti hic odit magnam aperiam.</div>
-          <div class="date-time">
-            <div class="year">03-03-2022</div>
-            <div class="times">12:00 <small>AM</small></div>
-          </div>
-        </div>
-      </div>
-
-      
-
-      
-
-      
-      
-    
-
     </div>
 
 
@@ -77,14 +31,37 @@
 </template>
 
 <script>
+import axiosClient from "../../../axios-http";
 export default {
+  data(){
+    return{
+      tutor:''
+
+    }
+
+  },
+   methods:{
+    get_tutor(){
+      let user_id = this.$cookies.get('user_id');
+       axiosClient.get("students/get/"+user_id).then((res) => {
+         this.tutor=res.data;
+        console.log(this.tutor);
+      });
+    },
+
+  },
+  mounted() {
+    this.get_tutor();
+  }
+
+   
 
 }
 </script>
 
 <style scoped>
   .tutor{
-    height: 88vh;
+    height: 86vh;
     background: #BBD7E0;
   }
   .body-tutor{
@@ -95,8 +72,8 @@ export default {
     border-top-left-radius: 5px;
   }
   .text-show{
-    font-size: 28px;
-    margin: 3px auto 3px;
+    font-size: 22px;
+    padding: 10px;
     display: flex;
     font-weight: bold;
     color: white;
@@ -105,25 +82,26 @@ export default {
   }
 
   .scroller{
-    height: 80vh;
+    height: 77vh;
     overflow-x: hidden;
   }
 
   .account-user{
-    width: 170px;
+    width: 28%;
+    padding: 5px;
     border-top-left-radius: 50px;
    border-bottom-left-radius: 50px;
    border-top-right-radius: 5px;
     display: flex;
+    align-items: center;
     background: #51d9f1;
   }
 
 
   #user-images{
-    width: 47px;
-    height: 6vh;
-    margin: 2px 3px;
-    border-radius: 50px;
+    width: 46px; 
+    height: 46px;
+    border-radius: 50%;
   }
   .name-user{
     display: flex;
@@ -146,23 +124,20 @@ export default {
     border-left: solid 10px #4A90F8;
   }
   .coorComment{
+    padding: 12px 10px;
     display: flex;
+    justify-content: space-between;
   }
 
   .date-time{
     width: 100px;
     text-align: center;
-    font-weight: 450;
     font-size: 15px;
-    /* margin-left: 500px; */
     justify-content: flex-end;
   }
   .card-comment{
+    width: 84%;
     display: flex;
-    width: 620px;
-    text-align: center;
-    justify-content: center;
-    margin: auto;
   }
 
 </style>

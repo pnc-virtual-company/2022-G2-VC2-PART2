@@ -20,7 +20,7 @@ class StudentController extends Controller
      */
     public function get_students()
     {
-        return Student::with('users')->get();
+        return Student::with(['users', 'comments', 'comments.teachers.users'])->get();
     }
     /**
      * Store a newly created resource in storage.

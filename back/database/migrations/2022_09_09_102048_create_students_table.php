@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('reasons')->nullable();
             $table->date('date_of_birth');
             $table->boolean('status');
+            $table->boolean('show_comment')->default(false);
             $table->timestamps();
         });
     }

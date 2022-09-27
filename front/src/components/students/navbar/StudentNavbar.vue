@@ -1,4 +1,6 @@
 <template>
+<div>
+
   <div class="w-full">
      <nav  v-for="student of students" :key="student" class="flex justify-between z-10 flex pl-4 pr-4 text-center items-center w-full">
       <div class="flex items-center">
@@ -132,6 +134,7 @@
     <router-view></router-view>
   </div>
   <student-CommentPlace/>
+</div>
 </template>
 <script>
   import LogoutIcon from '../../coordinators/icons/LogoutIcon.vue';
