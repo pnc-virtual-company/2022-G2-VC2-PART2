@@ -61,3 +61,4 @@ Route::post('/user/login', [LoginController::class, 'userLogin']);
 Route::post('sendMail', [SendEmailController::class, 'forgot_password']);
 Route::put('forgot_password/{id}', [SendEmailController::class, 'update_password']);
 Route::post('confirmCode', [SendEmailController::class, 'confirm_code']);
+

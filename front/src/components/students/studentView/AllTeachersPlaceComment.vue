@@ -62,6 +62,7 @@
 <script>
 import StudentViews from "./TutorCommentView.vue";
 import TeacerhPersonalComment from "./PersonalTeacherCommentView.vue";
+import axiosClient from "../../../axios-http";
 export default {
   components: {
     "student-contain": StudentViews,
@@ -70,6 +71,7 @@ export default {
   name: "ToggleDiv",
   data: function () {
     return {
+      comments:[],
       teacherComents: false,
     };
   },
@@ -78,6 +80,15 @@ export default {
     PersonalTeacherComents() {
       this.teacherComents = !this.teacherComents;
     },
+
+    getComments() {
+      axiosClient.get("comments/get").then((response) => {
+        this.comments = response.data;
+        console.log(response.data)
+      });
+
+    },
+
   },
 };
 </script>

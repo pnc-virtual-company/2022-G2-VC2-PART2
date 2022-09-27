@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    
     public function add_comments(Request $request)
     {
         $comment = new Comment();
