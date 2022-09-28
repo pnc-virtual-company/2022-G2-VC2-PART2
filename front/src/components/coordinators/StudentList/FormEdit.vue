@@ -80,19 +80,19 @@
             <input class="w-full border px-4 py-1 focus:border-blue-500 focus:shadow-outline outline-none rounded" autofocus placeholder="Email" v-model="email" />
             <error-message v-if="email_validation == false">*PNC Email is required</error-message>
         </div>
-        <div class="flex items-center justify-end p-2 border-slate-200 mt-2 rounded-b">
+        <div class="flex items-center space-x-1 px-2 justify-end border-slate-200 mt-4 rounded-b">
         <button-add
-          class="btn-cancel text-white active:bg-orange-600 text-sm rounded px-2 mr-3 shadow hover:bg-orange-400 hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+          class="btn-cancel text-white active:bg-orange-600 text-sm rounded px-2 shadow hover:bg-orange-400 hover:shadow-lg outline-none focus:outline-none"
           type="button"
           @click="onCancel"
         >
           Cancel
         </button-add>
         <button-add
-          class="btn-submit text-white active:bg-sky-600 text-sm text-sm px-2 rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+          class="btn-submit text-white active:bg-sky-600 text-sm text-sm px-4 rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none"
           type="submit"
         >
-          Save
+          Edit
         </button-add>
       </div>
     </form>

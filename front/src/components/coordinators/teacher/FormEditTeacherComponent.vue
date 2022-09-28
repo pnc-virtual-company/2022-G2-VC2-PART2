@@ -55,7 +55,7 @@
                           class="w-full border px-4 pr-8 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-500 appearance-none"
                           id="select-item"
                         >
-                          <option>Gender</option>
+                          <option disabled value="Choose">Gender</option>
                           <option value="Male" class="text-black">Male</option>
                           <option value="Female" class="text-black">
                             Female
@@ -76,9 +76,9 @@
                           </svg>
                         </div>
                       </div>
-                    </div>         
+                    </div>
 
-                     <div class="mb-4 px-2 w-full">
+                    <div class="mb-4 px-2 w-full">
                       <label class="block mb-1 text-sm" for="input1"
                         >Position</label
                       >
@@ -89,14 +89,21 @@
                           id="select-item"
                         >
                           <option>Position</option>
-                          <option value="WEB Trainer" class="text-black">WEB Trainer</option>
+                          <option value="WEB Trainer" class="text-black">
+                            WEB Trainer
+                          </option>
                           <option value="SNA Trainer" class="text-black">
                             SNA Trainer
                           </option>
-                          <option value="English Trainer" class="text-black">English Trainer</option>
-                          <option value="PL Trainer" class="text-black">PL Trainer</option>
-                          <option value="Social Affair" class="text-black">Social Affair</option>
-
+                          <option value="English Trainer" class="text-black">
+                            English Trainer
+                          </option>
+                          <option value="PL Trainer" class="text-black">
+                            PL Trainer
+                          </option>
+                          <option value="Social Affair" class="text-black">
+                            Social Affair
+                          </option>
                         </select>
                         <small v-if="positions">Position is required</small>
                         <div
@@ -115,7 +122,6 @@
                       </div>
                     </div>
 
-                    
                     <div class="mb-4 px-2 w-full">
                       <label class="block mb-1 text-sm" for="input1"
                         >Email</label
@@ -146,23 +152,21 @@
                     </div>
                   </div>
                   <div
-                class="flex items-center justify-end p-2 border-slate-200 mt-2 rounded-b"
-              >
-                <Button-view
-                  class="cancle text-white active:bg-orange-600 text-sm rounded px-2 mr-3 shadow hover:bg-orange-400 hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  @click="onCancel()"
-                  >Cancle</Button-view
-                >
-                <Button-view
-                  class="add text-white active:bg-sky-600 text-sm text-sm px-2 rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  @click="edit_teacher()"
-                  >Save</Button-view
-                >
+                    class="flex items-center justify-end px-2 border-slate-200 mb-4 space-x-1 rounded-b"
+                  >
+                    <Button-view
+                      class="cancle text-white active:bg-orange-600 text-sm rounded px-2 shadow hover:bg-orange-400 hover:shadow-lg outline-none focus:outline-none"
+                      @click="onCancel()"
+                      >Cancle</Button-view
+                    >
+                    <Button-view
+                      class="add text-white active:bg-sky-600 text-sm text-sm px-4 rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none"
+                      @click="edit_teacher()"
+                      >Edit</Button-view
+                    >
                   </div>
                 </form>
               </div>
-              <!--footer-->
-        
             </div>
           </div>
         </div>
@@ -177,7 +181,7 @@ export default {
   components: {
     "Button-view": ButtonView,
   },
-  props: ["teacher_id","user_id"],
+  props: ["teacher_id", "user_id"],
   data() {
     return {
       first_name: "",
@@ -193,16 +197,18 @@ export default {
       this.$emit("cancel", false);
     },
     show_teacher_data() {
-      axiosClient.get("teachers/get_teacher_id/" + this.user_id).then((response) => {
-        let teacher_data = response.data[0];
-        console.log(response.data[0])
-        this.first_name = teacher_data.first_name;
-        this.last_name = teacher_data.last_name;
-        this.gender = teacher_data.gender;
-        this.position = teacher_data.teachers.position;
-        this.email = teacher_data.email;
-        this.phone = teacher_data.teachers.phone;
-      });
+      axiosClient
+        .get("teachers/get_teacher_id/" + this.user_id)
+        .then((response) => {
+          let teacher_data = response.data[0];
+          console.log(response.data[0]);
+          this.first_name = teacher_data.first_name;
+          this.last_name = teacher_data.last_name;
+          this.gender = teacher_data.gender;
+          this.position = teacher_data.teachers.position;
+          this.email = teacher_data.email;
+          this.phone = teacher_data.teachers.phone;
+        });
     },
     edit_teacher() {
       if (this.first_name.trim().length == 0) {
@@ -258,7 +264,7 @@ export default {
         };
         console.log(info_of_teacher);
         this.$emit("cancel", false);
-        this.$emit("edit-teacher",info_of_teacher,this.user_id);
+        this.$emit("edit-teacher", info_of_teacher, this.user_id);
         this.first_name = "";
         this.last_name = "";
         this.gender = "";

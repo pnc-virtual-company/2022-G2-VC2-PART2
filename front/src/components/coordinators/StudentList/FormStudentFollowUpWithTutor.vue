@@ -1,55 +1,54 @@
 <template>
-  <div class="form-tutor mt-8">
-    <form
-      action=""
-      class="px-5 mb-5 box-border "
-      @submit.prevent="move_student_to_follow_up"
-    >
-      <div class="w-2/4 m-auto header  bg-slate-100 rounded-lg   shadow-md dark:bg-gray-800 dark:border-gray-700 px-4 py-4">
-        <div class="mb-2 px-2 w-full">
-          <label class="block mb-1 text-sm" for="input1">Reason</label>
-          <textarea
-            class="w-full border px-4 py-1 focus:border-blue-500 focus:shadow-outline outline-none rounded h-32"
-            autofocus
-            placeholder="input text"
-            v-model="reason"
-          ></textarea>
-        </div>
-        <div class="mb-2 px-2 w-full">
-          <label class="block mb-1 text-sm" for="input1">Tutors Name</label>
-          <select
-            v-model="tutors"
-            class="w-full border px-4 pr-8 py-1 focus:border-blue-500 focus:shadow-outline outline-none appearance-none text-slate-500 rounded"
-            id="select-item"
-          >
-
-            <option
-              v-for="tutor of teachers"
-              :key="tutor.id"
-              class="text-black"
-              :value="tutor.id"
+  <div class="modal-mask">
+    <div class="modal-wrapper">
+      <div class="modal-container bg-blue-200 p-4 rounded">
+        <form
+          class="mb-2 box-border"
+          @submit.prevent="move_student_to_follow_up"
+        >
+        <p class="text-center text-2xl text-orange-400">Comments</p>
+          <div class="px-2 w-full">
+            <label class="block mb-1 text-sm" for="input1">Reason</label>
+            <textarea
+              class="w-full border px-4 py-1 focus:border-blue-500 focus:shadow-outline outline-none rounded h-[100px]"
+              autofocus
+              placeholder="input text"
+              v-model="reason"
+            ></textarea>
+          </div>
+          <div class="mb-2 px-2 w-full">
+            <label class="block mb-1 text-sm" for="input1">Tutors Name</label>
+            <select
+              v-model="tutors"
+              class="w-full mb-3 border px-5 pr-8 py-2 focus:border-blue-500 focus:shadow-outline outline-none appearance-none text-slate-500 rounded"
             >
-              <span>{{ tutor.users.first_name }}</span> <span>{{ tutor.users.last_name }}</span>
-            </option>
-          </select>
-        </div>
-        <div class="btn">
-          <button
-            class="btn-cancel text-white active:bg-orange-600 text-sm rounded px-3 py-2 mr-3 shadow hover:bg-orange-400 hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-            @click="cancle"
-          >
-            cancle
-          </button>
-          <button
-            class="btn-submit text-white active:bg-sky-600 text-sm text-sm px-3 py-2 rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-            type="submit"
-          >
-            Add
-          </button>
-        </div>
-
+              <option disabled value="Choose tutor">Choose</option>
+              <option
+                v-for="tutor of teachers"
+                :key="tutor.id"
+                class="text-black"
+              >
+                {{ tutor.users.first_name }} {{ tutor.users.last_name }}
+              </option>
+            </select>
+            <div class="flex justify-end space-x-1">
+              <button
+                class="btn-cancel px-3 text-white bg-orange-300 active:bg-orange-600 text-sm rounded py-2 shadow hover:bg-orange-400 hover:shadow-lg outline-none focus:outline-none transition-all duration-150"
+                @click="cancel"
+              >
+                Cancel
+              </button>
+              <button
+                class="btn-submit bg-blue-400 px-5 text-white hover:bg-blue-500 text-sm text-sm py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none transition-all duration-150"
+                type="submit"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -57,13 +56,14 @@
 import axiosClient from "../../../axios-http";
 export default {
   props: {
-    is_show_form_tutor: Boolean
+    is_show_form_tutor: Boolean,
   },
   data() {
     return {
       reason: "",
       tutors: "Name Tutor",
       teachers: [],
+      showModal: false,
     };
   },
   methods: {
@@ -72,8 +72,8 @@ export default {
         this.teachers = response.data;
       });
     },
-    cancle(){
-        this.$emit('cancle',false);
+    cancel() {
+      this.$emit("cancle", false);
     },
     add_tutor() {
       axiosClient
@@ -90,7 +90,7 @@ export default {
         tutor: this.tutors,
         status: true,
       };
-      this.$emit("move_student_to_follow_up",body);
+      this.$emit("move_student_to_follow_up", body);
     },
   },
   mounted() {
@@ -101,24 +101,16 @@ export default {
 </script>
 
 <style scoped>
-.btn {
-  display: flex;
-  justify-content: flex-end;
-}
-.bg-color {
-  background: #22bbea;
-}
-textarea{
+textarea {
   resize: none;
 }
-.btn-cancel {
-  background-color: #ffad5c;
-  margin-right: 10px;
-}
-.btn-submit {
-  background-color: #22bbea;
-}
-.header {
-  background-color: #bbd7e0;
+.modal-container {
+  width: auto;
+  width: 50%;
+  height: auto;
+  margin: 0px auto;
+  transition: all 0.3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+  z-index: 10;
 }
 </style>

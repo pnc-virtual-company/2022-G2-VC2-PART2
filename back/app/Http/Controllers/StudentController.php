@@ -18,6 +18,9 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function get_all_students() {
+        return Student::get();
+    }
     public function get_students()
     {
         return Student::with(['users', 'comments', 'comments.teachers.users'])->get();
@@ -57,7 +60,7 @@ class StudentController extends Controller
     // ---------------------- get student spacefic id -----------------------
     public function get_student_by_id($id)
     {
-        return Student::where("id", $id)->first();
+        return Student::where("id", $id)->with('users')->get();;
     }
     public function update_student(Request $request, $id)
     {
@@ -97,7 +100,7 @@ class StudentController extends Controller
 
     public function update_tutor(Request $request, $id)
     {
-        $student = Student::findOrFail($id);
+        $student = Student::findOrFail($id);     
         $student->status = $request->status;
         $student->tutor = $request->tutor;
         $student->reasons = $request->reasons;

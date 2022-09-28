@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="form-reset">
+   <form-reset v-if="show_form" class="z-20"/>
     <nav class="flex navbar z-10 text-center w-full h-[10%] drop-shadow-lg">
       <div class="flex items-center">
         <img src="../../../assets/logo.png" class="w-16 ml-9">
@@ -103,24 +104,26 @@
               </div>
             </div>
              <div class="text-center">
-               <button class="bg-blue-400 text-white p-1 rounded " type="submit">Reset Password</button>
+              <button @click="close_form" class="bg-blue-400 text-white px-4 py-2 text-sm rounded">Reset Password</button>
             </div>
           </div>
         </div>
       </div>
     </teacher-profile>
     <router-view></router-view>
-  </div>
+</div>
 </template>
 
 <script>
 import LogoutIcon from '../../coordinators/icons/LogoutIcon.vue'
 import axiosClient from '../../../axios-http'
 import TeacherProfile from '../../profiles/SlotProfile.vue';
+import FormReset from '../FormReset/FormReset.vue'
 export default {
   components: {
     LogoutIcon,
-    'teacher-profile': TeacherProfile
+    'teacher-profile': TeacherProfile,
+    'form-reset': FormReset
   },
   data() {
     return {
@@ -128,6 +131,7 @@ export default {
       is_show: false,
       teacher_profile: "",
       studentId: null,
+      show_form: false
     }
   },
 
@@ -142,11 +146,13 @@ export default {
     show_profile() {
       this.is_show = true;
     },
-
     close_profile() {
       this.is_show = false;
     },
-
+    close_form() {
+      this.show_form = true
+      this.is_show = false;
+    },
     get_teacher() {
       var id = this.$cookies.get('user_id');
       axiosClient.get("teachers/get_teacher_id/" + id)

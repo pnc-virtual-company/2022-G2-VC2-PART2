@@ -3,7 +3,7 @@
     <!--------------------------card-detail------------------------------------>
     <card-detail :user_info="user_info" v-if="is_show" @close_detail="close_detail"/>
     <!---------------------------filter---------------------------------------->
-    <div class="flex justify-center space-x-5 mt-[2rem] mb-2">
+    <div class="flex justify-center space-x-5">
       <div class="flex">
         <span
           class="bg-span flex text-white justify-center items-center text-center rounded-l py-2 px-4"
@@ -38,14 +38,14 @@
       </div>
     </div>
     <!---------------------------------end------------------------------------>
-    <table class="bg-white w-[82.6%] m-auto box-border mt-2 mt-9">
+    <table class="bg-white w-[82.6%] m-auto box-border mt-6">
       <thead class="text-white">
         <tr>
           <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Full Name</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Generation</th>
           <th class="lg:text-md text-md lg:p-3 bg-color">Email</th>
-          <th class="lg:text-md text-md lg:p-3 bg-color">Actions</th>
+          <th class="lg:text-md text-md lg:p-3 bg-color">Detail</th>
         </tr>
       </thead>
       <tbody>

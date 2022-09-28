@@ -48,7 +48,6 @@ export default {
         this.get_tutor_comment();
       });
     },
-
     get_tutor_comment() {
       axiosClient.get('teachers/get_teacher_by_id/' + this.tutor_id).then((response) => {
         this.tutor_info = response.data;
