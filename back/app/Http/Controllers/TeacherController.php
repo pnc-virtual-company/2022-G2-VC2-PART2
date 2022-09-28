@@ -33,7 +33,7 @@ class TeacherController extends Controller
         return "Create successfully";
     }
     // find teacher by id
-    public function get_teacher_by_id($id)
+    public function get_teacher_by_user_id($id)
     {
         return Teacher::where("user_id", $id)->get();
     }
@@ -61,5 +61,9 @@ class TeacherController extends Controller
         return response()->json([
             'message' => 'Successfully'
         ]);
+    }
+
+    public function get_teacher($id) {
+        return Teacher::where('id', $id)->with(['users', 'comments', 'comments.students'])->first();
     }
 }

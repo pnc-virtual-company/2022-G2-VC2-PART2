@@ -27,9 +27,9 @@
               v-for="tutor of teachers"
               :key="tutor.id"
               class="text-black"
+              :value="tutor.id"
             >
-
-              {{ tutor.users.first_name }} {{ tutor.users.last_name }}
+              <span>{{ tutor.users.first_name }}</span> <span>{{ tutor.users.last_name }}</span>
             </option>
           </select>
         </div>

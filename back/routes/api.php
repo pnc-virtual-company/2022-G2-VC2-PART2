@@ -39,8 +39,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // teacher routes
     Route::get('teachers/get', [TeacherController::class, 'get_teachers']);
-    Route::get('teachers/get/{id}', [TeacherController::class, 'get_teacher_by_id']);
+    Route::get('teachers/get/{id}', [TeacherController::class, 'get_teacher_by_user_id']);
     Route::get('teachers/get_teacher_id/{id}', [TeacherController::class, 'get_id_teacher']);
+    Route::get('teachers/get_teacher_by_id/{id}', [TeacherController::class, 'get_teacher']);
     Route::post('teachers/create', [TeacherController::class, 'create_teacher']);
     Route::put('teachers/update/{id}', [TeacherController::class, 'update_teacher']);
     Route::delete('teachers/delete/{id}', [TeacherController::class, 'delete_teacher']);
@@ -65,3 +66,4 @@ Route::post('/user/login', [LoginController::class, 'userLogin']);
 Route::post('sendMail', [SendEmailController::class, 'forgot_password']);
 Route::put('forgot_password/{id}', [SendEmailController::class, 'update_password']);
 Route::post('confirmCode', [SendEmailController::class, 'confirm_code']);
+Route::get('users/get/{name}', [CoordinatorController::class, 'get_coordinator_first']);

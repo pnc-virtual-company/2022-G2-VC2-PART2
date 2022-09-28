@@ -16,7 +16,7 @@
               <div class="num-comments">
                 {{ item.list_comments.length }} comments
               </div>
-              <div class="bells">
+              <div class="bells" v-if="item.notification > 0">
                 <svg
                   class="h-10 w-10 text-sky-500"
                   viewBox="0 0 24 24"
@@ -57,6 +57,7 @@ export default {
     return {
       teacher_infor: [],
       teacherComents: false,
+      isHaveComment: true,
     };
   },
 

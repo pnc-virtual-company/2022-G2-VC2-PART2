@@ -115,8 +115,6 @@ class StudentController extends Controller
             'message' => 'Status Updated successfully'
         ]);
     }
-
-
     // get only student that teacher at to student_following_up list
     public function get_student_follwing_up()
     {
@@ -129,7 +127,7 @@ class StudentController extends Controller
         return Student::with('users')->paginate(5);
     }
 
-    // display student list in teacher 
+    // display student list in teacher
     public function get_student_list(){
         return Student::with('users')->paginate(10);
     }

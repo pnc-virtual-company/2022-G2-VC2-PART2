@@ -6,7 +6,6 @@
       <div class="flex items-center">
         <img src="../../../assets/logo.png" class="w-16 ml-9">
       </div>
-      
       <div class="w-full flex items-center justify-end">
         <h1 class="p-2 font-bold text-white">
           {{ student.users.first_name }} {{ student.users.last_name }}
@@ -21,7 +20,6 @@
         </a>
       </div>
     </nav>
-
     <student-profile v-if="is_show" @close_profile="close_profile" >
       <div v-for="student of students" :key="student" class="modal-mask">
         <div class="modal-wrapper">
