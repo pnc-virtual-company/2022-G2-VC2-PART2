@@ -3,9 +3,13 @@
     <div class="body-tutor">
       <div></div>
       <div class="text-show">Tutor</div>
-      <div class="account-user">
+      <div class="account-user" v-if="user != null">
         <img id="user-images" :src="user.profile">
         <div class="name-user">{{user.first_name}} {{user.last_name}}</div>
+      </div>
+      <div class="account-user" v-else>
+        <img id="user-images" :src="tutor_profile">
+        <div class="name-user ">Not assigned</div>
       </div>
     </div>
     <div class="scroller  overflow-y-scroll">
@@ -35,6 +39,7 @@ export default {
       tutor_info: [],
       user: {},
       id: null,
+      tutor_profile: null,
     }
 
   },
@@ -45,6 +50,7 @@ export default {
         this.student = res.data[0];
         this.tutor_id = res.data[0].tutor;
         this.id = res.data[0].user_id;
+        this.tutor_profile = this.student['users'].profile;
         this.get_tutor_comment();
       });
     },
@@ -53,7 +59,6 @@ export default {
         this.tutor_info = response.data;
         this.user = this.tutor_info.users;
         let tutor_comments = this.tutor_info.comments;
-        console.log(this.id)
         for (let i = 0; i < tutor_comments.length; i++) {
           if (tutor_comments[i].students.user_id == this.id) {
             this.comments.push(tutor_comments[i]);
