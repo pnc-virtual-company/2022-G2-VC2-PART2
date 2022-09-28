@@ -1,6 +1,6 @@
 <template>
-    <div class="filter-view flex">
-      <div class="mb-4 px-2 w-full">
+    <div class="filter-view flex mt-[3.3rem]">
+      <!-- <div class="mb-4 px-2 w-full">
         <div class="flex w-full">
           <div
             class="bg-color flex items-center px-4 py-2 border-transparent border-r-0 rounded-l text-sm font-medium text-white select-none"
@@ -40,7 +40,7 @@
             />
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </template>
   

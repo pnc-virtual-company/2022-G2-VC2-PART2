@@ -20,7 +20,7 @@ class StudentController extends Controller
      */
     public function get_students()
     {
-        return Student::with('users')->get();
+        return Student::with(['users', 'comments', 'comments.teachers.users'])->get();
     }
     /**
      * Store a newly created resource in storage.
@@ -49,12 +49,16 @@ class StudentController extends Controller
             'message' => 'success'
         ]);
     }
-    public function get_student_by_id($id)
+    public function get_student_by_user_id($id)
     {
         return Student::where("user_id", $id)->with('users')->get();
     }
 
-
+    // ---------------------- get student spacefic id -----------------------
+    public function get_student_by_id($id)
+    {
+        return Student::where("id", $id)->first();
+    }
     public function update_student(Request $request, $id)
     {
         $student_id = $request->student_id;
@@ -91,6 +95,17 @@ class StudentController extends Controller
         }
     }
 
+    public function update_tutor(Request $request, $id)
+    {
+        $student = Student::findOrFail($id);
+        $student->status = $request->status;
+        $student->tutor = $request->tutor;
+        $student->reasons = $request->reasons;
+        $student->save();
+        return response()->json([
+            'message' => 'Status Updated successfully'
+        ]);
+    }
     public function update_status(Request $request, $id)
     {
         $student = Student::findOrFail($id);
@@ -101,14 +116,16 @@ class StudentController extends Controller
         ]);
     }
 
+
     // get only student that teacher at to student_following_up list
     public function get_student_follwing_up()
     {
-        return Student::with('users','comments')->where('status', '1')->paginate(10);
+        return Student::with('users', 'comments')->where('status', '1')->paginate(10);
     }
 
     // get student to display in follow up list
-    public function get_student_display_follow_up(){
+    public function get_student_display_follow_up()
+    {
         return Student::with('users')->paginate(5);
     }
 
@@ -122,21 +139,18 @@ class StudentController extends Controller
     // update student image
     public function update_user_img(Request $request, $id)
     {
-
         $user = User::findOrFail($id);
         $path = public_path('profile');
-        if (!file_exists($path) ) {
+        if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
         $file = $request->file('profile');
-        if($file!=null){
+        if ($file != null) {
             $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
             $file->move($path, $fileName);
             $user->profile = asset('profile/' . $fileName);
             $user->save();
             return response()->json(["message" => "user update successfully"]);
         }
-        
     }
-
 }

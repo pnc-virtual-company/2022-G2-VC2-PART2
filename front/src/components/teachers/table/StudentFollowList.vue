@@ -6,28 +6,27 @@
     <div class="flex justify-center space-x-5 mt-[2rem] mb-2">
       <div class="flex">
         <span
-          class="bg-span flex text-white justify-center items-center text-center rounded-l-lg py-2 px-4"
+          class="bg-span flex text-white justify-center items-center text-center rounded-l py-2 px-4"
           >Filter By Generation</span
         >
         <!--filter-by-generation-->
         <select
-          class="w-[396px] p-2 py-2 text-gray-900 rounded-r-lg focus:border-blue-300 outline-none text-slate-500"
+          class="w-[396px] p-2 py-2 text-gray-900 rounded-r focus:border-blue-300 outline-none text-slate-500"
           v-model="filter_generation"
         >
           <option disabled value="Choose" aria-placeholder="Choose">
             Choose
           </option>
-          <option value="">Show All</option>
+          <option value="">All Generation</option>
           <option value="2022">2022</option>
           <option value="2023">2023</option>
           <option value="2024">2024</option>
-          <option value="2025">2025</option>
         </select>
       </div>
       <div class="flex">
         <!--search-by-name-->
         <span
-          class="bg-span items-center text-white py-2 px-4 border-gray-300 rounded-l-lg"
+          class="bg-span items-center text-white py-2 px-4 border-gray-300 rounded-l"
           >Search By Name</span
         >
         <input
@@ -84,8 +83,6 @@
         </tr>
       </tbody>
     </table>
-    <!-- <div class="flex justify-center items-center p-5">
-    </div> -->
   </div>
 </template>
 <script>

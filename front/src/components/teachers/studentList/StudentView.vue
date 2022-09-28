@@ -132,7 +132,7 @@ export default {
     },
     async getData() {
       let response = await axiosClient.get(
-        `get_student_follow_up/?page=${this.currentPage}`
+        `get_student_display_follow_up/?page=${this.currentPage}`
       );
       let responseData = response.data;
       this.student_lists = responseData.data;
@@ -153,8 +153,8 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           this.is_follow_up = !this.is_follow_up;
-          axiosClient.put("teachers/student_status/" + student_id, body);
-          this.get_students();
+          axiosClient.put("teachers/update_status/" + student_id, body);
+          this.getData();
         }
       });
     },
@@ -201,4 +201,5 @@ export default {
 .bg-follow-up{
     background: rgba(237, 212, 86, 0.743);
 }
+
 </style>
