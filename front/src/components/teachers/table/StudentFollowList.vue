@@ -83,6 +83,16 @@
         </tr>
       </tbody>
     </table>
+    <div class="pagination-student w-[82.6%] m-auto box-border mt-4">
+      <vue-awesome-paginate
+        class="text-orange-600"
+        :current-page="currentPage"
+        :total-items="total"
+        :items-per-page="perPage"
+        :on-click="pageChange"
+      >
+      </vue-awesome-paginate>
+    </div>
   </div>
 </template>
 <script>
@@ -97,15 +107,13 @@ export default {
       user_info: [],
       filter_generation: "",
       search_name: "",
-      is_show: false
+      is_show: false,
+      currentPage: 1,
+      total: "",
+      perPage: 5,
     };
   },
   methods: {
-    get_students() {
-      axiosClient.get("students/get").then((res) => {
-        this.student_lists = res.data;
-      });
-    },
     show_detail(id) {
       this.is_show = true
       for(let value of this.student_lists) {
@@ -114,6 +122,20 @@ export default {
           console.log(this.user_info);
         }
       }
+    },
+    pageChange(pageNumber) {
+      this.currentPage = pageNumber;
+      this.getData();
+    },
+    async getData() {
+      let response = await axiosClient.get(
+        `students/list/?page=${this.currentPage}`
+      );
+      let responseData = response.data;
+      this.student_lists = responseData.data;
+      this.perPage = responseData.per_page;
+      console.log(responseData.per_page);
+      this.total = responseData.total;
     },
     close_detail(close){
       this.is_show = close;
@@ -132,7 +154,8 @@ export default {
     },
   },
   mounted() {
-    this.get_students();
+    this.currentPage = 1;
+    this.getData();
   }
 }
 </script>
