@@ -168,15 +168,16 @@ export default {
       this.$emit("cancel", false);
     },
     show_teacher_data() {
-      axiosClient.get("teachers/get/" + this.teacher_id).then((response) => {
-        let teacher_data = response.data[0];
-        console.log(this.teacher_id)
-        this.first_name = teacher_data.users.first_name;
-        this.last_name = teacher_data.users.last_name;
-        this.gender = teacher_data.users.gender;
-        this.position = teacher_data.position;
-        this.email = teacher_data.users.email;
-        this.phone = teacher_data.phone;
+      console.log(this.teacher_id);
+      axiosClient.get("teachers/get/" + this.user_id).then((response) => {
+        // let teacher_data = response.data[0];
+        console.log(response.data[0]);
+        // this.first_name = teacher_data.users.first_name;
+        // this.last_name = teacher_data.last_name;
+        // this.gender = teacher_data.gender;
+        // this.position = teacher_data.teachers.position;
+        // this.email = teacher_data.email;
+        // this.phone = teacher_data.phone;
       });
     },
     edit_teacher() {
