@@ -21,40 +21,29 @@
           </div>
         </div>
       </div>
-
-      
     </div>
-
-
 
   </div>
 </template>
 
 <script>
-import axiosClient from "../../../axios-http";
+
 export default {
   data(){
     return{
-      tutor:''
-
+      
     }
 
   },
    methods:{
-    get_tutor(){
-      let user_id = this.$cookies.get('user_id');
-       axiosClient.get("students/get/"+user_id).then((res) => {
-         this.tutor=res.data;
-        console.log(this.tutor);
-      });
-    },
+   
+
 
   },
   mounted() {
     this.get_tutor();
+    this.get_comment_tutor();
   }
-
-   
 
 }
 </script>
@@ -65,7 +54,6 @@ export default {
     background: #BBD7E0;
   }
   .body-tutor{
-  
     display: flex;
     justify-content: space-between;
     background: #22BBEA;

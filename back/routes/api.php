@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('get_student_follwing_up/', [StudentController::class, 'get_student_follwing_up']);
     Route::get('get_student_display_follow_up/', [StudentController::class, 'get_student_display_follow_up']);
     Route::get('students/get', [StudentController::class, 'get_students']);
+    Route::get('students/list', [StudentController::class, 'get_student_list']);
     Route::get('students/get/{id}', [StudentController::class, 'get_student_by_user_id']);
     Route::get('students/get_by_id/{id}',[StudentController::class, 'get_student_by_id']);
     Route::post('students/create', [StudentController::class, 'create_student']);
@@ -53,6 +54,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // comment route
     Route::post('comments/add', [CommentController::class, 'add_comments']);
     Route::get('comments/get', [CommentController::class, 'get_comment_by_id']);
+    // Route::get('commentTutors/get', [CommentController::class, 'get_comment_tutor_by_id']);
+
     // coordinator Routes
     Route::get('coordinators/get/{id}', [CoordinatorController::class, 'get_coordinator_first']);
 
@@ -60,9 +63,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('sendTutor/email', [SendEmailController::class, 'mail_tutor']);
     Route::post('import_file', [StudentController::class,'import']);
 });
+Route::put('update_notification/{id}', [CommentController::class, 'update_notifications']);
 // users routes
 Route::post('/user/login', [LoginController::class, 'userLogin']);
 Route::post('sendMail', [SendEmailController::class, 'forgot_password']);
 Route::put('forgot_password/{id}', [SendEmailController::class, 'update_password']);
 Route::post('confirmCode', [SendEmailController::class, 'confirm_code']);
-Route::get("get_all_students", [StudentController::class, 'get_all_students']);
+// Route::get("get_all_students", [StudentController::class, 'get_all_students']);

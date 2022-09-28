@@ -20,7 +20,7 @@ return new class extends Migration
             $table->bigInteger('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->text('comment')->nullable();
-            $table->string('img')->nullable();
+            $table->boolean('is_check')->default(false);
             $table->timestamps();
         });
     }

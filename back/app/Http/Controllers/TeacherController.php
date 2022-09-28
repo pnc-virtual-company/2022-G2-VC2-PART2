@@ -8,7 +8,7 @@ class TeacherController extends Controller
 {
     public function get_teachers()
     {
-        return Teacher::with('users', 'comments')->get();
+        return Teacher::with('users', 'comments','comments.students')->get();
     }
     /**
      * Store a newly created resource in storage.

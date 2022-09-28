@@ -21,7 +21,7 @@
         <delete-icon @click="close_messages"></delete-icon>
       </success-message>
       <!-- edited's message -->
-      <success-message v-if="isEdit" class="text-green-500 items-center">
+      <success-message v-if="isEdit" class="text-green-500 items-center mt-[5rem]">
         <p><strong>Congratulation!</strong> Edit was successfully saved</p>
         <delete-icon @click="close_messages"></delete-icon>
       </success-message>
@@ -35,7 +35,7 @@
       @add-student="create_student"
       @isShow="onChange"
     ></create-student>
-    <table class="bg-white w-[82.6%] m-auto box-border">
+    <table class="bg-white w-[82.6%] m-auto mt-3">
       <thead class="text-white">
         <tr>
           <th class="lg:text-md text-md lg:p-3 bg-color">Profile</th>
