@@ -82,10 +82,10 @@ class SendEmailController extends Controller
             $email = $request->email;
             $id = $request->user_id;
             $data = array('first_name' => $request->first_name, 'last_name' => $request->last_name
-        , 'reason'=> $request->reason, 'name'=> $request->name, 'email'=>$request->email);
+        , 'reasons'=> $request->reasons, 'tutor'=> $request->tutor, 'email'=>$request->email);
             Mail::send('Emails.SendTutorStudent', $data, function($message) use($email, $id) {
                 $message->from('sfu@passerellesnumeriques.org', "SFU");
-                $message->to($email.$id)->cc(['sopha.rathwep2022@gmail.com'])->subject('Message:Student FollowUp');
+                $message->to($email.$id)->cc(['theararit2002@gmail.com'])->subject('Message:Student FollowUp');
             });
             return 'Email sent Successfully';
         }else {

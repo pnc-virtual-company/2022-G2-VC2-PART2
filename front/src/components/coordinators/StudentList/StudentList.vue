@@ -224,8 +224,19 @@ export default {
       axiosClient.put("teachers/update_tutor/" + this.student_id,update_tutor)
       this.is_show_tutor = true;
       this.is_show = false;
+      console.log(this.student_id);
       this.is_show_form_tutor = false;
       this.get_students();
+      axiosClient.get('students/get_by_id/' + this.student_id).then((response)=>{
+        let list_of_user = response.data;
+        console.log(list_of_user);
+        for(let user of list_of_user){
+          let user_email = user.users.email;   
+          let mail_data = {first_name: user.users.first_name,last_name: user.users.last_name,reasons: user.reasons,tutor: user.tutor,email: user_email}
+          axiosClient.post('sendTutor/email',mail_data);
+          console.log(mail_data);
+        }
+      })
     },
     edit_student(new_student, user_id) {
       axiosClient.put("students/update/"+ user_id, new_student)

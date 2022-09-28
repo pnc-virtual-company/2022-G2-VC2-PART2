@@ -2,10 +2,12 @@
   <div class="form-tutor mt-8">
     <form
       action=""
-      class="px-5 mb-5 box-border "
+      class="px-5 mb-5 box-border"
       @submit.prevent="move_student_to_follow_up"
     >
-      <div class="w-2/4 m-auto header  bg-slate-100 rounded-lg   shadow-md dark:bg-gray-800 dark:border-gray-700 px-4 py-4">
+      <div
+        class="w-2/4 m-auto header bg-slate-100 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 px-4 py-4"
+      >
         <div class="mb-2 px-2 w-full">
           <label class="block mb-1 text-sm" for="input1">Reason</label>
           <textarea
@@ -22,13 +24,11 @@
             class="w-full border px-4 pr-8 py-1 focus:border-blue-500 focus:shadow-outline outline-none appearance-none text-slate-500 rounded"
             id="select-item"
           >
-
             <option
               v-for="tutor of teachers"
               :key="tutor.id"
               class="text-black"
             >
-
               {{ tutor.users.first_name }} {{ tutor.users.last_name }}
             </option>
           </select>
@@ -47,7 +47,6 @@
             Add
           </button>
         </div>
-
       </div>
     </form>
   </div>
@@ -57,7 +56,7 @@
 import axiosClient from "../../../axios-http";
 export default {
   props: {
-    is_show_form_tutor: Boolean
+    is_show_form_tutor: Boolean,
   },
   data() {
     return {
@@ -72,8 +71,8 @@ export default {
         this.teachers = response.data;
       });
     },
-    cancle(){
-        this.$emit('cancle',false);
+    cancle() {
+      this.$emit("cancle", false);
     },
     add_tutor() {
       axiosClient
@@ -90,7 +89,8 @@ export default {
         tutor: this.tutors,
         status: true,
       };
-      this.$emit("move_student_to_follow_up",body);
+      this.$emit("move_student_to_follow_up", body);
+      
     },
   },
   mounted() {
@@ -108,7 +108,7 @@ export default {
 .bg-color {
   background: #22bbea;
 }
-textarea{
+textarea {
   resize: none;
 }
 .btn-cancel {
