@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('teachers/update/{id}', [TeacherController::class, 'update_teacher']);
     Route::delete('teachers/delete/{id}', [TeacherController::class, 'delete_teacher']);
     Route::put('teachers/update_tutor/{id}', [StudentController::class,'update_tutor']);
-Route::put('teachers/update_status/{id}', [StudentController::class, 'update_status']);
+    Route::put('teachers/update_status/{id}', [StudentController::class, 'update_status']);
 
     // comment route
     Route::post('comments/add', [CommentController::class, 'add_comments']);
@@ -56,9 +56,9 @@ Route::put('teachers/update_status/{id}', [StudentController::class, 'update_sta
     Route::post('sendTutor/email', [SendEmailController::class, 'mail_tutor']);
     Route::post('import_file', [StudentController::class,'import']);
 });
+Route::put('update_notification/{id}', [CommentController::class, 'update_notifications']);
 // users routes
 Route::post('/user/login', [LoginController::class, 'userLogin']);
 Route::post('sendMail', [SendEmailController::class, 'forgot_password']);
 Route::put('forgot_password/{id}', [SendEmailController::class, 'update_password']);
 Route::post('confirmCode', [SendEmailController::class, 'confirm_code']);
-

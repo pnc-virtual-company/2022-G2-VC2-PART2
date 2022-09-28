@@ -218,7 +218,6 @@ export default {
           teacher_id: this.teacher_id,
           student_id: this.id_student,
           comment: this.comment_teacher,
-          img: this.image_teacher,
         };
         console.log(body);
         this.showModal = false;

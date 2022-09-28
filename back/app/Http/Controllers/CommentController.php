@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -13,7 +14,6 @@ class CommentController extends Controller
         $comment->teacher_id = $request->teacher_id;
         $comment->student_id = $request->student_id;
         $comment->comment = $request->comment;
-        $comment->img = $request->img;
         $comment->save();
         return response()->json([
             'message' => 'success'
@@ -23,5 +23,14 @@ class CommentController extends Controller
     {
         return Comment::with('teachers','teachers.users','students')->get();
     }
-
+    public function update_notifications(Request $request, $id){
+        $comments = Comment::where('teacher_id',$id)->get();
+        for ($i = 0; $i < count($comments); $i++) {
+            if ($comments[$i]->student_id == $request->student_id){
+                $comments[$i]->is_check = true;
+                $comments[$i]->save();
+            }
+        }
+        return $comments;
+    }
 }
