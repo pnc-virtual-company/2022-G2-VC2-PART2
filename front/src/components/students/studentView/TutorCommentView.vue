@@ -27,37 +27,22 @@
 </template>
 
 <script>
-import axiosClient from "../../../axios-http";
+
 export default {
   data(){
     return{
-      tutor:'',
-      comments: []
-
+      
     }
 
   },
    methods:{
-    get_tutor(){
-      let user_id = this.$cookies.get('user_id');
-       axiosClient.get("students/get/"+user_id).then((res) => {
-         this.tutor=res.data;
-        console.log(this.tutor);
-      });
-    },
+   
 
-    get_comment_tutor(){
-      let user_id = this.$cookies.get('user_id');
-      axiosClient.get("comments/get" + user_id).then((res) => {
-        this.comments = res.data;
-        
-      })
-    }
 
   },
   mounted() {
-    this.get_tutor();
-    this.get_comment_tutor();
+    // this.get_tutor();
+    // this.get_comment_tutor();
   }
 
 }

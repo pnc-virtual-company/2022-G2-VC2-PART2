@@ -1,18 +1,11 @@
 <template>
   <div class="student-following-up">
-    <div class="create justify-between w-[87.5%] m-auto box-border mt-4">
-      <div class="filter-student m-auto w-[87.5%] box-border mt-8">
-        <filter-table
-          @by_generation="filter_student_by_generation"
-          @by_name="filter_student_by_name"
-        ></filter-table>
-      </div>
-      <div
-        class="bg-sky-400 mt-[5rem] w-12 h-12 rounded-full hover:bg-sky-300 flex justify-center items-center cursor-pointer m-auto w-10/12 box-border mt-8"
-        @click="showModal = true"
+    <div class="create justify-end w-[83%] m-auto box-border mt-4">
+      <button  @click="showModal = true"
+        class="absolute bg-sky-400 mt-[4.8rem] w-12 h-12 rounded-full hover:bg-sky-300 flex justify-center items-center"
       >
-        <svg
-          class="h-8 w-8 text-white"
+        <svg @click="showModal = true"
+          class="h-8 w-8 text-white cursor-pointer"
           width="24"
           height="24"
           viewBox="0 0 24 24"
@@ -27,7 +20,7 @@
           <line x1="12" y1="5" x2="12" y2="19" />
           <line x1="5" y1="12" x2="19" y2="12" />
         </svg>
-      </div>
+      </button>
     </div>
     <div v-if="showModal">
       <add-to-follow-up>
@@ -101,13 +94,11 @@ import FormView from "../../coordinators/teacher/FormCreateTeacherComponent.vue"
 import StudentFollowingTable from "../table/StudentFollowingUpTable.vue";
 import axiosClient from "../../../axios-http";
 import StudentFollowList from "../studentList/StudentView.vue";
-import filterStudent from "./FilterStudentFollowingUp.vue";
 export default {
   components: {
     "student-table": StudentFollowingTable,
     "add-to-follow-up": FormView,
     "student-list": StudentFollowList,
-    "filter-table": filterStudent,
   },
   data() {
     return {
@@ -116,7 +107,7 @@ export default {
       perPage: 10,
       data: [],
       showModal: false,
-      student_filter: []
+      student_filter: [],
     };
   },
   methods: {
@@ -142,10 +133,11 @@ export default {
     },
     add_student_list() {
       this.showModal = true;
+      this.getData();
     },
     back_page() {
-      this.showModal = false;
       this.getData();
+      this.showModal = false;
     },
     filter_student_by_generation(generation) {
       console.log(generation);

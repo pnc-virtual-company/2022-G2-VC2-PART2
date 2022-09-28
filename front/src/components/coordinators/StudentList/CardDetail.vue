@@ -2,7 +2,7 @@
    <!---------------------------------card-detail-------------------------------->
    <div class="modal-mask">
       <div class="modal-wrapper">
-          <div class="flex items-start justify-center py-2 rounded-t header bg-blue-400">
+          <div class="flex items-start justify-center py-2 header bg-blue-400">
             <h2 class="flex justify-center w-full text-white text-xl">Student Detail</h2>
             <svg @click="close_detail" class="h-6 w-6 text-red-500 m-auto mr-3 cursor-pointer"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" /></svg>
           </div>
@@ -75,7 +75,6 @@ export default {
     font-family: Helvetica, Arial, sans-serif;
     z-index: 10;
 }
-
 .modal-body {
     margin: 20px 0;
 }
@@ -86,7 +85,6 @@ export default {
 .modal-enter-from, .modal-leave-to {
     opacity: 0;
 }
-
 .modal-enter-active .modal-container,
 .modal-leave-active .modal-container {
     -webkit-transform: scale(1.1);

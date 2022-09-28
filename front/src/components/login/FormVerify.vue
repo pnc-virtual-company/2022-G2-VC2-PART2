@@ -14,10 +14,10 @@
                 placeholder="Input your password" v-model="code" required />
               <div class="flex justify-end space-x-2 mt-3">
                 <button type="submit"
-                  class="flex justify-center items-center px-5 mb-1 rounded py-2 bg-blue-400 text-white hover:bg-blue-500">Submit
+                  class="flex justify-center items-center px-5 text-sm rounded py-2 bg-blue-400 text-white hover:bg-blue-500">Submit
                 </button>
                 <button @click="close_form"
-                  class="flex justify-center items-center px-5 mb-1 rounded py-2 bg-orange-400 text-white hover:bg-orange-500">
+                  class="flex justify-center items-center px-5 text-sm rounded py-2 bg-orange-400 text-white hover:bg-orange-500">
                   Cancel
                 </button>
               </div>

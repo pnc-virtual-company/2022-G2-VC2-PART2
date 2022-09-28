@@ -2,8 +2,8 @@
   <div>
     <div class="container w-10/12 m-auto flex justify-between box-border">
       <div class="side-left"></div>
-      <div class="side-right flex">
-        <div class="">
+      <div class="side-right flex space-x-3">
+        <div class="mt-[1.5rem]">
           <input
             type="file"
             name="file"
@@ -11,11 +11,10 @@
             hidden
             @change="import_student"
           />
-          <label class="import_excel m-6 cursor-pointer" for="file">
+          <label class="import_excel cursor-pointer" for="file">
             <img
-              class="flex items-center cursor-pointer mt-[3.5rem] w-14 h-11"
+              class="flex items-center cursor-pointer mt-[3.5rem] w-[65px] h-11"
               :src="require('../../../assets/excel-icon.png')"
-              alt=""
             />
           </label>
         </div>
@@ -23,11 +22,11 @@
           <add-student-button
             type="button"
             class="
+            flex justify-center 
               mt-[5rem]
               btn-add
               bg-sky-400
               text-white text-sm
-              px-3
               py-1
               font-bold
               rounded
@@ -36,7 +35,6 @@
               outline-none
               focus:outline-none
               mr-1
-              mb-1
               ease-linear
               transition-all
               duration-150
