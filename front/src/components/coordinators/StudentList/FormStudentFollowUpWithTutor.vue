@@ -6,7 +6,7 @@
           class="mb-2 box-border"
           @submit.prevent="move_student_to_follow_up"
         >
-        <p class="text-center text-2xl text-orange-400">Comments</p>
+        <p class="text-center text-2xl text-orange-400">Move student to follow up</p>
           <div class="px-2 w-full">
             <label class="block mb-1 text-sm" for="input1">Reason</label>
             <textarea
@@ -27,6 +27,7 @@
                 v-for="tutor of teachers"
                 :key="tutor.id"
                 class="text-black"
+                :value="tutor.id"
               >
                 {{ tutor.users.first_name }} {{ tutor.users.last_name }}
               </option>

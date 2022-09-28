@@ -105,13 +105,13 @@ export default {
 }
 
 .account-user {
-  width: 28%;
+  width: 25%;
   padding: 5px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
   border-top-right-radius: 5px;
   display: flex;
-  align-items: center;
+  align-items: left;
   background: #51d9f1;
 }
 
