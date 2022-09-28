@@ -1,8 +1,8 @@
 <template>
   <div>
-    <nav class="flex navbar z-10 pl-4 pr-4 text-center w-full drop-shadow-lg">
+    <nav class="flex navbar z-10 text-center w-full h-[10%] drop-shadow-lg">
       <div class="flex items-center">
-        <img src="../../../assets/logo.png" class="w-20" />
+        <img src="../../../assets/logo.png" class="w-16 ml-9"/>
       </div>
 
       <div class="flex justify-center items-center w-full">
@@ -24,7 +24,7 @@
           :src="coordinator.profile"
         />
         <a href="log_out">
-          <LogoutIcon @click="log_out" class="cursor-pointer ml-3 mr-3" />
+          <LogoutIcon @click="log_out" class="cursor-pointer ml-3"/>
         </a>
       </div>
     </nav>

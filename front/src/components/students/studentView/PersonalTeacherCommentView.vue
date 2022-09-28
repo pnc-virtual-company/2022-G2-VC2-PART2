@@ -8,8 +8,6 @@
       </div>
       
     </div>
-
-
      <div class="card-body">
       <div class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, fugit.</div>
       <div class="date-time">
@@ -18,8 +16,6 @@
       </div>
       
     </div>
-
-
   </div>
 </template>
 

@@ -19,9 +19,15 @@ class CommentController extends Controller
             'message' => 'success'
         ]);
     }
+
     public function get_comment_by_id()
     {
         return Comment::with('teachers','teachers.users','students')->get();
     }
 
+    // public function get_comment_tutor_by_id()
+    // {
+    //     return Comment::with('students','teachers.users','students')->get();
+    // }
 }
+
