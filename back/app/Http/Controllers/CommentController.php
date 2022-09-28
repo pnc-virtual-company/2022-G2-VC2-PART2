@@ -19,6 +19,7 @@ class CommentController extends Controller
             'message' => 'success'
         ]);
     }
+
     public function get_comment_by_id()
     {
         return Comment::with('teachers','teachers.users','students')->get();
@@ -34,3 +35,4 @@ class CommentController extends Controller
         return $comments;
     }
 }
+

@@ -109,7 +109,7 @@ export default {
 </script>
 <style scoped>
 .body-profils {
-  margin-top: 1rem;
+  margin-top: 4.4rem;
   display: flex;
   justify-content: space-between;
 }

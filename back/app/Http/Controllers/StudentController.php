@@ -129,6 +129,10 @@ class StudentController extends Controller
         return Student::with('users')->paginate(5);
     }
 
+    // display student list in teacher 
+    public function get_student_list(){
+        return Student::with('users')->paginate(10);
+    }
     public function import(Request $request){
         echo $request->file;
         Excel::import(new UsersImport, $request->file('file')->store('files'));
