@@ -18,6 +18,9 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function get_all_students() {
+        return Student::get();
+    }
     public function get_students()
     {
         return Student::with(['users', 'comments', 'comments.teachers.users'])->get();

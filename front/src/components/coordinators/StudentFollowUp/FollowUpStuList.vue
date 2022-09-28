@@ -97,6 +97,7 @@ export default {
   },
   data() {
     return {
+      img_null: "https://icons.veryicon.com/png/o/education-technology/qiniu-cloud-service-icon/content-audit.png",
       student_follow: [],
     };
   },

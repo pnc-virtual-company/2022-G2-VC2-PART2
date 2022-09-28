@@ -150,15 +150,15 @@
                   </div>
                 </form>
                 <div
-                class="flex items-center justify-end px-4 py-2 border-solid rounded-b mb-2"
+                class="flex items-center justify-end space-x-1 px-2 border-solid rounded-b mb-4"
               >
                 <Button-view
-                  class="cancle rounded-md text-white px-4 text-sm rounded shadow hover:shadow-lg hover:bg-orange-400 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  class="cancle rounded-b text-white px-2 text-sm rounded shadow hover:shadow-lg hover:bg-orange-400 outline-none focus:outline-none"
                   @click="cancle()"
                   >Cancle</Button-view
                 >
                 <Button-view
-                  class="add rounded-md text-white px-4 text-sm rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  class="add rounded-b text-white px-2 text-sm rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none"
                   @click="add()"
                   >Create</Button-view
                 >

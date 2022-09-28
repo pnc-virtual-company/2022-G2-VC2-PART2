@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex justify-center space-x-5 mt-[2rem] mb-2">
+    <div class="flex w-full justify-center space-x-5 mt-[5rem] mb-2 relative">
       <div class="flex">
         <span
           class="bg-span flex text-white justify-center items-center text-center rounded-l py-2 px-4"
@@ -8,7 +8,7 @@
         >
         <!--filter-by-generation-->
         <select
-          class="w-[396px] p-2 py-2 text-gray-900 rounded-r focus:border-blue-300 outline-none text-slate-500"
+          class="w-[385px] p-2 py-2 text-gray-900 rounded-r focus:border-blue-300 outline-none text-slate-500"
           v-model="generation"
         >
           <option disabled value="Choose" aria-placeholder="Choose">
@@ -21,14 +21,14 @@
         </select>
       </div>
       <div class="flex">
-        <!--search-by-name-->
+      <!--search-by-name-->
         <span
           class="bg-span items-center text-white py-2 px-4 border-gray-300 rounded-l"
           >Search By Name</span
         >
         <input
           type="search"
-          class="w-[396px] rounded-r-lg p-2 py-2 border focus:border-blue-300 outline-none appearance-none"
+          class="w-[345px] mr-[4rem] rounded-r p-2 py-2 border focus:border-blue-300 outline-none appearance-none"
           placeholder="Search"
           v-model="filter_by_name"
         />
@@ -40,26 +40,26 @@
         <div
           class="flex items-start justify-center py-2 rounded-t header bg-blue-400"
         >
-          <p class="flex justify-center w-full text-white text-xl">COMMENTS</p>
+          <p class="flex justify-center w-full text-white text-l">COMMENTS</p>
         </div>
-        <div class="modal-container bg-blue-200 p-5">
+        <div class="modal-container bg-blue-200 p-4">
           <form class="w-full" @submit.prevent="sent_comment">
             <div class="w-full">
               <textarea
-                class="w-full h-[100px] focus:border-blue-500 p-2 focus:outline-none"
+                class="w-full h-[100px] border p-2 resize-none focus:border-blue-500 focus:shadow-outline outline-none appearance-none text-slate-500 rounded"
                 placeholder="comment here..."
                 v-model="comment_teacher"
               ></textarea>
             </div>
-            <div class="flex justify-end space-x-2 mt-2">
+            <div class="flex justify-end space-x-1 mt-2">
               <span
                 @click="close_form"
-                class="bg-orange-300 hover:bg-orange-500 py-2 text-white px-5 rounded cursor-pointer"
+                class="btn-submit cursor-pointer bg-orange-300 px-4 text-white hover:bg-orange-400 text-sm text-sm py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none transition-all duration-150"
                 >Cancel</span
               >
               <button
                 type="submit"
-                class="bg-blue-400 hover:bg-blue-500 py-2 text-white px-5 rounded cursor-pointer"
+                class="bg-blue-400 px-5 text-white hover:bg-blue-500 text-sm text-sm py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none transition-all duration-150"
               >
                 Send
               </button>
@@ -158,7 +158,6 @@
 <script>
 import axiosClient from "../../../axios-http";
 export default {
-  props: {students: Array},
   data() {
     return {
       showModal: false,
@@ -202,7 +201,7 @@ export default {
     },
     get_student_with_comments() {
       axiosClient.get("students/get").then((res) => {
-        this.student_data = res.data.filter((student) => student.status == true);
+        this.$emit('get_student_flo', this.student_data = res.data.filter((student) => student.status == true))
       });
     },
     get_profile() {
@@ -268,10 +267,4 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
   z-index: 10;
 }
-/* .icon_group {
-  display: none;
-}
-.bg-white:hover .icon_group {
-  display: block;
-} */
 </style>

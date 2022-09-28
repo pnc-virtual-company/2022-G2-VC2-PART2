@@ -15,8 +15,8 @@
                   placeholder="Input your email" v-model="email" required
                 />
                 <div class="flex justify-end space-x-2 mt-3">
-                  <button  type="submit" class="flex justify-center items-center px-5 mb-1 rounded py-2 bg-blue-400 text-white hover:bg-blue-500">Submit</button>
-                  <button @click="close_form" class="flex justify-center items-center px-5 mb-1 rounded py-2 bg-orange-400 text-white hover:bg-orange-500">Cancel</button>
+                  <button  type="submit" class="flex justify-center items-center text-sm px-5 rounded py-2 bg-blue-400 text-white hover:bg-blue-500">Submit</button>
+                  <button @click="close_form" class="flex justify-center text-sm items-center px-5 rounded py-2 bg-orange-400 text-white hover:bg-orange-500">Cancel</button>
                 </div>
               </div>
             </form>
@@ -100,25 +100,3 @@ components: { FormVerify },
   transform: scale(1.1);
 }
 </style>
-
-<!-- resetPassword(){
-  if (localStorage.getItem('role')=="student"){
-    this.studentResetpassword();
-  }
-  if (localStorage.getItem('role')=="admin") {
-    this.adminResetpassword();
-  }
-  this.oldpassword = null;
-  this.newPassword = null;
-  this.showResetPassword = !this.showResetPassword;
-},
-studentResetpassword(){
-   axios.patch('http://127.0.0.1:8082/api/studentResetPassword/'+localStorage.getItem('userId'),{oldpassword:this.current_password,newPassword:this.new_password}).then((response)=>{
-    console.log(response)
-  })
-},
-adminResetpassword(){
-  axios.patch('http://127.0.0.1:8082/api/adminResetPassword/'+localStorage.getItem('userId'),{oldpassword:this.current_password,newPassword:this.new_password}).then((response)=>{
-    console.log(response);
-  })
-} -->

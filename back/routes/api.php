@@ -35,6 +35,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('update_img_user/{id}', [StudentController::class, 'update_user_img']);
     // send mail to student
     Route::post('send/email', [SendEmailController::class, 'send_mail']);
+    // teacher reset password
+    Route::put('student/reset_password/{id}', [SendEmailController::class, 'reset_password']);
 
     // teacher routes
     Route::get('teachers/get', [TeacherController::class, 'get_teachers']);
@@ -44,7 +46,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('teachers/update/{id}', [TeacherController::class, 'update_teacher']);
     Route::delete('teachers/delete/{id}', [TeacherController::class, 'delete_teacher']);
     Route::put('teachers/update_tutor/{id}', [StudentController::class,'update_tutor']);
-Route::put('teachers/update_status/{id}', [StudentController::class, 'update_status']);
+    Route::put('teachers/update_status/{id}', [StudentController::class, 'update_status']);
+    // teacher reset password
+    Route::put('teacher/reset_password/{id}', [SendEmailController::class, 'reset_password']);
 
     // comment route
     Route::post('comments/add', [CommentController::class, 'add_comments']);
@@ -61,4 +65,4 @@ Route::post('/user/login', [LoginController::class, 'userLogin']);
 Route::post('sendMail', [SendEmailController::class, 'forgot_password']);
 Route::put('forgot_password/{id}', [SendEmailController::class, 'update_password']);
 Route::post('confirmCode', [SendEmailController::class, 'confirm_code']);
-
+Route::get("get_all_students", [StudentController::class, 'get_all_students']);

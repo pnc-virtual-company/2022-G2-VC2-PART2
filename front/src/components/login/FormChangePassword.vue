@@ -11,11 +11,11 @@
               placeholder="Input your password" v-model="password" required />
             <p class="mt-2">Password Confirm</p>
             <input type="password"
-              class="w-full px-4 py-2 bg-white border border-gray-300 rounded-r transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-400 focus:outline-none"
+              class="w-full px-4 text-sm py-2 bg-white border border-gray-300 rounded-r transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-400 focus:outline-none"
               placeholder="Password Confirm" v-model="pass_confirm" required />
             <div class="flex justify-end space-x-2 mt-3">
               <button type="submit"
-                class="w-full flex justify-center items-center px-5 mb-1 rounded py-2 bg-blue-400 text-white hover:bg-blue-500">
+                class="w-full text-sm flex justify-center items-center px-5 mb-1 rounded py-2 bg-blue-400 text-white hover:bg-blue-500">
                 Submit
               </button>
             </div>
