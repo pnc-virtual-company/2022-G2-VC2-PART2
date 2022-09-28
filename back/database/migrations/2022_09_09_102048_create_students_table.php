@@ -15,15 +15,21 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('batch');
+            $table->foreignId('user_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');;
+            $table->string('generation');
             $table->string('phone');
-            $table->string('role')->default("student");
+            $table->string('class')->nullable();
+            $table->string('major')->nullable();
+            $table->string('tutor')->nullable();
+            $table->string('reasons')->nullable();
+            $table->date('date_of_birth');
+            $table->boolean('status');
+            $table->boolean('show_comment')->default(false);
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

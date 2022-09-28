@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
- 
     /**
      * Run the migrations.
      *
@@ -21,7 +19,6 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('position');
-            $table->string('role')->default("teacher");
             $table->string('phone');
             $table->timestamps();
         });

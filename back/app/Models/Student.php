@@ -10,10 +10,13 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = [
-        'batch',
+        'generation',
         'phone',
+        'date_of_birth',
+        'status',
+        'tutor',
+        'reason',
     ];
-
     protected $hidden = [
         'created_at',
         'updated_at'
@@ -22,4 +25,12 @@ class Student extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function comments(){
+        return $this->hasMany(Comment::class, 'student_id');
+    }
+
+    protected $casts = [
+        'status'=> 'boolean',
+    ];
+    
 }

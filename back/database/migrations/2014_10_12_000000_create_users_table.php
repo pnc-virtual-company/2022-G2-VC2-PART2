@@ -21,11 +21,11 @@ return new class extends Migration
             $table->string('password')->default(bcrypt(1234567));
             $table->string('gender');
             $table->string('profile')->default('https://drjollydiagnostics.com/wp-content/uploads/2017/11/profile-placeholder.png');
+            $table->string('role')->nullable();
             $table->timestamps();
         });
-        
+
     }
-    
 
     /**
      * Reverse the migrations.
