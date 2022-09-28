@@ -151,12 +151,12 @@
                 <Button-view
                   class="cancle text-white active:bg-orange-600 text-sm rounded px-2 mr-3 shadow hover:bg-orange-400 hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   @click="onCancel()"
-                  >Cancle</Button-view
+                  >Cancel</Button-view
                 >
                 <Button-view
                   class="add text-white active:bg-sky-600 text-sm text-sm px-2 rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   @click="edit_teacher()"
-                  >Save</Button-view
+                  >Edit</Button-view
                 >
                   </div>
                 </form>
