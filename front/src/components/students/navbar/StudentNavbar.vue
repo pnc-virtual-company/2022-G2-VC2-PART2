@@ -2,11 +2,12 @@
 <div>
 
   <div class="w-full">
-     <nav  v-for="student of students" :key="student" class="flex justify-between z-10 flex pl-4 pr-4 text-center items-center w-full">
+    <nav  v-for="student of students" :key="student" class="flex navbar z-10 text-center w-full h-[10%] drop-shadow-lg">
       <div class="flex items-center">
-        <img src="../../../assets/logo.png" class="w-16">
+        <img src="../../../assets/logo.png" class="w-16 ml-9">
       </div>
-      <div class="w-[20%] justify-end flex items-center ">
+      
+      <div class="w-full flex items-center justify-end">
         <h1 class="p-2 font-bold text-white">
           {{ student.users.first_name }} {{ student.users.last_name }}
         </h1>
@@ -16,7 +17,7 @@
           :src=student.users.profile
         />
         <a href="log_out">
-          <log-out @click="log_out" class="cursor-pointer ml-3 mr-3" />
+          <log-out @click="log_out" class="cursor-pointer ml-3 mr-10" />
         </a>
       </div>
     </nav>

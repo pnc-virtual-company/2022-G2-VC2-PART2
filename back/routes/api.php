@@ -49,6 +49,8 @@ Route::put('teachers/update_status/{id}', [StudentController::class, 'update_sta
     // comment route
     Route::post('comments/add', [CommentController::class, 'add_comments']);
     Route::get('comments/get', [CommentController::class, 'get_comment_by_id']);
+    // Route::get('commentTutors/get', [CommentController::class, 'get_comment_tutor_by_id']);
+
     // coordinator Routes
     Route::get('coordinators/get/{id}', [CoordinatorController::class, 'get_coordinator_first']);
 

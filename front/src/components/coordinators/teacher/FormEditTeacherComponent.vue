@@ -156,7 +156,7 @@
                 <Button-view
                   class="add text-white active:bg-sky-600 text-sm text-sm px-2 rounded shadow hover:shadow-lg hover:bg-sky-500 outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   @click="edit_teacher()"
-                  >Edit</Button-view
+                  >Save</Button-view
                 >
                   </div>
                 </form>
