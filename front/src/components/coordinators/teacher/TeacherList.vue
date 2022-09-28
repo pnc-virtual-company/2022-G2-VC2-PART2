@@ -4,22 +4,22 @@
     <CardDetail :user_info="user_info" v-if="is_show" @close_detail="close_detail"/>
     <div class="w-[82.6%] m-auto">
       <!-- created's message -->
-      <success-message v-if="isCreated" class="text-green-500 items-center mt-[5rem]">
+      <success-message v-if="isCreated" class="text-green-500 items-center py-1.5 mt-[5rem]">
         <p><strong>Congratulation!</strong> Teacher was successfully created</p>
         <delete-icon @click="close_messages"></delete-icon>
       </success-message>
       <!-- deleted's message -->
-      <success-message v-if="isDeleted" class="text-green-500 items-center mt-[5rem]">
+      <success-message v-if="isDeleted" class="text-green-500 items-center py-1.5 mt-[5rem]">
         <p><strong>Congratulation!</strong> Teacher was successfully deleted</p>
         <delete-icon @click="close_messages"></delete-icon>
       </success-message>
       <!-- edited's message -->
-      <success-message v-if="isEdit" class="text-green-500 items-center mt-[5rem]">
+      <success-message v-if="isEdit" class="text-green-500 items-center py-1.5 mt-[5rem]">
         <p><strong>Congratulation!</strong> Edit was successfully saved</p>
         <delete-icon @click="close_messages"></delete-icon>
       </success-message>
       <!-- axists account -->
-      <error-message v-if="isAccountExist" class="text-red-500 items-center mt-[5rem]">
+      <error-message v-if="isAccountExist" class="text-red-500 items-center py-1.5 mt-[5rem]">
         <p><strong>Ops!</strong> Teacher account was already
           created</p>
         <delete-icon @click="close_messages"></delete-icon>

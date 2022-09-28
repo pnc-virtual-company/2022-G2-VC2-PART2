@@ -92,7 +92,7 @@
                           class="w-full border px-4 pr-8 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-500 appearance-none"
                           id="select-item"
                         >
-                          <option>Position</option>
+                          <option disabled value="Position">Position</option>
                           <option value="WEB Trainer" class="text-black">WEB Trainer</option>
                           <option value="SNA Trainer" class="text-black">
                             SNA Trainer

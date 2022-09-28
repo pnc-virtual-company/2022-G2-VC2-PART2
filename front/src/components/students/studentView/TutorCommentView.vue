@@ -41,8 +41,8 @@ export default {
 
   },
   mounted() {
-    this.get_tutor();
-    this.get_comment_tutor();
+    // this.get_tutor();
+    // this.get_comment_tutor();
   }
 
 }

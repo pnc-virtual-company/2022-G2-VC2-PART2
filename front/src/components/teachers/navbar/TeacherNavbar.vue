@@ -1,7 +1,6 @@
 <template>
   <div class="form-reset">
-   <form-reset v-if="show_form"/>
-  <div>
+   <form-reset v-if="show_form" class="z-20"/>
     <nav class="flex navbar z-10 text-center w-full h-[10%] drop-shadow-lg">
       <div class="flex items-center">
         <img src="../../../assets/logo.png" class="w-16 ml-9">
@@ -112,7 +111,6 @@
       </div>
     </teacher-profile>
     <router-view></router-view>
-  </div>
 </div>
 </template>
 

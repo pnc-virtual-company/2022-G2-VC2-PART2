@@ -55,7 +55,7 @@
                           class="w-full border px-4 pr-8 py-1 rounded focus:border-blue-500 focus:shadow-outline outline-none text-slate-500 appearance-none"
                           id="select-item"
                         >
-                          <option>Gender</option>
+                          <option disabled value="Choose">Gender</option>
                           <option value="Male" class="text-black">Male</option>
                           <option value="Female" class="text-black">
                             Female

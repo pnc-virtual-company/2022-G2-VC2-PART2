@@ -89,7 +89,7 @@ class SendEmailController extends Controller
             );
             Mail::send('Emails.SendTutorStudent', $data, function ($message) use ($email, $id) {
                 $message->from('sfu@passerellesnumeriques.org', "SFU");
-                $message->to($email . $id)->cc(['sopha.rathwep2022@gmail.com'])->subject('Message:Student FollowUp');
+                $message->to($email.$id)->cc(['sopha.rathwep2022@gmail.com'])->subject('Message:Student FollowUp');
             });
             return 'Email sent Successfully';
         } else {

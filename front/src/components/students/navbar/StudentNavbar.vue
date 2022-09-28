@@ -1,14 +1,13 @@
 <template>
   <div>
-    <form-reset v-if="show_form" />
-    <div class="w-full">
+    <form-reset v-if="show_form" class="z-20"/>
       <nav
         v-for="student of students"
         :key="student"
-        class="flex justify-between z-10 flex pl-4 pr-4 text-center items-center w-full"
+        class="flex justify-between z-10 navbar pl-4 pr-4 text-center items-center w-full"
       >
         <div class="flex items-center">
-          <img src="../../../assets/logo.png" class="w-16" />
+          <img src="../../../assets/logo.png" class="w-16 ml-9"/>
         </div>
         <div class="w-[20%] justify-end flex items-center">
           <h1 class="p-2 font-bold text-white">
@@ -16,15 +15,14 @@
           </h1>
           <img
             @click="show_profile"
-            class="h-[50px] w-[50px] rounded-full cursor-pointer"
+            class="h-[50px] w-[50px] rounded-full cursor-pointer mr-3"
             :src="student.users.profile"
           />
           <a href="log_out">
-            <log-out @click="log_out" class="cursor-pointer ml-3 mr-3" />
+            <log-out @click="log_out" class="cursor-pointer mr-9" />
           </a>
         </div>
       </nav>
-
       <student-profile v-if="is_show" @close_profile="close_profile">
         <div v-for="student of students" :key="student" class="modal-mask">
           <div class="modal-wrapper">
@@ -88,7 +86,7 @@
                 </p>
               </div>
 
-              <div class="flex justify-center item-center">
+              <div class="flex justify-center w-full item-center">
                 <div>
                   <p><span class="font-bold">Major</span></p>
                   <p><span class="font-bold">Generation</span></p>
@@ -101,36 +99,23 @@
                   </p>
                 </div>
 
-                <div class="mr-3 ml-3">
-                  <p><span class="font-bold">:</span></p>
-                  <p><span class="font-bold">:</span></p>
-                  <p><span class="font-bold">:</span></p>
-                  <p><span class="font-bold">:</span></p>
-                  <p><span class="font-bold">:</span></p>
-                  <p><span class="font-bold">:</span></p>
-                  <p class="mb-5">
-                    <span class="font-bold">:</span>
-                  </p>
-                </div>
-
                 <div>
-                  <p><span class="font-bold"></span>{{ student.major }}</p>
-                  <p><span class="font-bold"></span>{{ student.generation }}</p>
+                  <p><span class="font-bold ml-2">:</span> {{ student.major }}</p>
+                  <p><span class="font-bold ml-2">:</span> {{ student.generation }}</p>
                   <p>
-                    <span class="font-bold"></span>{{ student.users.gender }}
+                    <span class="font-bold ml-2">:</span>  {{ student.users.gender }}
                   </p>
-                  <p><span class="font-bold"></span>Student</p>
+                  <p><span class="font-bold ml-2">:</span> Student</p>
                   <p>
-                    <span class="font-bold"></span>{{ student.date_of_birth }}
+                    <span class="font-bold ml-2">:</span>  {{ student.date_of_birth }}
                   </p>
-                  <p><span class="font-bold"></span>{{ student.phone }}</p>
+                  <p><span class="font-bold ml-2">:</span> {{ student.phone }}</p>
                   <p class="mb-5">
-                    <span class="font-bold"></span>
-                    {{ student.users.email }}
+                    <span class="font-bold ml-2">:</span> {{ student.users.email }}
                   </p>
                 </div>
               </div>
-              <div class="text-center">
+              <div class="text-center mb-2">
                 <button
                   @click="reset_pass"
                   class="bg-blue-400 text-white py-2 px-4 text-sm rounded"
@@ -144,7 +129,6 @@
         </div>
       </student-profile>
       <router-view></router-view>
-    </div>
     <student-CommentPlace />
   </div>
 </template>
